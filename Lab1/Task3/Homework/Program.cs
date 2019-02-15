@@ -6,6 +6,16 @@ namespace Homework
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Запуск тестов...");
+
+            if (!Test.TestQuickSort())
+            {
+                Console.WriteLine("Тесты не пройдены!");
+                return;
+            }
+
+            Console.WriteLine("Тесты пройдены!");
+
             int[] myArray = ArrayUI.InitArray();
 
             Console.Write("Введённый массив: ");
@@ -105,6 +115,52 @@ namespace Homework
             theArray[indexA] = theArray[indexA] + theArray[indexB];
             theArray[indexB] = theArray[indexA] - theArray[indexB];
             theArray[indexA] = theArray[indexA] - theArray[indexB];
+        }
+    }
+
+    class Test
+    {
+        public static bool TestQuickSort()
+        {
+            int[] testArray = new int[10] { 1124, 412, 302, 254, 239, 200, 189, 140, 10, -12 };
+
+            Task.QuickSort(testArray, 0, 9);
+
+            if (!TestAscOrder(testArray))
+            {
+                return false;
+            }
+
+            int[] testArrayRandom = new int[100];
+
+            Random rand = new Random();
+
+            for (int i = 0; i < 100; ++i)
+            {
+                testArrayRandom[i] = rand.Next(-999, 1000);
+            }
+
+            Task.QuickSort(testArrayRandom, 0, 99);
+
+            if (!TestAscOrder(testArrayRandom))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private static bool TestAscOrder(int[] theArray)
+        {
+            for (int i = 0; i < theArray.Length - 1; ++i)
+            {
+                if (theArray[i] > theArray[i + 1])
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }
