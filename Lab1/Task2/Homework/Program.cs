@@ -6,6 +6,16 @@ namespace Homework
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Запуск тестов...");
+
+            if (!Test.TestFibonacci())
+            {
+                Console.WriteLine("Тесты не пройдены!");
+                return;
+            }
+
+            Console.WriteLine("Тесты пройдены!");
+
             int position = Task.GetPosition();
 
             Console.WriteLine($"Число Фибоначчи на позиции {position}: {Task.Fibonacci(position)}");
@@ -51,6 +61,34 @@ namespace Homework
             }
 
             return nextElement;
+        }
+    }
+
+    class Test
+    {
+        public static bool TestFibonacci()
+        {
+            if (Task.Fibonacci(0) != 0)
+            {
+                return false;
+            }
+            if (Task.Fibonacci(-10) != -55)
+            {
+                return false;
+            }
+            if (Task.Fibonacci(5) != 5)
+            {
+                return false;
+            }
+            if (Task.Fibonacci(20) != 6765)
+            {
+                return false;
+            }
+            if (Task.Fibonacci(29) != 514229)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }
