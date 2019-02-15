@@ -40,3 +40,9 @@
 *.pdb
 *.user
 *.ipch
+*.ide*
+*.lock
+*.cache
+*.cache
+*.json
+*.targets
