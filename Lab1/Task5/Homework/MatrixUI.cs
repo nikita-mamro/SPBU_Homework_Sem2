@@ -37,10 +37,13 @@ namespace Homework
 
             var result = new List<List<int>>();
 
-            for (int i = 0; i < MxN.Item1; ++i)
+            for (int i = 0; i < MxN.Item2; ++i)
             {
                 result.Add(new List<int>());
+            }
 
+            for (int i = 0; i < MxN.Item1; ++i)
+            {
                 Console.WriteLine($"Введите поочерёдно элементы {i + 1}-й строки.");
 
                 for (int j = 0; j < MxN.Item2; ++j)
@@ -54,7 +57,7 @@ namespace Homework
                         continue;
                     }
 
-                    result[i].Add(element);
+                    result[j].Add(element);
                 }
             }
 
@@ -63,12 +66,13 @@ namespace Homework
 
         public static void PrintMatrixSquare(List<List<int>>  theMatrix)
         {
-            for (int i = 0; i < theMatrix.Count; ++i)
+            for (int i = 0; i < theMatrix[0].Count; ++i)
             {
-                for (int j = 0; j < theMatrix[i].Count; ++j)
+                for (int j = 0; j < theMatrix.Count; ++j)
                 {
-                    Console.Write(String.Format("{0,4}", theMatrix[i][j]));
+                    Console.Write(String.Format("{0,4}", theMatrix[j][i]));
                 }
+
                 Console.WriteLine();
             }
         }
