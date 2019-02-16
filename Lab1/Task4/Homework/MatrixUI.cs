@@ -24,7 +24,7 @@ namespace Homework
         {
             var N = GetSize();
 
-            var res = new int[N,N];
+            var result = new int[N, N];
 
             for (int i = 0; i < N; ++i)
             {
@@ -41,11 +41,11 @@ namespace Homework
                         continue;
                     }
 
-                    res[i, j] = element;
+                    result[i, j] = element;
                 }
             }
 
-            return res;
+            return result;
         }
 
         public static void PrintMatrixSquare(int[,] theMatrix)
