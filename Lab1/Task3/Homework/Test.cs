@@ -7,7 +7,7 @@ namespace Homework
     {
         public static bool TestQuickSort()
         {
-            int[] testArray = new int[10] { 1124, 412, 302, 254, 239, 200, 189, 140, 10, -12 };
+            var testArray = new int[10] { 1124, 412, 302, 254, 239, 200, 189, 140, 10, -12 };
 
             Task.QuickSort(testArray, 0, testArray.Length - 1);
 
@@ -16,7 +16,7 @@ namespace Homework
                 return false;
             }
 
-            int[] testArrayRandom = new int[100];
+            var testArrayRandom = new int[100];
 
             var rand = new Random();
 

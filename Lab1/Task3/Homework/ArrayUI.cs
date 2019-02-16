@@ -23,7 +23,7 @@ namespace Homework
         {
             var length = GetLength();
 
-            int[] res = new int[length];
+            var res = new int[length];
 
             Console.WriteLine("Введите поочерёдно элементы массива:");
 
