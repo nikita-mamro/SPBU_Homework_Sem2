@@ -25,7 +25,7 @@ namespace Homework
             {
                 if (unsortedMatrix[i][0] < element[0])
                 {
-                    swap(unsortedMatrix, i, index);
+                    Swap(unsortedMatrix, i, index);
                     ++index;
                 }
             }
@@ -39,7 +39,7 @@ namespace Homework
             QuickSortMatrixByColumns(unsortedMatrix, index, lastIndex);
         }
 
-        private static void swap(List<List<int>> theMatrix, int indexA, int indexB)
+        private static void Swap(List<List<int>> theMatrix, int indexA, int indexB)
         {
             List<int> tmp = theMatrix[indexA];
             theMatrix[indexA] = theMatrix[indexB];

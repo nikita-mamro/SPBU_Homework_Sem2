@@ -6,7 +6,7 @@ namespace Homework
 {
     class MatrixUI
     {
-        private static Tuple<int, int> GetSize()
+        private static (int, int) GetSize()
         {
             Console.Write("Введите M - количество строк: ");
             var inputStringM = Console.ReadLine();
@@ -26,27 +26,25 @@ namespace Homework
                 return GetSize();
             }
 
-            var res = new Tuple<int, int>(M, N);
-
-            return res;
+            return (M, N);
         }
 
         public static List<List<int>> InitMatrix()
         {
-            var MxN = GetSize();
+            var (M, N) = GetSize();
 
             var result = new List<List<int>>();
 
-            for (int i = 0; i < MxN.Item2; ++i)
+            for (int i = 0; i < N; ++i)
             {
                 result.Add(new List<int>());
             }
 
-            for (int i = 0; i < MxN.Item1; ++i)
+            for (int i = 0; i < M; ++i)
             {
                 Console.WriteLine($"Введите поочерёдно элементы {i + 1}-й строки.");
 
-                for (int j = 0; j < MxN.Item2; ++j)
+                for (int j = 0; j < N; ++j)
                 {
                     var inputElement = Console.ReadLine();
 
