@@ -46,3 +46,7 @@
 *.cache
 *.json
 *.targets
+
+# Folders
+bin/
+obj/
