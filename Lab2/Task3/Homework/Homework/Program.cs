@@ -6,6 +6,8 @@ namespace Homework
     {
         static void Main(string[] args)
         {
+            ICalculator calculator = GetStackType();
+
             Console.WriteLine("Для корректной работы разделяйте все операнды и операторы пробелами");
             Console.WriteLine("Введите выражение в постфиксной форме:");
 
@@ -13,12 +15,37 @@ namespace Homework
 
             try
             {
-                Console.WriteLine($"Значение выражения: {PostfixCalculator.GetPostfixExpressionValue(inputExpression)}");
+                Console.WriteLine($"Значение выражения: {calculator.GetPostfixExpressionValue(inputExpression)}");
             }
             catch (InvalidOperationException calculatingError)
             {
                 Console.WriteLine(calculatingError.Message);
             }
+        }
+
+        private static ICalculator GetStackType()
+        {
+            Console.WriteLine("Выберите используемый тип стека:");
+            Console.WriteLine("1 - На массиве");
+            Console.WriteLine("2 - На списке");
+
+            if (int.TryParse(Console.ReadLine(), out int choice))
+            {
+                switch (choice)
+                {
+                    case 1:
+                        Console.WriteLine("Выбранная реализация стека: на массиве");
+                        return new PostfixCalculator(new ArrayStack());
+                    case 2:
+                        Console.WriteLine("Выбранная реализация стека: на односвязномм списке");
+                        return new PostfixCalculator(new ListStack());
+                    default:
+                        Console.WriteLine("Выберете один из двух типов стека.");
+                        return GetStackType();
+                }
+            }
+            Console.WriteLine("Выберете один из двух типов стека.");
+            return GetStackType();
         }
     }
 }

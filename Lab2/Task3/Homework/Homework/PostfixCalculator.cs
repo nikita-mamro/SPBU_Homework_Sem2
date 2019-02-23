@@ -4,14 +4,21 @@ using System.Text;
 
 namespace Homework
 {
-    class PostfixCalculator
+    class PostfixCalculator : ICalculator
     {
-        private static bool IsOperator(char c)
+        private IStack stack;
+
+        public PostfixCalculator(IStack stack)
+        {
+            this.stack = stack;
+        }
+
+        private bool IsOperator(char c)
         {
             return c == '+' || c == '-' || c == '*' || c == '/';
         }
 
-        private static int ProceedOperator(int a, int b, char theOperator)
+        private int ProceedOperator(int a, int b, char theOperator)
         {
             switch (theOperator)
             {
@@ -27,14 +34,13 @@ namespace Homework
 
             return 0;
         }
-        public static int GetPostfixExpressionValue(string expression)
+        
+        public int GetPostfixExpressionValue(string expression)
         {
             try
             {
-                var stack = new ArrayStack();
                 // Variable which makes it possible to use not only digits, but also numbers 
                 int numbersHandler = 0;
-
 
                 for (var i = 0; i < expression.Length;  ++i)
                 {
