@@ -9,7 +9,7 @@ namespace Homework
         void Push(int data);
         int Pop();
         int Peek();
-        bool IsEmpty();
+        bool IsEmpty { get; }
         void Clear(); 
         int Count { get; }
     }
