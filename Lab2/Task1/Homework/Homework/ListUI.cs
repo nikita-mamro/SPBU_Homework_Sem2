@@ -110,6 +110,9 @@ namespace Homework
                     Console.WriteLine("Список:");
                     list.Print();
                     break;
+                case 8:
+                    Console.WriteLine("Выход.");
+                    break;
                 default:
                     Console.WriteLine("Выберите пункт от 1 до 7");
                     break;
@@ -137,6 +140,8 @@ namespace Homework
 
                 ProceedChoice(list, choice);
             } while (choice != 8);
+
+            list.Clear();
         }
     }
 }

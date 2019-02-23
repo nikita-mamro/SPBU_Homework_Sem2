@@ -13,5 +13,6 @@ namespace Homework
         int GetDataByPosition(int position);
         bool SetDataByPosition(int data, int position);
         void Print();
+        void Clear();
     }
 }

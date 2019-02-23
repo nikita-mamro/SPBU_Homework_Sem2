@@ -156,6 +156,14 @@ namespace Homework
 
             Console.WriteLine($"{current.data}");
         }
+
+        public void Clear()
+        {
+            for (var i = 0; i < size; ++i)
+            {
+                RemoveFromHead();
+            }
+        }
     }
       
 }
