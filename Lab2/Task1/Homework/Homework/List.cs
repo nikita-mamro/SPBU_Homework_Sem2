@@ -73,7 +73,7 @@ namespace Homework
             return true;
         }
 
-        public void RemoveFromHead()
+        private void RemoveFromHead()
         {
             head = head.next;
             --size;
