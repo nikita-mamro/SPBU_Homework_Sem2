@@ -6,12 +6,10 @@ namespace Homework
 {
     public interface IList
     {
-        bool Add(int data, int position);
+        void Add(ref string data);
         bool Remove(int position);
         int Size { get; }
         bool isEmpty { get; }
-        int GetDataByPosition(int position);
-        bool SetDataByPosition(int data, int position);
         void Print();
         void Clear();
     }
