@@ -9,6 +9,7 @@ namespace Homework
         private class Node
         {
             public int data { get; set; }
+            public int count { get; set; }
             public Node next { get; set; }
             public Node(int data, Node next)
             {
@@ -73,7 +74,7 @@ namespace Homework
             return true;
         }
 
-        public void RemoveFromHead()
+        private void RemoveFromHead()
         {
             head = head.next;
             --size;
@@ -102,14 +103,14 @@ namespace Homework
             return true;
         }
 
-        public int Size()
+        public int Size
         {
-            return size;
+            get { return size; }
         }
 
-        public bool isEmpty()
+        public bool isEmpty
         {
-            return size == 0;
+            get { return size == 0; }
         }
 
         public int GetDataByPosition(int position)
@@ -140,7 +141,7 @@ namespace Homework
 
         public void Print()
         {
-            if (isEmpty())
+            if (isEmpty)
             {
                 Console.WriteLine("EMPTY");
                 return;
