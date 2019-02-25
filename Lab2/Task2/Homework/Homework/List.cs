@@ -21,6 +21,12 @@ namespace Homework
         private Node head = null;
         private int size = 0;
 
+        public List()
+        {
+            head = null;
+            size = 0;
+        }
+
         private bool IsPositionValidToAdd(int position)
         {
             return position >= 0 && position <= size;
