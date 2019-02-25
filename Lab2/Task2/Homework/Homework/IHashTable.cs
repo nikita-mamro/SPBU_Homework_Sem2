@@ -6,10 +6,10 @@ namespace Homework
 {
     public interface IHashTable
     {
-        public void Add(ref string word);
-        public void Remove(ref string word);
-        public bool IsContained(ref string word);
-        public void Clear();
-        public int Count { get; }
+        void Add(string word);
+        void Remove(string word);
+        bool IsContained(string word);
+        void Clear();
+        int Count { get; }
     }
 }

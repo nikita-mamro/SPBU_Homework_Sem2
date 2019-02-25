@@ -6,11 +6,11 @@ namespace Homework
 {
     public interface IList
     {
-        void Add(ref string data);
-        bool Remove(int position);
+        void Add(string data);
+        void Remove(string word);
+        bool Contains(string word);
         int Size { get; }
         bool isEmpty { get; }
-        void Print();
         void Clear();
     }
 }

@@ -6,7 +6,7 @@ namespace Homework
     {
         static void Main(string[] args)
         {
-            
+            HashTableUI.ProceedTask();
         }
     }
 }
