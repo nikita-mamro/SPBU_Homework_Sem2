@@ -17,8 +17,8 @@ namespace Homework
             }
         }
 
-        private Node head = null;
-        private int size = 0;
+        private Node head;
+        private int size;
 
         public List()
         {
