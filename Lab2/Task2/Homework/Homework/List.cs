@@ -8,40 +8,33 @@ namespace Homework
     {
         private class Node
         {
-            public string data { get; set; }
-            public int count { get; set; }
-            public Node next { get; set; }
+            public string Data { get; set; }
+            public int Count { get; set; }
+            public Node Next { get; set; }
             public Node(string data, int count)
             {
-                this.data = data;
-                this.next = null;
-                this.count = count;
+                this.Data = data;
+                this.Next = null;
+                this.Count = count;
             }
         }
 
-        private Node head;
-        private Node tail;
-        private int size;
-
-        public List()
-        {
-            head = null;
-            tail = null;
-            size = 0;
-        }
+        private Node Head;
+        private Node Tail;
+        public int Size { get; private set; }
 
         public string this[int index]
         {
             get
             {
-                var current = head;
+                var current = Head;
 
                 for (var i = 0; i < index; ++i)
                 {
-                    current = current.next;
+                    current = current.Next;
                 }
 
-                return current.data;
+                return current.Data;
             }
         }
 
@@ -52,40 +45,40 @@ namespace Homework
 
         private Node GetNodeByWord(string word)
         {
-            if (size == 1 && head.data == word)
+            if (Size == 1 && Head.Data == word)
             {
-                return head;
+                return Head;
             }
 
-            return GetPreviousByWord(word) == null ? null : GetPreviousByWord(word).next;
+            return GetPreviousByWord(word) == null ? null : GetPreviousByWord(word).Next;
         }
 
         private Node GetPreviousByWord(string word)
         {
-            if (isEmpty)
+            if (IsEmpty)
             {
-                return head;
+                return Head;
             }
 
-            var current = head;
+            var current = Head;
 
-            while (current.next != null && current.next.data != word)
+            while (current.Next != null && current.Next.Data != word)
             {
-                current = current.next;
+                current = current.Next;
             }
 
-            return current.next != null ? current : null;
+            return current.Next != null ? current : null;
         }
 
         private void UpdateCounter(Node node, bool add)
         {
             if (add)
             {
-                ++node.count;
+                ++node.Count;
                 return;
             }
 
-            --node.count;
+            --node.Count;
         }
 
         public void Add(string word)
@@ -97,75 +90,77 @@ namespace Homework
                 return;
             }
 
-            if (isEmpty)
+            if (IsEmpty)
             {
                 var node = new Node(word, 1);
-                head = node;
-                tail = node;
-                ++size;
+                Head = node;
+                Tail = node;
+                ++Size;
                 Console.WriteLine($"Элемент {word} добавлен!");
                 return;
             }
 
-            tail.next = new Node(word, 1);
-            tail = tail.next;
+            Tail.Next = new Node(word, 1);
+            Tail = Tail.Next;
             Console.WriteLine($"Элемент {word} добавлен!");
         }
 
-        public void Remove(string word)
+        public bool Remove(string word)
         {
             if (!Contains(word))
             {
                 Console.WriteLine($"Элемент {word} не найден!");
-                return;
+                return false;
             }
 
-            if (head.data == word)
+            if (Head.Data == word)
             {
-                if (head.count > 1)
+                if (Head.Count > 1)
                 {
-                    --head.count;
+                    --Head.Count;
                     Console.WriteLine($"Обновлено количество вхождений элемента {word} в набор!");
-                    return;
+                    return true;
                 }
 
-                head = null;
-                tail = null;
-                size = 0;
+                Head = null;
+                Tail = null;
+                Size = 0;
                 Console.WriteLine($"Элемент {word} удалён");
-                return;
+                return true;
             }
 
             var node = GetPreviousByWord(word);
 
-            if (node.next.count > 1)
+            if (node.Next.Count > 1)
             {
-                --node.next.count;
+                --node.Next.Count;
                 Console.WriteLine($"Обновлено количество вхождений элемента {word} в набор!");
-                return;
+                return true;
             }
 
-            if (node.next == tail)
+            if (node.Next == Tail)
             {
-                node.next = null;
-                tail = node;
+                node.Next = null;
+                Tail = node;
             }
 
-            node.next = node.next.next;
+            node.Next = node.Next.Next;
             Console.WriteLine($"Элемент {word} удалён");
+
+            return true;
         }
 
         private void RemoveFromHead()
         {
-            head = head.next;
-            --size;
+            Head = Head.Next;
+            --Size;
         }
 
         public List<string> GetWords()
         {
             var words = new List<string>(); 
 
-            for (int i = 0; i < size; ++i)
+            for (int i = 0; i < Size; ++i)
             {
                 words.Add(this[i]);
             }
@@ -173,22 +168,13 @@ namespace Homework
             return words;
         }
 
-        public int Size
-        {
-            get { return size; }
-        }
-
-        public bool isEmpty
-        {
-            get { return size == 0; }
-        }
+        public bool IsEmpty
+            => Size == 0;
 
         public void Clear()
         {
-            for (var i = 0; i < size; ++i)
-            {
-                RemoveFromHead();
-            }
+            Head = null;
+            Size = 0;
         }
     }
 }
