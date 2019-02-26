@@ -6,36 +6,31 @@ namespace Homework
 {
     public class ArrayStack : IStack
     {
-        private int[] items;
-        private int count;
-        private bool isFull { get; }
-        const int defaultSize = 2;
+        private int[] Items;
+        public int Count { get; private set; }
+        private bool IsFull { get; set; }
+        const int DefaultSize = 2;
 
         public ArrayStack()
         {
-            items = new int[defaultSize];
-        }
-
-        private bool IsFull
-        {
-            get { return count == items.Length; }
+            Items = new int[DefaultSize];
         }
 
         public void Push(int data)
         {
             if (IsFull)
             {
-                int[] newStorage = new int[items.Length + 2];
+                int[] newStorage = new int[Items.Length + 2];
 
-                for (var i = 0; i < items.Length; ++i)
+                for (var i = 0; i < Items.Length; ++i)
                 {
-                    newStorage[i] = items[i];
+                    newStorage[i] = Items[i];
                 }
 
-                this.items = newStorage;
+                this.Items = newStorage;
             }
 
-            items[count++] = data;
+            Items[Count++] = data;
         }
 
         public int Pop()
@@ -45,33 +40,24 @@ namespace Homework
                 throw new InvalidOperationException("Вызов Pop() для пустого стека!");
             }
 
-            int popped = items[--count];
-            items[count] = default(int);
+            int popped = Items[--Count];
+            Items[Count] = default(int);
 
             return popped;
         }
 
         public int Peek()
-        {
-            return items[count - 1];
-        }
+            => Items[Count - 1];
 
         public bool IsEmpty
-        {
-            get { return count == 0; }
-        }
+            => Count == 0;
         
         public void Clear()
         {
-            for (var i = 0; i < items.Length; ++i)
+            for (var i = 0; i < Items.Length; ++i)
             {
-                items[i] = default(int);
+                Items[i] = default(int);
             }
-        }
-
-        public int Count
-        {
-            get { return count; }
         }
     }
 }

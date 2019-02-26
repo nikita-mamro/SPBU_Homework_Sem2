@@ -8,28 +8,22 @@ namespace Homework
     {
         private class ListStackElement
         {
-            public int data;
-            public ListStackElement next;
+            public int Data;
+            public ListStackElement Next;
             public ListStackElement(int data, ListStackElement next)
             {
-                this.data = data;
-                this.next = next;
+                Data = data;
+                Next = next;
             }
         }
 
-        private int count;
-        private ListStackElement head;
-
-        public ListStack()
-        {
-            head = null;
-            count = 0;
-        }
+        public int Count { get; private set; }
+        private ListStackElement Head;
 
         public void Push(int data)
         {
-            head = new ListStackElement(data, head);
-            ++count;
+            Head = new ListStackElement(data, Head);
+            ++Count;
         }
 
         public int Pop()
@@ -39,34 +33,23 @@ namespace Homework
                 throw new InvalidOperationException("Вызов Pop() для пустого стека!");
             }
 
-            int popped = head.data;
-            head = head.next;
-            --count;
+            int popped = Head.Data;
+            Head = Head.Next;
+            --Count;
 
             return popped;
         }
 
         public int Peek()
-        {
-            return head.data;
-        }
+            => Head.Data;
 
         public bool IsEmpty
-        {
-            get { return count == 0; }
-        }
+            => Count == 0;
         
         public void Clear()
         {
-            while (count > 0)
-            {
-                Pop();
-            }
-        }
-
-        public int Count
-        {
-            get { return count; }
+            Head = null;
+            Count = 0;
         }
     }
 }
