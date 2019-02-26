@@ -8,41 +8,31 @@ namespace Homework
     {
         private class Node
         {
-            public int data { get; set; }
-            public Node next { get; set; }
+            public int Data { get; set; }
+            public Node Next { get; set; }
             public Node(int data, Node next)
             {
-                this.data = data;
-                this.next = next;
+                Data = data;
+                Next = next;
             }
         }
 
-        private Node head;
-        private int size;
-
-        public List()
-        {
-            head = null;
-            size = 0;
-        }
+        private Node Head;
+        public int Count { get; private set; }
 
         private bool IsPositionValidToAdd(int position)
-        {
-            return position >= 0 && position <= size;
-        }
+            => position >= 0 && position <= Count;
 
         private bool IsPositionValidToRemove(int position)
-        {
-            return position >= 0 && position < size;
-        }
+            => position >= 0 && position < Count;
 
         private Node GetNodeByPosition(int position)
         {
-            Node current = head;
+            var current = Head;
 
             for (var i = 0; i < position; ++i)
             {
-                current = current.next;
+                current = current.Next;
             }
 
             return current;
@@ -50,8 +40,8 @@ namespace Homework
 
         private void AddToHead(int data)
         {
-            head = new Node(data, head);
-            ++size;
+            Head = new Node(data, Head);
+            ++Count;
         }
 
         public bool Add(int data, int position)
@@ -68,21 +58,21 @@ namespace Homework
                 return true;
             }
 
-            Node nodeBefore = GetNodeByPosition(position - 1);
+            var nodeBefore = GetNodeByPosition(position - 1);
 
-            Node newNode = new Node(data, nodeBefore.next);
+            var newNode = new Node(data, nodeBefore.Next);
 
-            nodeBefore.next = newNode;
+            nodeBefore.Next = newNode;
 
-            ++size;
+            ++Count;
 
             return true;
         }
 
         private void RemoveFromHead()
         {
-            head = head.next;
-            --size;
+            Head = Head.Next;
+            --Count;
         }
 
         public bool Remove(int position)
@@ -99,24 +89,17 @@ namespace Homework
                 return true;
             }
 
-            Node nodeBefore = GetNodeByPosition(position - 1);
+            var nodeBefore = GetNodeByPosition(position - 1);
 
-            nodeBefore.next = nodeBefore.next.next;
+            nodeBefore.Next = nodeBefore.Next.Next;
 
-            --size;
+            --Count;
 
             return true;
         }
 
-        public int Size()
-        {
-            return size;
-        }
-
-        public bool isEmpty()
-        {
-            return size == 0;
-        }
+        public bool IsEmpty()
+            => Count == 0;
 
         public int GetDataByPosition(int position)
         {
@@ -126,8 +109,8 @@ namespace Homework
                 return -1;
             }
 
-            Node node = GetNodeByPosition(position);
-            return node.data;
+            var node = GetNodeByPosition(position);
+            return node.Data;
         }
 
         public bool SetDataByPosition(int data, int position)
@@ -138,37 +121,35 @@ namespace Homework
                 return false;
             }
 
-            Node node = GetNodeByPosition(position);
-            node.data = data;
+            var node = GetNodeByPosition(position);
+            node.Data = data;
 
             return true;
         }
 
         public void Print()
         {
-            if (isEmpty())
+            if (IsEmpty())
             {
                 Console.WriteLine("EMPTY");
                 return;
             }
 
-            Node current = head;
+            var current = Head;
 
-            for (var i = 0; i < size - 1; ++i)
+            for (var i = 0; i < Count - 1; ++i)
             {
-                Console.Write($"{current.data}->");
-                current = current.next;
+                Console.Write($"{current.Data}->");
+                current = current.Next;
             }
 
-            Console.WriteLine($"{current.data}");
+            Console.WriteLine($"{current.Data}");
         }
 
         public void Clear()
         {
-            for (var i = 0; i < size; ++i)
-            {
-                RemoveFromHead();
-            }
+            Head = null;
+            Count = 0;
         }
     }
 }

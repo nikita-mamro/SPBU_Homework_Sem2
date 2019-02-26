@@ -8,8 +8,8 @@ namespace Homework
     {
         bool Add(int data, int position);
         bool Remove(int position);
-        int Size();
-        bool isEmpty();
+        int Count { get; }
+        bool IsEmpty();
         int GetDataByPosition(int position);
         bool SetDataByPosition(int data, int position);
         void Print();

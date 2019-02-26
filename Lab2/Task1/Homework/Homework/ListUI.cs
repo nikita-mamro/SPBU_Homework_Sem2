@@ -16,7 +16,8 @@ namespace Homework
             Console.WriteLine("5 - Проверить, пуст ли список");
             Console.WriteLine("6 - Получить размер списка");
             Console.WriteLine("7 - Распечатать список");
-            Console.WriteLine("8 - Выйти");
+            Console.WriteLine("8 - Очистить список");
+            Console.WriteLine("9 - Выйти");
             Console.WriteLine("------------------------------------------");
         }
 
@@ -95,7 +96,7 @@ namespace Homework
                     }
                     break;
                 case 5:
-                    if (list.isEmpty())
+                    if (list.IsEmpty())
                     {
                         Console.WriteLine("Список пуст");
                         break;
@@ -104,17 +105,21 @@ namespace Homework
                     Console.WriteLine("Список не пуст");
                     break;
                 case 6:
-                    Console.WriteLine($"Размер списка: {list.Size()}");
+                    Console.WriteLine($"Размер списка: {list.Count}");
                     break;
                 case 7:
                     Console.WriteLine("Список:");
                     list.Print();
                     break;
                 case 8:
+                    list.Clear();
+                    Console.WriteLine("Список очищен");
+                    break;
+                case 9:
                     Console.WriteLine("Выход.");
                     break;
                 default:
-                    Console.WriteLine("Выберите пункт от 1 до 7");
+                    Console.WriteLine("Выберите пункт от 1 до 9");
                     break;
             }
         }
@@ -139,9 +144,7 @@ namespace Homework
                 }
 
                 ProceedChoice(list, choice);
-            } while (choice != 8);
-
-            list.Clear();
+            } while (choice != 9);
         }
     }
 }
