@@ -13,9 +13,9 @@ namespace Homework
             public Node Next { get; set; }
             public Node(string data, int count)
             {
-                this.Data = data;
-                this.Next = null;
-                this.Count = count;
+                Data = data;
+                Next = null;
+                Count = count;
             }
         }
 
