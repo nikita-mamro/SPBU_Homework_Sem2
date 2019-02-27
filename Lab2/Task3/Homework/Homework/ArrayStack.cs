@@ -6,31 +6,32 @@ namespace Homework
 {
     public class ArrayStack : IStack
     {
-        private int[] Items;
+        private int[] items;
         public int Count { get; private set; }
-        private bool IsFull { get; set; }
-        const int DefaultSize = 2;
+        const int defaultSize = 2;
 
         public ArrayStack()
         {
-            Items = new int[DefaultSize];
+            items = new int[defaultSize];
         }
 
         public void Push(int data)
         {
-            if (IsFull)
+            if (Count == items.Length)
             {
-                int[] newStorage = new int[Items.Length + 2];
+                int[] newStorage = new int[items.Length * 2];
 
-                for (var i = 0; i < Items.Length; ++i)
+                for (var i = 0; i < items.Length; ++i)
                 {
-                    newStorage[i] = Items[i];
+                    newStorage[i] = items[i];
                 }
 
-                this.Items = newStorage;
+                this.items = newStorage;
             }
 
-            Items[Count++] = data;
+            items[Count] = data;
+
+            ++Count;
         }
 
         public int Pop()
@@ -40,24 +41,22 @@ namespace Homework
                 throw new InvalidOperationException("Вызов Pop() для пустого стека!");
             }
 
-            int popped = Items[--Count];
-            Items[Count] = default(int);
+            --Count;
+            int popped = items[Count];
 
             return popped;
         }
 
         public int Peek()
-            => Items[Count - 1];
+            => items[Count - 1];
 
         public bool IsEmpty
             => Count == 0;
-        
+
         public void Clear()
         {
-            for (var i = 0; i < Items.Length; ++i)
-            {
-                Items[i] = default(int);
-            }
+            items = new int[defaultSize];
+            Count = 0;
         }
     }
 }
