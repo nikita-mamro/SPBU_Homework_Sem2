@@ -19,15 +19,15 @@ namespace Homework
             }
         }
 
-        private Node Head;
-        private Node Tail;
+        private Node head;
+        private Node tail;
         public int Size { get; private set; }
 
         public string this[int index]
         {
             get
             {
-                var current = Head;
+                var current = head;
 
                 for (var i = 0; i < index; ++i)
                 {
@@ -45,9 +45,9 @@ namespace Homework
 
         private Node GetNodeByWord(string word)
         {
-            if (Size == 1 && Head.Data == word)
+            if (Size == 1 && head.Data == word)
             {
-                return Head;
+                return head;
             }
 
             return GetPreviousByWord(word) == null ? null : GetPreviousByWord(word).Next;
@@ -57,10 +57,10 @@ namespace Homework
         {
             if (IsEmpty)
             {
-                return Head;
+                return head;
             }
 
-            var current = Head;
+            var current = head;
 
             while (current.Next != null && current.Next.Data != word)
             {
@@ -93,15 +93,15 @@ namespace Homework
             if (IsEmpty)
             {
                 var node = new Node(word, 1);
-                Head = node;
-                Tail = node;
+                head = node;
+                tail = node;
                 ++Size;
                 Console.WriteLine($"Элемент {word} добавлен!");
                 return;
             }
 
-            Tail.Next = new Node(word, 1);
-            Tail = Tail.Next;
+            tail.Next = new Node(word, 1);
+            tail = tail.Next;
             Console.WriteLine($"Элемент {word} добавлен!");
         }
 
@@ -113,17 +113,17 @@ namespace Homework
                 return false;
             }
 
-            if (Head.Data == word)
+            if (head.Data == word)
             {
-                if (Head.Count > 1)
+                if (head.Count > 1)
                 {
-                    --Head.Count;
+                    --head.Count;
                     Console.WriteLine($"Обновлено количество вхождений элемента {word} в набор!");
                     return true;
                 }
 
-                Head = null;
-                Tail = null;
+                head = null;
+                tail = null;
                 Size = 0;
                 Console.WriteLine($"Элемент {word} удалён");
                 return true;
@@ -138,10 +138,10 @@ namespace Homework
                 return true;
             }
 
-            if (node.Next == Tail)
+            if (node.Next == tail)
             {
                 node.Next = null;
-                Tail = node;
+                tail = node;
             }
 
             node.Next = node.Next.Next;
@@ -152,7 +152,7 @@ namespace Homework
 
         private void RemoveFromHead()
         {
-            Head = Head.Next;
+            head = head.Next;
             --Size;
         }
 
@@ -173,7 +173,7 @@ namespace Homework
 
         public void Clear()
         {
-            Head = null;
+            head = null;
             Size = 0;
         }
     }

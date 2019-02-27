@@ -9,7 +9,7 @@ namespace Homework
         private List<List> Buckets;
 
         public int Count { get; private set; } // total number of elements
-        private int DifferentCount { get; set; } // number of elements excluding repeating
+        private int differentCount;// number of elements excluding repeating
 
         public HashTable()
         {
@@ -75,11 +75,11 @@ namespace Homework
             if (Buckets[hash].IsEmpty)
             {
                 Buckets[hash] = new List();
-                ++DifferentCount;
+                ++differentCount;
             }
             else if (!Buckets[hash].Contains(word))
             {
-                ++DifferentCount;
+                ++differentCount;
             }
 
             Buckets[hash].Add(word);
@@ -105,7 +105,7 @@ namespace Homework
 
             if (!Buckets[hash].Contains(word))
             {
-                --DifferentCount;
+                --differentCount;
             }
         }
 
@@ -117,7 +117,7 @@ namespace Homework
 
         private double LoadCoefficient
         {
-            get { return (double)DifferentCount / (double)Buckets.Count; }
+            get { return (double)differentCount / (double)Buckets.Count; }
         }
 
         public void Clear()
