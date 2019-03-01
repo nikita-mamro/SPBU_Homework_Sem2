@@ -14,9 +14,7 @@ namespace Homework
         }
 
         private bool IsOperator(string c)
-        {
-            return c == "+" || c == "-" || c == "*" || c == "/";
-        }
+            => (c == "+" || c == "-" || c == "*" || c == "/");
 
         private int ProceedOperator(int a, int b, string theOperator)
         {

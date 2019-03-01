@@ -48,7 +48,7 @@ namespace Homework
         }
 
         public int Peek()
-            => items[Count - 1];
+            => IsEmpty ? throw new InvalidOperationException("Ошибка в вызове Peek()! В стеке нет элементов") : items[Count - 1];
 
         public bool IsEmpty
             => Count == 0;

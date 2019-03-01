@@ -41,7 +41,7 @@ namespace Homework
         }
 
         public int Peek()
-            => head.Data;
+            => IsEmpty ? throw new InvalidOperationException("Ошибка в вызове Peek()! В стеке нет элементов") : head.Data;
 
         public bool IsEmpty
             => Count == 0;
