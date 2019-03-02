@@ -72,7 +72,7 @@ namespace Homework
 
                         if (numberA == 0 && word == "/")
                         {
-                            throw new ArgumentException("Деление на 0!");
+                            throw new ArgumentException("Ошибка! Деление на 0!");
                         }
 
                         var result = ProceedOperator(numberB, numberA, word);
@@ -85,13 +85,18 @@ namespace Homework
 
                 var answer = stack.Pop();
 
+                if (!stack.IsEmpty)
+                {
+                    throw new ArgumentException("Некорректное выражение на вводе, невозможно получить значение!");
+                }
+
                 stack.Clear();
                 return answer;
             }
             catch (InvalidOperationException stackError)
             {
-                Console.WriteLine(stackError.Message);
-                throw new InvalidOperationException("Невозможно посчитать значение выражения!");
+                Console.WriteLine("Проверьте корректность введённого выражения!");
+                throw stackError;
             }
         }
     }

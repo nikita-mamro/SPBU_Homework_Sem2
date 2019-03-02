@@ -19,15 +19,27 @@ namespace Homework.Tests
         }
 
         [TestMethod()]
-        public void PostfixCalculatorTest()
+        [ExpectedException(typeof(ArgumentException))]
+        public void DivisionByZeroExceptionTest()
         {
-            Assert.Fail();
+            calculator.GetPostfixExpressionValue("1 0 /");
+        }
+
+        /// <summary>
+        /// Testing throwing exceptions when input format is incorrect
+        /// </summary>
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentException))]
+        public void NoSpacesInputExceptionTest()
+        {
+            calculator.GetPostfixExpressionValue("2 2+");
         }
 
         [TestMethod()]
-        public void GetPostfixExpressionValueTest()
+        [ExpectedException(typeof(ArgumentException))]
+        public void UndefinedPostfixExpressionTest()
         {
-            Assert.Fail();
+            calculator.GetPostfixExpressionValue("1 1 + 4");
         }
     }
 }

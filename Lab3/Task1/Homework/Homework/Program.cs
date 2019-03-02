@@ -6,6 +6,8 @@ namespace Homework
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Данная программа вычисляет значение заданного целочисленного выражения в постфиксной форме");
+
             ICalculator calculator = GetStackType();
 
             Console.WriteLine("Для корректной работы разделяйте все операнды и операторы пробелами");
@@ -43,7 +45,7 @@ namespace Homework
                             Console.WriteLine("Выбранная реализация стека: на массиве");
                             return new PostfixCalculator(new ArrayStack());
                         case 2:
-                            Console.WriteLine("Выбранная реализация стека: на односвязномм списке");
+                            Console.WriteLine("Выбранная реализация стека: на односвязном списке");
                             return new PostfixCalculator(new ListStack());
                         default:
                             Console.WriteLine("Выберете один из двух типов стека.");
