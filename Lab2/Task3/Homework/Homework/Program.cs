@@ -17,9 +17,13 @@ namespace Homework
             {
                 Console.WriteLine($"Значение выражения: {calculator.GetPostfixExpressionValue(inputExpression)}");
             }
-            catch (InvalidOperationException calculatingError)
+            catch (InvalidOperationException operationError)
             {
-                Console.WriteLine(calculatingError.Message);
+                Console.WriteLine(operationError.Message);
+            }
+            catch (ArgumentException argumentError)
+            {
+                Console.WriteLine(argumentError.Message);
             }
         }
 
