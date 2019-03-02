@@ -29,27 +29,29 @@ namespace Homework
 
         private static ICalculator GetStackType()
         {
-            Console.WriteLine("Выберите используемый тип стека:");
-            Console.WriteLine("1 - На массиве");
-            Console.WriteLine("2 - На списке");
-
-            if (int.TryParse(Console.ReadLine(), out int choice))
+            while (true)
             {
-                switch (choice)
+                Console.WriteLine("Выберите используемый тип стека:");
+                Console.WriteLine("1 - На массиве");
+                Console.WriteLine("2 - На списке");
+
+                if (int.TryParse(Console.ReadLine(), out int choice))
                 {
-                    case 1:
-                        Console.WriteLine("Выбранная реализация стека: на массиве");
-                        return new PostfixCalculator(new ArrayStack());
-                    case 2:
-                        Console.WriteLine("Выбранная реализация стека: на односвязномм списке");
-                        return new PostfixCalculator(new ListStack());
-                    default:
-                        Console.WriteLine("Выберете один из двух типов стека.");
-                        return GetStackType();
+                    switch (choice)
+                    {
+                        case 1:
+                            Console.WriteLine("Выбранная реализация стека: на массиве");
+                            return new PostfixCalculator(new ArrayStack());
+                        case 2:
+                            Console.WriteLine("Выбранная реализация стека: на односвязном списке");
+                            return new PostfixCalculator(new ListStack());
+                        default:
+                            Console.WriteLine("Выберете один из двух типов стека.");
+                            continue;
+                    }
                 }
+                Console.WriteLine("Выберете один из двух типов стека.");
             }
-            Console.WriteLine("Выберете один из двух типов стека.");
-            return GetStackType();
         }
     }
 }

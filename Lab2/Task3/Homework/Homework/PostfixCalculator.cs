@@ -61,13 +61,17 @@ namespace Homework
 
                 var answer = stack.Pop();
 
+                if (!stack.IsEmpty)
+                {
+                    throw new ArgumentException("Некорректное выражение на вводе, невозможно получить значение!");
+                }
+
                 stack.Clear();
                 return answer;
             }
             catch (InvalidOperationException stackError)
             {
-                Console.WriteLine(stackError.Message);
-                throw new InvalidOperationException("Невозможно посчитать значение выражения!");
+                throw new InvalidOperationException(stackError.Message + "\nПроверьте корректность введённого выражения!");
             }
         }
     }
