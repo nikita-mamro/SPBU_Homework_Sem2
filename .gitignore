@@ -31,6 +31,7 @@
 *.out
 *.app
 
+# Others
 *.*log
 *.idb
 *.enc
@@ -46,7 +47,9 @@
 *.cache
 *.json
 *.targets
+*.config
 
 # Folders
 bin/
 obj/
+packages/
