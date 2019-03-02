@@ -57,6 +57,11 @@ namespace Homework
             {
                 string[] words = expression.Split(' ');
 
+                if (words.Length < 3)
+                {
+                    throw new ArgumentException("Некорректное выражение на вводе, невозможно получить значение!");
+                }
+
                 foreach (var word in words)
                 {
                     if (int.TryParse(word, out int number))
@@ -95,8 +100,7 @@ namespace Homework
             }
             catch (InvalidOperationException stackError)
             {
-                Console.WriteLine("Проверьте корректность введённого выражения!");
-                throw stackError;
+                throw new InvalidOperationException(stackError.Message + "\nПроверьте корректность введённого выражения!");
             }
         }
     }

@@ -37,9 +37,58 @@ namespace Homework.Tests
 
         [TestMethod()]
         [ExpectedException(typeof(ArgumentException))]
-        public void UndefinedPostfixExpressionTest()
+        public void OneNumberOnlyInputExceptionTest()
         {
-            calculator.GetPostfixExpressionValue("1 1 + 4");
+            calculator.GetPostfixExpressionValue("1");
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentException))]
+        public void OneOperatorOnlyInputExceptionTest()
+        {
+            calculator.GetPostfixExpressionValue("+");
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentException))]
+        public void NoOperatorsInputExceptionTest()
+        {
+            calculator.GetPostfixExpressionValue("1 2 42 5 4");
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void NoNumbersInputExceptionTest()
+        {
+            calculator.GetPostfixExpressionValue("+ - * / +");
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentException))]
+        public void OneNumberOneOperatorInputExceptionTest()
+        {
+            calculator.GetPostfixExpressionValue("1+");
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TooManyNumbersInputExceptionTest()
+        {
+            calculator.GetPostfixExpressionValue("1 3 2 4 2 3 2 1 24 12 41 + - * /");
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void TooManyOperatorsInputExceptionTest()
+        {
+            calculator.GetPostfixExpressionValue("1 2 / * - +");
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentException))]
+        public void UnexpectedSymbolInputExceptionTest()
+        {
+            calculator.GetPostfixExpressionValue("2 2 a a v");
         }
     }
 }
