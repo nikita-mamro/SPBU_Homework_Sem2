@@ -136,6 +136,9 @@ namespace Homework
             {
                 list.Clear();
             }
+
+            Count = 0;
+            differentCount = 0;
         }
     }
 }

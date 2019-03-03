@@ -5,7 +5,7 @@ namespace Homework
     /// <summary>
     /// Класс, реализующий алгоритм Адлера получения хеша
     /// </summary>
-    class AdlerHash : IHashFunction
+    public class AdlerHash : IHashFunction
     {
         long IHashFunction.HashFunction(string word)
         {

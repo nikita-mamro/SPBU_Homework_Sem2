@@ -22,7 +22,7 @@ namespace Homework
             hash ^= (hash >> 11);
             hash += (hash << 15);
 
-            return hash;
+            return hash >= 0 ? hash : -hash;
         }
     }
 }

@@ -63,13 +63,13 @@ namespace Homework.Tests
         }
 
         /// <summary>
-        /// Contains boolean tests
+        /// Тест свойства Contains
         /// </summary>
         [TestMethod()]
         public void AddedElementBecomesContainedTest()
         {
             list.Add("hello");
-            Assert.IsTrue(list.Contains("hello"));
+            Assert.IsTrue(list.Contains("hello") && !list.Contains("HELLO"));
         }
 
         [TestMethod()]
@@ -86,7 +86,7 @@ namespace Homework.Tests
         }
 
         /// <summary>
-        /// Removing elements tests
+        /// Тест удаления
         /// </summary>
         [TestMethod()]
         public void RemoveFromListOfOneElementSizeChangeTest()
@@ -126,16 +126,88 @@ namespace Homework.Tests
         }
 
         [TestMethod()]
-        public void GetWordsTest()
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void RemoveFromEmptyListExceptionTest()
+        {
+            list.Remove("haha");
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentException))]
+        public void RemoveElementWhichDoesNotExistExceptionTest()
+        {
+            list.Add("hello");
+            list.Remove("haha");
+        }
+
+        /// <summary>
+        /// Тест метода GetWords()
+        /// </summary>
+        [TestMethod()]
+        public void GetWordsDifferentElementsTest()
         {
             for (var i = 0; i < 50; ++i)
             {
                 list.Add(i.ToString());
             }
 
-            List<string> words = ;
+            List<string> words = list.GetWords();
+
+            var expected = new List<string>();
+
+            for (var i = 0; i < 50; ++i)
+            {
+                expected.Add(i.ToString());
+            }
+
+            bool res = true;
+
+            for (var i = 0; i < 50; ++i)
+            {
+                if (expected[i] != words[i])
+                {
+                    res = false;
+                }
+            }
+
+            Assert.IsTrue(res);
         }
 
+        [TestMethod()]
+        public void GetWordsRepeatingElementsTest()
+        {
+            for (var i = 0; i < 50; ++i)
+            {
+                list.Add(i.ToString());
+                list.Add(i.ToString());
+            }
+
+            List<string> words = list.GetWords();
+
+            var expected = new List<string>();
+
+            for (var i = 0; i < 50; ++i)
+            {
+                expected.Add(i.ToString());
+                expected.Add(i.ToString());
+            }
+
+            bool res = true;
+
+            for (var i = 0; i < 100; ++i)
+            {
+                if (expected[i] != words[i])
+                {
+                    res = false;
+                }
+            }
+
+            Assert.IsTrue(res);
+        }
+
+        /// <summary>
+        /// Тест очистки
+        /// </summary>
         [TestMethod()]
         public void ClearTest()
         {
