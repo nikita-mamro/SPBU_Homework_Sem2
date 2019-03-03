@@ -141,10 +141,14 @@ namespace Homework
 
             if (node.Next == tail)
             {
+                --Size;
                 node.Next = null;
                 tail = node;
+                Console.WriteLine($"Элемент {word} удалён");
+                return true;
             }
 
+            --Size;
             node.Next = node.Next.Next;
             Console.WriteLine($"Элемент {word} удалён");
 
