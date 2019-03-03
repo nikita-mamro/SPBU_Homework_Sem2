@@ -281,7 +281,7 @@ namespace Homework.Tests
                 tableJenkins.Add("same thing");
             }
 
-            var oldCount = tableAdler.Count;
+            var oldCount = tableJenkins.Count;
             tableJenkins.Remove("same thing");
 
             Assert.AreEqual(oldCount - 1, tableJenkins.Count);
