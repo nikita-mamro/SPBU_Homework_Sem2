@@ -102,6 +102,7 @@ namespace Homework
 
             tail.Next = new Node(word, 1);
             tail = tail.Next;
+            ++Size;
             Console.WriteLine($"Элемент {word} добавлен!");
         }
 
