@@ -50,15 +50,64 @@ namespace Homework.Tests
         }
 
         [TestMethod()]
-        public void AddTest()
+        public void NoSizeUpdatedWhenAddingExistent()
         {
-            Assert.Fail();
+            for (var i = 0; i < 50; ++i)
+            {
+                list.Add(i.ToString());
+                list.Add(i.ToString());
+            }
+
+            Assert.AreEqual(50, list.Size);
+        }
+
+        /// <summary>
+        /// Contains boolean tests
+        /// </summary>
+        [TestMethod()]
+        public void AddedElementBecomesContainedTest()
+        {
+            list.Add("hello");
+            Assert.IsTrue(list.Contains("hello"));
         }
 
         [TestMethod()]
-        public void RemoveTest()
+        public void AddedElementToManyElementsBecomesContainedTest()
         {
-            Assert.Fail();
+            for (var i = 0; i < 50; ++i)
+            {
+                list.Add(i.ToString());
+            }
+
+            list.Add("hello");
+
+            Assert.IsTrue(list.Contains("hello"));
+        }
+
+        /// <summary>
+        /// Removing elements tests
+        /// </summary>
+        [TestMethod()]
+        public void RemoveFromListOfOneElementSizeChangeTest()
+        {
+            list.Add("One");
+            list.Remove("One");
+
+            Assert.AreEqual(0, list.Size);
+        }
+
+        [TestMethod()]
+        public void RemoveFromListOfManyElementsSizeChangeTest()
+        {
+            for (var i = 0; i < 50; ++i)
+            {
+                list.Add(i.ToString());
+            }
+
+            int oldSize = list.Size;
+            list.Remove("3");
+
+            Assert.AreEqual(oldSize - 1, list.Size);
         }
 
         [TestMethod()]

@@ -127,6 +127,11 @@ namespace Homework
 
         public bool Remove(string word)
         {
+            if (IsEmpty)
+            {
+                throw new InvalidOperationException("Удаление из пустого списка невозможно!");
+            }
+
             if (!Contains(word))
             {
                 throw new ArgumentException("Элемент не найден!");
