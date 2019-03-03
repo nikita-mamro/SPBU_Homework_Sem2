@@ -158,6 +158,7 @@ namespace Homework
                 {
                     words.Add(current.Data);
                 }
+                current = current.Next;
             }
 
             return words;
