@@ -188,9 +188,14 @@ namespace Homework
         {
             var words = new List<string>();
 
-            for (int i = 0; i < Size; ++i)
+            Node current = head;
+
+            while (current != null)
             {
-                words.Add(this[i]);
+                for (var i = 0; i < current.Count; ++i)
+                {
+                    words.Add(current.Data);
+                }
             }
 
             return words;
