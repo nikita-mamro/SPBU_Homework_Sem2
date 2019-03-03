@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Homework
 {
@@ -28,6 +29,11 @@ namespace Homework
         /// Размер списка (количество уникальных по значению элементов)
         /// </summary>
         int Size { get; }
+        /// <summary>
+        /// Возвращает множество слов из списка
+        /// </summary>
+        /// <returns>Список из слов</returns>
+        List<string> GetWords();
         /// <summary>
         /// Индикатор отутствия элементов в списке
         /// </summary>

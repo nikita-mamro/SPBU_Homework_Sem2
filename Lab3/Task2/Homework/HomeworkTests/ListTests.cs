@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Homework;
 using System;
+using System.Collections.Generic;
 
 namespace Homework.Tests
 {
@@ -111,15 +112,41 @@ namespace Homework.Tests
         }
 
         [TestMethod()]
+        public void RemoveFromListOfManyCopiesOfOneElementTest()
+        {
+            for (var i = 0; i < 50; ++i)
+            {
+                list.Add("hello");
+            }
+
+            int oldSize = list.Size;
+            list.Remove("hello");
+
+            Assert.AreEqual(oldSize, list.Size);
+        }
+
+        [TestMethod()]
         public void GetWordsTest()
         {
-            Assert.Fail();
+            for (var i = 0; i < 50; ++i)
+            {
+                list.Add(i.ToString());
+            }
+
+            List<string> words = ;
         }
 
         [TestMethod()]
         public void ClearTest()
         {
-            Assert.Fail();
+            for (var i = 0; i < 322; ++i)
+            {
+                list.Add(i.ToString());
+            }
+
+            list.Clear();
+
+            Assert.IsTrue(list.IsEmpty);
         }
     }
 }
