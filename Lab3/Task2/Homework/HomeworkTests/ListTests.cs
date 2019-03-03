@@ -51,7 +51,7 @@ namespace Homework.Tests
         }
 
         [TestMethod()]
-        public void NoSizeUpdatedWhenAddingExistent()
+        public void NoSizeUpdatedWhenAddingExistentTest()
         {
             for (var i = 0; i < 50; ++i)
             {
@@ -105,7 +105,7 @@ namespace Homework.Tests
                 list.Add(i.ToString());
             }
 
-            int oldSize = list.Size;
+            var oldSize = list.Size;
             list.Remove("3");
 
             Assert.AreEqual(oldSize - 1, list.Size);
@@ -119,7 +119,7 @@ namespace Homework.Tests
                 list.Add("hello");
             }
 
-            int oldSize = list.Size;
+            var oldSize = list.Size;
             list.Remove("hello");
 
             Assert.AreEqual(oldSize, list.Size);

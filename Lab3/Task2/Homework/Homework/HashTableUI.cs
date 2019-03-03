@@ -62,8 +62,8 @@ namespace Homework
         {
             Console.WriteLine("Выберите используемую хэш-функцию:");
             Console.WriteLine("1 - Функция Адлера");
-            Console.WriteLine("2 - Функция Murmur2");
-            Console.WriteLine("3 - Функция Дженкинса");
+            Console.WriteLine("2 - Функция Дженкинса");
+            Console.WriteLine("3 - Функция Murmur2");
 
             while (true)
             {
@@ -76,10 +76,10 @@ namespace Homework
                             return new HashTable(new AdlerHash());
                         case 2:
                             Console.WriteLine("Выбранная реализация хэш-функции: функция Murmur2");
-                            return new HashTable(new Murmur2Hash());
+                            return new HashTable(new JenkinsHash());
                         case 3:
                             Console.WriteLine("Выбранная реализация хэш-функции: функция Дженкинса");
-                            return new HashTable(new JenkinsHash());
+                            return new HashTable(new Murmur2Hash());
                         default:
                             Console.WriteLine("Выберете один из двух типов стека.");
                             continue;

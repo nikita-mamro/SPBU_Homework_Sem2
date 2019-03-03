@@ -64,7 +64,12 @@ namespace Homework
 
         private Node GetNodeByWord(string word)
         {
-            if (Size == 1 && head.Data == word)
+            if (IsEmpty)
+            {
+                return null;
+            }
+
+            if (head.Data == word)
             {
                 return head;
             }
