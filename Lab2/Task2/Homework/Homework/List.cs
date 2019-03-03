@@ -23,21 +23,6 @@ namespace Homework
         private Node tail;
         public int Size { get; private set; }
 
-        public string this[int index]
-        {
-            get
-            {
-                var current = head;
-
-                for (var i = 0; i < index; ++i)
-                {
-                    current = current.Next;
-                }
-
-                return current.Data;
-            }
-        }
-
         public bool Contains(string word)
         {
             return GetNodeByWord(word) != null;
@@ -163,11 +148,16 @@ namespace Homework
 
         public List<string> GetWords()
         {
-            var words = new List<string>(); 
+            var words = new List<string>();
 
-            for (int i = 0; i < Size; ++i)
+            Node current = head;
+
+            while (current != null)
             {
-                words.Add(this[i]);
+                for (var i = 0; i < current.Count; ++i)
+                {
+                    words.Add(current.Data);
+                }
             }
 
             return words;
