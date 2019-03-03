@@ -30,7 +30,12 @@ namespace Homework
 
         private Node GetNodeByWord(string word)
         {
-            if (Size == 1 && head.Data == word)
+            if (head == null)
+            {
+                return null;
+            }
+
+            if (head.Data == word)
             {
                 return head;
             }
