@@ -3,13 +3,33 @@ using System.Collections.Generic;
 
 namespace Homework
 {
+    /// <summary>
+    /// Класс, реализующий односвязный список
+    /// </summary>
     public class List : IList
     {
+        /// <summary>
+        /// Класс, реализующий элемент списка
+        /// </summary>
         private class Node
         {
+            /// <summary>
+            /// Значение, которое хранит элемент списка
+            /// </summary>
             public string Data { get; set; }
+            /// <summary>
+            /// Количество вхождений данного значения в список
+            /// </summary>
             public int Count { get; set; }
+            /// <summary>
+            /// Указатель на следующий элемент
+            /// </summary>
             public Node Next { get; set; }
+            /// <summary>
+            /// Конструктор для элемента списка
+            /// </summary>
+            /// <param name="data">Хранимое значение</param>
+            /// <param name="count">Количество вхождений значения</param>
             public Node(string data, int count)
             {
                 Data = data;
@@ -101,6 +121,7 @@ namespace Homework
 
             tail.Next = new Node(word, 1);
             tail = tail.Next;
+            ++Size;
             Console.WriteLine($"Элемент {word} добавлен!");
         }
 
@@ -108,8 +129,7 @@ namespace Homework
         {
             if (!Contains(word))
             {
-                Console.WriteLine($"Элемент {word} не найден!");
-                return false;
+                throw new ArgumentException("Элемент не найден!");
             }
 
             if (head.Data == word)

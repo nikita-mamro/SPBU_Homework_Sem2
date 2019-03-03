@@ -2,24 +2,12 @@
 
 namespace Homework
 {
-    public class HashFunction : IHashFunction
+    /// <summary>
+    /// Класс, реализующий алгоритм Murmur2 получения хэша
+    /// </summary>
+    public class Murmur2Hash : IHashFunction
     {
-        public uint HashFunctionAdler(string word)
-        {
-            uint a = 1;
-            uint b = 0;
-            const uint modAdler = 65521;
-
-            foreach (char c in word)
-            {
-                a = (a + c) % modAdler;
-                b = (b + a) % modAdler;
-            }
-
-            return (b << 16) | a;
-        }
-
-        public long HashFunctionMurmur2(string word)
+        long IHashFunction.HashFunction(string word)
         {
             const int m = 0x5bd1e995;
             const uint seed = 0;

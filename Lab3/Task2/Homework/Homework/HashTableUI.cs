@@ -16,7 +16,7 @@ namespace Homework
             Console.WriteLine("--------------------------------------------------------------");
         }
 
-        private static void ProceedChoice(HashTable table, int choice)
+        private static void ProceedChoice(IHashTable table, int choice)
         {
             switch (choice)
             {
@@ -27,8 +27,14 @@ namespace Homework
                     break;
                 case 2:
                     Console.WriteLine("Введите удаляемое значение:");
-
-                    table.Remove(Console.ReadLine());
+                    try
+                    {
+                        table.Remove(Console.ReadLine());
+                    }
+                    catch (ArgumentException argError)
+                    {
+                        Console.WriteLine(argError.Message);
+                    }
                     break;
                 case 3:
                     Console.WriteLine("Введите проверяемое значение:");
@@ -52,11 +58,44 @@ namespace Homework
             }
         }
 
+        private static IHashTable GetHashFunctionImplementation()
+        {
+            Console.WriteLine("Выберите используемую хэш-функцию:");
+            Console.WriteLine("1 - Функция Адлера");
+            Console.WriteLine("2 - Функция Murmur2");
+            Console.WriteLine("3 - Функция Дженкинса");
+
+            while (true)
+            {
+                if (int.TryParse(Console.ReadLine(), out int choice))
+                {
+                    switch (choice)
+                    {
+                        case 1:
+                            Console.WriteLine("Выбранная реализация хэш-функции: функция Адлера");
+                            return new HashTable(new AdlerHash());
+                        case 2:
+                            Console.WriteLine("Выбранная реализация хэш-функции: функция Murmur2");
+                            return new HashTable(new Murmur2Hash());
+                        case 3:
+                            Console.WriteLine("Выбранная реализация хэш-функции: функция Дженкинса");
+                            return new HashTable(new JenkinsHash());
+                        default:
+                            Console.WriteLine("Выберете один из двух типов стека.");
+                            continue;
+                    }
+                }
+                Console.WriteLine("Выберете один из двух типов стека.");
+            }
+        }
+
         public static void ProceedTask()
         {
-            PrintMenu();
+            Console.WriteLine("Данная программа представляет собой реализацию хэш-таблицы с возможностью выбора хэш-функции");
 
-            var table = new HashTable();
+            var table = GetHashFunctionImplementation();
+
+            PrintMenu();
 
             int choice = 0;
             string inputString = null;
