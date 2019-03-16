@@ -21,6 +21,11 @@ namespace OperationHandler
                 throw new ArgumentException("Непредвиденный символ там, где ожидался оператор :(\nПроверьте правильность введённых данных.");
             }
 
+            if (theOperator == "/" && operandB == 0)
+            {
+                throw new DivideByZeroException();
+            }
+
             switch (theOperator[0])
             {
                 case '+':

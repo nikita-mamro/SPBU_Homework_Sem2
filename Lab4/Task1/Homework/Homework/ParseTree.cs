@@ -39,14 +39,9 @@ namespace ParseTree
             /// Конструктор класса Operand
             /// </summary>
             /// <param name="data">Число из арифметического выражения</param>
-            public Operand(string data)
+            public Operand(int data)
             {
-                if (!int.TryParse(data, out int addableData))
-                {
-                    throw new ArgumentException("Выражение задано в некорректном формате :(\nПроверьте правильность введённых данных.");
-                }
-
-                this.data = addableData;
+                this.data = data;
             }
 
             public override string ToString()
@@ -67,6 +62,10 @@ namespace ParseTree
                 try
                 {
                     return OperationHandler.OperationHandler.ProceedOperation(Left.Calculate(), data, Right.Calculate());
+                }
+                catch (DivideByZeroException)
+                {
+                    throw;
                 }
                 catch (ArgumentException)
                 {
@@ -102,7 +101,10 @@ namespace ParseTree
         /// </summary>
         private Node root;
 
-        public ParseTree() { }
+        public ParseTree(string expression)
+        {
+            BuildTree(expression);
+        }
 
         /// <summary>
         /// Строит дерево разбора переданного выражения
@@ -128,27 +130,32 @@ namespace ParseTree
 
                 ++index;
                 (node as Operator).Right = CreateNode(expression, ref index);
+
+                return node;
             }
-            else
+            else if (int.TryParse(expression[index], out int number))
             {
-                try
-                {
-                    node = new Operand(expression[index]);
-                    ++index;
-                }
-                catch (ArgumentException)
-                {
-                    throw;
-                }
+                node = new Operand(number);
+                return node;
+            }
+            else if (expression[index] == ")")
+            {
+                ++index;
+
+                return CreateNode(expression, ref index);
             }
 
-            return node;
+            throw new ArgumentException("Выражение задано в некорректном формате :(\nПроверьте правильность введённых данных.");
         }
 
-        public int Calculate(string expression)
+        public int Calculate()
         {
-            BuildTree(expression);
             return root.Calculate();
+        }
+
+        public string GetExpression()
+        {
+            return root.ToString();
         }
     }
 }
