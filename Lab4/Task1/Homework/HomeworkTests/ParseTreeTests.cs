@@ -100,5 +100,12 @@ namespace ParseTree.Tests
         {
             IParseTree tree = new ParseTree("+ + 1 1 1");
         }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentException))]
+        public void CheckForBracketsBalanceExceptionTest()
+        {
+            IParseTree tree = new ParseTree("( + ( + 1 1  1");
+        }
     }
 }

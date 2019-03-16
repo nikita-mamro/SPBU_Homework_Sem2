@@ -112,6 +112,13 @@ namespace ParseTree
         /// <param name="expression">Арифметическое выражение</param>
         private void BuildTree(string expression)
         {
+            BracketBalanceChecker.IBracketBalanceChecker bracketChecker = new BracketBalanceChecker.BracketBalanceChecker();
+
+            if (!bracketChecker.IsBalanced(expression))
+            {
+                throw new ArgumentException("Введёно некорректное выражение, проверьте баланс скобок.");
+            }
+
             int index = 0;
             root = CreateNode(expression.Split(' '), ref index);
         }
