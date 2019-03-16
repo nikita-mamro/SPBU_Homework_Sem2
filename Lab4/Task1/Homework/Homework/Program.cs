@@ -11,14 +11,22 @@ namespace Homework
             {
                 string expression;
 
-                using (StreamReader sr = new StreamReader("TestFile.txt"))
+                Console.WriteLine(Environment.CurrentDirectory);
+
+                using (StreamReader sr = new StreamReader("input.txt"))
                 {
                     expression = sr.ReadToEnd();
                 }
 
+                ParseTree.IParseTree tree = new ParseTree.ParseTree();
 
                 Console.WriteLine($"Полученное из файла выражение: {expression}");
-                Console.WriteLine($"Подсчитанное значение выражения: {ParseTree.IParseTree.Calculate(expression)}");
+                Console.WriteLine($"Подсчитанное значение выражения: {tree.Calculate(expression)}");
+            }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine("Файл не найден:");
+                Console.WriteLine(e.Message);
             }
             catch (IOException e)
             {
@@ -27,11 +35,7 @@ namespace Homework
             }
             catch (ArgumentException e)
             {
-                Console.WriteLine(e.Message + "/n" + e.StackTrace);
-            }
-            finally
-            {
-                Console.WriteLine("Что-то пошло не так");
+                Console.WriteLine(e.Message + "\n" + e.StackTrace);
             }
         }
     }

@@ -18,7 +18,7 @@ namespace OperationHandler
         {
             if (!Validators.OperatorsValidator.IsOperator(theOperator))
             {
-                throw new ArgumentException("Непредвиденный символ там, где ожидался оператор :( \n Проверьте правильность введённых данных.");
+                throw new ArgumentException("Непредвиденный символ там, где ожидался оператор :(\nПроверьте правильность введённых данных.");
             }
 
             switch (theOperator[0])
@@ -32,7 +32,7 @@ namespace OperationHandler
                 case '/':
                     return operandA / operandB;
                 default:
-                    throw new ArgumentException("Непредвиденный символ там, где ожидался оператор :( \n Проверьте правильность введённых данных.");
+                    throw new ArgumentException("Непредвиденный символ там, где ожидался оператор :(\nПроверьте правильность введённых данных.");
             }
         }
     }

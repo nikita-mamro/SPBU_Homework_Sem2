@@ -43,7 +43,7 @@ namespace ParseTree
             {
                 if (!int.TryParse(data, out int addableData))
                 {
-                    throw new ArgumentException("Выражение задано в некорректном формате :( \n Проверьте правильность введённых данных.");
+                    throw new ArgumentException("Выражение задано в некорректном формате :(\nПроверьте правильность введённых данных.");
                 }
 
                 this.data = addableData;
@@ -87,7 +87,7 @@ namespace ParseTree
             {
                 if (!Validators.OperatorsValidator.IsOperator(data))
                 {
-                    throw new ArgumentException("Выражение задано в некорректном формате :( \n Проверьте правильность введённых данных.");
+                    throw new ArgumentException("Выражение задано в некорректном формате :(\nПроверьте правильность введённых данных.");
                 }
 
                 this.data = data;
