@@ -11,6 +11,14 @@ namespace BracketBalanceChecker.Tests
     [TestClass()]
     public class BracketBalanceCheckerTests
     {
+        private IBracketBalanceChecker checker;
+
+        [TestInitialize()]
+        public void Initialize()
+        {
+            checker = new BracketBalanceChecker();
+        }
+
         /// <summary>
         /// Общий метод проверки корректности работы, в файле череда строк "выражение\n(1/0)"
         /// </summary>
@@ -23,8 +31,6 @@ namespace BracketBalanceChecker.Tests
             {
                 while ((line = sr.ReadLine()) != null)
                 {
-                    IBracketBalanceChecker checker = new BracketBalanceChecker();
-
                     if (checker.IsBalanced(line) != (bool.Parse(sr.ReadLine())))
                     {
                         Assert.Fail();
