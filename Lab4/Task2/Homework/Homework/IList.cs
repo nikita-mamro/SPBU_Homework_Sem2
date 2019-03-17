@@ -8,6 +8,11 @@ namespace Lists
     public interface IList
     {
         /// <summary>
+        /// Добавление значения в начало списка
+        /// </summary>
+        /// <param name="data">Добавляемое значение</param>
+        void AddToHead(int data);
+        /// <summary>
         /// Добавление в список на заданную позицию
         /// </summary>
         /// <param name="data">Добавляемое значение</param>
@@ -26,7 +31,7 @@ namespace Lists
         /// Проверяет, пуст ли список
         /// </summary>
         /// <returns>True, если в списке нет элементов, иначе false</returns>
-        bool IsEmpty();
+        bool IsEmpty { get; }
         /// <summary>
         /// Проверяет, существует ли в списке элемент с заданным значением
         /// </summary>
@@ -34,7 +39,11 @@ namespace Lists
         /// <returns>True, если значение содержится в списке, иначе false</returns>
         bool Exists(int data);
         /// <summary>
-        /// Распечатать лист
+        /// Очистить список
+        /// </summary>
+        void Clear();
+        /// <summary>
+        /// Распечатать список
         /// </summary>
         void Print();
     }

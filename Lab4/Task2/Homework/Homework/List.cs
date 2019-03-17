@@ -15,7 +15,7 @@ namespace Lists
             }
         }
 
-        private Node Head;
+        private Node head;
         public int Count { get; private set; }
 
         private bool IsPositionValidToAdd(int position)
@@ -26,7 +26,7 @@ namespace Lists
 
         private Node GetNodeByPosition(int position)
         {
-            var current = Head;
+            var current = head;
 
             for (var i = 0; i < position; ++i)
             {
@@ -38,7 +38,7 @@ namespace Lists
 
         private Node GetNodeByData(int data)
         {
-            var current = Head;
+            var current = head;
 
             while (current != null && current.Data != data)
             {
@@ -50,7 +50,7 @@ namespace Lists
 
         private Node GetNodeBeforeByData(int data)
         {
-            var current = Head;
+            var current = head;
 
             while (current.Next != null && current.Next.Data != data)
             {
@@ -62,7 +62,7 @@ namespace Lists
 
         public virtual void AddToHead(int data)
         {
-            Head = new Node(data, Head);
+            head = new Node(data, head);
             ++Count;
         }
 
@@ -95,7 +95,7 @@ namespace Lists
 
         private void RemoveFromHead()
         {
-            Head = Head.Next;
+            head = head.Next;
             --Count;
         }
 
@@ -113,7 +113,7 @@ namespace Lists
             --Count;
         }
 
-        public bool IsEmpty()
+        public bool IsEmpty
             => Count == 0;
 
         public int GetDataByPosition(int position)
@@ -138,15 +138,21 @@ namespace Lists
             node.Data = data;
         }
 
+        public void Clear()
+        {
+            head = null;
+            Count = 0;
+        }
+
         public void Print()
         {
-            if (IsEmpty())
+            if (IsEmpty)
             {
                 Console.WriteLine("EMPTY");
                 return;
             }
 
-            var current = Head;
+            var current = head;
 
             for (var i = 0; i < Count - 1; ++i)
             {
