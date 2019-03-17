@@ -106,6 +106,12 @@ namespace Lists
                 throw new Exceptions.ElementNotInListException("Попытка удаления несуществующего элемента");
             }
 
+            if (head.Data == data)
+            {
+                RemoveFromHead();
+                return;
+            }
+
             var nodeBefore = GetNodeBeforeByData(data);
 
             nodeBefore.Next = nodeBefore.Next.Next;

@@ -1,10 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Lists;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lists.Tests
 {
@@ -53,27 +49,228 @@ namespace Lists.Tests
         }
 
         [TestMethod()]
-        public void ExistsTest()
+        public void AddToFirstPositionManyTimesTest()
         {
-            Assert.Fail();
+            for (var i = 0; i < 100; ++i)
+            {
+                list.Add(i, 0);
+            }
+
+            Assert.AreEqual(100, list.Count);
         }
 
         [TestMethod()]
-        public void RemoveTest()
+        public void AddToPositionsInOrderTest()
         {
-            Assert.Fail();
+            for (var i = 0; i < 100; ++i)
+            {
+                list.Add(i, i);
+            }
+
+            Assert.AreEqual(100, list.Count);
         }
 
         [TestMethod()]
-        public void GetDataByPositionTest()
+        public void AddToExistingPositionTest()
         {
-            Assert.Fail();
+            for (var i = 0; i < 100; ++i)
+            {
+                list.Add(i, i);
+            }
+
+            for (var i = 0; i < 100; i += 2)
+            {
+                list.Add(100 + i, i);
+            }
+
+            Assert.AreEqual(150, list.Count);
         }
 
         [TestMethod()]
-        public void SetDataByPositionTest()
+        [ExpectedException(typeof(ArgumentException))]
+        public void AddToInvalidPositionEmptyListExceptionTest()
         {
-            Assert.Fail();
+            list.Add(1, 1);
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentException))]
+        public void AddToInvalidNegativePositionEmptyListExceptionTest()
+        {
+            list.Add(1, -1);
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentException))]
+        public void AddToInvalidNegativePositionExceptionTest()
+        {
+            for (var i = 0; i < 100; ++i)
+            {
+                list.Add(i, i);
+            }
+
+            list.Add(-1, -1);
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentException))]
+        public void AddToInvalidOutOfRangePositivePositionExceptionTest()
+        {
+            for (var i = 0; i < 100; ++i)
+            {
+                list.Add(i, i);
+            }
+
+            list.Add(-1, 101);
+        }
+
+        /// <summary>
+        /// Тесты метода удаления
+        /// </summary>
+        [TestMethod()]
+        [ExpectedException(typeof(Exceptions.ElementNotInListException))]
+        public void RemoveFromEmptyTest()
+        {
+            list.Remove(1);
+        }
+
+        [TestMethod()]
+        public void RemoveFromOneElementSizeTest()
+        {
+            list.Add(1, 0);
+            list.Remove(1);
+            Assert.IsTrue(list.IsEmpty);
+        }
+
+        [TestMethod()]
+        public void RemoveOneFromManyElementsSizeTest()
+        {
+            for (var i = 0; i < 100; ++i)
+            {
+                list.Add(i, i);
+            }
+
+            list.Remove(1);
+            Assert.AreEqual(99, list.Count);
+        }
+
+        [TestMethod()]
+        public void RemoveManyFromManyElementsSizeTest()
+        {
+            for (var i = 0; i < 101; ++i)
+            {
+                list.Add(i, i);
+            }
+
+            for (var i = 0; i < 101; i += 5)
+            {
+                list.Remove(i);
+            }
+
+            Assert.AreEqual(80, list.Count);
+        }
+
+        [TestMethod()]
+        public void RemoveAllElementsTest()
+        {
+            for (var i = 0; i < 100; ++i)
+            {
+                list.Add(i, i);
+            }
+
+            for (var i = 0; i < 100; ++i)
+            {
+                list.Remove(i);
+            }
+
+            Assert.IsTrue(list.IsEmpty);
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(Exceptions.ElementNotInListException))]
+        public void RemoveUnexistingElementExceptionTest()
+        {
+            for (var i = 0; i < 100; ++i)
+            {
+                list.Add(i, i);
+            }
+
+            list.Remove(1000);
+        }
+
+        /// <summary>
+        /// Тесты проверки значения на существование
+        /// </summary>
+        [TestMethod()]
+        public void ExistsAfterAddingOneTest()
+        {
+            list.AddToHead(1);
+            Assert.IsTrue(list.Exists(1));
+        }
+
+        [TestMethod()]
+        public void ExistsAfterAddingManyTest()
+        {
+            for (var i = 0; i < 100; ++i)
+            {
+                list.Add(i, i);
+            }
+
+            for (var i = 0; i < 100; ++i)
+            {
+                if (!list.Exists(i))
+                {
+                    Assert.Fail();
+                }
+            }
+        }
+
+        [TestMethod()]
+        public void ExistsAfterRemovingAnotherTest()
+        {
+            for (var i = 0; i < 100; ++i)
+            {
+                list.Add(i, i);
+            }
+
+            list.Remove(50);
+
+            Assert.IsTrue(list.Exists(1));
+        }
+
+        [TestMethod()]
+        public void DoesNotExistAfterRemovingTest()
+        {
+            for (var i = 0; i < 100; ++i)
+            {
+                list.Add(i, i);
+            }
+
+            list.Remove(50);
+
+            Assert.IsFalse(list.Exists(50));
+        }
+
+        /// <summary>
+        /// Тесты метода очистки теста
+        /// </summary>
+        [TestMethod()]
+        public void ClearEmptyListTest()
+        {
+            list.Clear();
+            Assert.IsTrue(list.IsEmpty);
+        }
+
+        [TestMethod()]
+        public void ClearListOfManyElementsTest()
+        {
+            for (var i = 0; i < 100; ++i)
+            {
+                list.Add(i, i);
+            }
+
+            list.Clear();
+            Assert.IsTrue(list.IsEmpty);
         }
     }
 }
