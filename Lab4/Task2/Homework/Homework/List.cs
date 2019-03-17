@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace List
+namespace Lists
 {
     public class List : IList
     {
@@ -103,7 +103,7 @@ namespace List
         {
             if (!Exists(data))
             {
-                throw new Exceptions.ElementNotInListException();
+                throw new Exceptions.ElementNotInListException("Попытка удаления несуществующего элемента");
             }
 
             var nodeBefore = GetNodeBeforeByData(data);
@@ -120,7 +120,7 @@ namespace List
         {
             if (!IsPositionValidToRemove(position))
             {
-                throw new ArgumentException("Введён недопустимый номер позиции");
+                throw new ArgumentException("Введён недопустимый номер позиции при попытке получения значения по позиции");
             }
 
             var node = GetNodeByPosition(position);
@@ -131,7 +131,7 @@ namespace List
         {
             if (!IsPositionValidToRemove(position))
             {
-                throw new ArgumentException("Введён недопустимый номер позиции");
+                throw new ArgumentException("Введён недопустимый номер позиции при попытке изменения значения по позиции");
             }
 
             var node = GetNodeByPosition(position);

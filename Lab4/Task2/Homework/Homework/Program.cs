@@ -8,7 +8,7 @@ namespace Homework
         {
             try
             {
-                UList.UniqueList uList = new UList.UniqueList();
+                Lists.IList uList = new Lists.UniqueList();
                 uList.Add(2, 0);
                 uList.Add(3, 1);
                 uList.Add(4, 2);
@@ -19,15 +19,21 @@ namespace Homework
             }
             catch (ArgumentException e)
             {
-
+                Console.WriteLine("Вызвано исключение!");
+                Console.WriteLine(e.Message);
+                Console.WriteLine(e.StackTrace);
             }
             catch (Exceptions.ElementNotInListException e)
             {
-
+                Console.WriteLine("Вызвано исключение!");
+                Console.WriteLine(e.Message);
+                Console.WriteLine(e.StackTrace);
             }
             catch (Exceptions.ElementAlreadyInListException e)
             {
-
+                Console.WriteLine("Вызвано исключение!");
+                Console.WriteLine(e.Message);
+                Console.WriteLine(e.StackTrace);
             }
         }
     }

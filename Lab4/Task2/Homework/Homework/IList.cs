@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace List
+namespace Lists
 {
     /// <summary>
     /// Интерфейс связного списка

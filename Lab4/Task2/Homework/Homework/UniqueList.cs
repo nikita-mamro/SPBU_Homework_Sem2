@@ -1,14 +1,14 @@
 ﻿using System;
 
-namespace UList
+namespace Lists
 {
-    public class UniqueList : List.List
+    public class UniqueList : List
     {
         public override void Add(int data, int position)
         {
             if (Exists(data))
             {
-                throw new Exceptions.ElementAlreadyInListException();
+                throw new Exceptions.ElementAlreadyInListException("Попытка добавления в UniqueList существующего значения");
             }
 
             base.Add(data, position);
@@ -18,7 +18,7 @@ namespace UList
         {
             if (Exists(data))
             {
-                throw new Exceptions.ElementAlreadyInListException();
+                throw new Exceptions.ElementAlreadyInListException("Попытка добавления в голову UniqueList существующего значения");
             }
 
             base.AddToHead(data);
