@@ -47,7 +47,6 @@
 *.cache
 *.json
 *.targets
-*.config
 
 # Folders
 bin/
