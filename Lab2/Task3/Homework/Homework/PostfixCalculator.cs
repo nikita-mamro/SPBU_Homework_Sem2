@@ -39,7 +39,7 @@ namespace Homework
             {
                 string[] elements = expression.Split(' ');
 
-                if (words.Length < 3)
+                if (elements.Length < 3)
                 {
                     throw new ArgumentException("Некорректное выражение на вводе, невозможно получить значение!");
                 }
