@@ -39,6 +39,11 @@ namespace Homework
             {
                 string[] elements = expression.Split(' ');
 
+                if (elements.Length < 3)
+                {
+                    throw new ArgumentException("Некорректное выражение на вводе, невозможно получить значение!");
+                }
+
                 foreach (var element in elements)
                 {
                     if (int.TryParse(element, out int number))
@@ -61,13 +66,17 @@ namespace Homework
 
                 var answer = stack.Pop();
 
+                if (!stack.IsEmpty)
+                {
+                    throw new ArgumentException("Некорректное выражение на вводе, невозможно получить значение!");
+                }
+
                 stack.Clear();
                 return answer;
             }
             catch (InvalidOperationException stackError)
             {
-                Console.WriteLine(stackError.Message);
-                throw new InvalidOperationException("Невозможно посчитать значение выражения!");
+                throw new InvalidOperationException(stackError.Message + "\nПроверьте корректность введённого выражения!");
             }
         }
     }
