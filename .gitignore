@@ -47,10 +47,9 @@
 *.cache
 *.json
 *.targets
-*.config
 
 # Folders
 bin/
 obj/
 packages/
-properties/
+.vs/
