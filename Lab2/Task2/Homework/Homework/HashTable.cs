@@ -32,7 +32,7 @@ namespace Homework
                 sum = sum * 19 + letter * 31;
             }
 
-            return sum;
+            return Math.Abs(sum);
         }
 
         private void Expand()
@@ -70,7 +70,7 @@ namespace Homework
                 Expand();
             }
 
-            var hash = (int)(Math.Abs(HashFunction(word)) % buckets.Count);
+            var hash = (int)(HashFunction(word) % buckets.Count);
 
             if (buckets[hash].IsEmpty)
             {
