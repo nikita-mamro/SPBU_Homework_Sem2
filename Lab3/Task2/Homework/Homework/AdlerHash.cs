@@ -19,7 +19,7 @@ namespace Homework
                 b = (b + a) % modAdler;
             }
 
-            return (b << 16) | a;
+            return Math.Abs((b << 16) | a);
         }
     }
 }

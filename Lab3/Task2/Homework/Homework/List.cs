@@ -110,7 +110,6 @@ namespace Homework
             if (Contains(word))
             {
                 UpdateCounter(GetNodeByWord(word), true);
-                Console.WriteLine($"Обновлено количество вхождений элемента {word} в набор!");
                 return;
             }
 
@@ -120,14 +119,12 @@ namespace Homework
                 head = node;
                 tail = node;
                 ++Size;
-                Console.WriteLine($"Элемент {word} добавлен!");
                 return;
             }
 
             tail.Next = new Node(word, 1);
             tail = tail.Next;
             ++Size;
-            Console.WriteLine($"Элемент {word} добавлен!");
         }
 
         public bool Remove(string word)
@@ -147,14 +144,12 @@ namespace Homework
                 if (head.Count > 1)
                 {
                     --head.Count;
-                    Console.WriteLine($"Обновлено количество вхождений элемента {word} в набор!");
                     return true;
                 }
 
                 head = null;
                 tail = null;
                 Size = 0;
-                Console.WriteLine($"Элемент {word} удалён");
                 return true;
             }
 

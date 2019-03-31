@@ -24,12 +24,15 @@ namespace Homework
                     Console.WriteLine("Введите добавляемое значение:");
 
                     table.Add(Console.ReadLine());
+
+                    Console.WriteLine("Элемент добавлен.");
                     break;
                 case 2:
                     Console.WriteLine("Введите удаляемое значение:");
                     try
                     {
                         table.Remove(Console.ReadLine());
+                        Console.WriteLine("Элемент удалён");
                     }
                     catch (ArgumentException argError)
                     {

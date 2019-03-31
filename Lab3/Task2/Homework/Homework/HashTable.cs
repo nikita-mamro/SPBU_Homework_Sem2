@@ -8,7 +8,7 @@ namespace Homework
         /// <summary>
         /// Слоты таблицы, то есть списки, в которых хранятся элементы таблицы
         /// </summary>
-        private List<List> Buckets;
+        private List<IList> buckets;
 
         public int Count { get; private set; }
         /// <summary>
@@ -29,13 +29,13 @@ namespace Homework
         {
             this.HashImplementation = hashImplementation;
 
-            Buckets = new List<List>();
+            buckets = new List<IList>();
 
             const int DefaultSize = 10;
 
             for (var i = 0; i < DefaultSize; ++i)
             {
-                Buckets.Add(new List());
+                buckets.Add(new List());
             }
         }
 
@@ -44,14 +44,14 @@ namespace Homework
         /// </summary>
         private void Expand()
         {
-            var newBuckets = new List<List>();
+            var newBuckets = new List<IList>();
 
-            for (var i = 0; i < Buckets.Count * 2; ++i)
+            for (var i = 0; i < buckets.Count * 2; ++i)
             {
                 newBuckets.Add(new List());
             }
 
-            foreach (var list in Buckets)
+            foreach (var list in buckets)
             {
                 if (list.IsEmpty)
                 {
@@ -67,7 +67,7 @@ namespace Homework
                 }
             }
 
-            Buckets = newBuckets;
+            buckets = newBuckets;
         }
 
         public void Add(string word)
@@ -77,19 +77,19 @@ namespace Homework
                 Expand();
             }
 
-            var hash = (int)(HashImplementation.HashFunction(word) % Buckets.Count);
+            var hash = (int)(HashImplementation.HashFunction(word) % buckets.Count);
 
-            if (Buckets[hash].IsEmpty)
+            if (buckets[hash].IsEmpty)
             {
-                Buckets[hash] = new List();
+                buckets[hash] = new List();
                 ++differentCount;
             }
-            else if (!Buckets[hash].Contains(word))
+            else if (!buckets[hash].Contains(word))
             {
                 ++differentCount;
             }
 
-            Buckets[hash].Add(word);
+            buckets[hash].Add(word);
             ++Count;
         }
 
@@ -100,16 +100,16 @@ namespace Homework
                 throw new ArgumentException("Слово не найдено в наборе!");
             }
 
-            var hash = (int)(HashImplementation.HashFunction(word) % Buckets.Count);
+            var hash = (int)(HashImplementation.HashFunction(word) % buckets.Count);
 
-            if (!Buckets[hash].Remove(word))
+            if (!buckets[hash].Remove(word))
             {
                 return;
             }
 
             --Count;
 
-            if (!Buckets[hash].Contains(word))
+            if (!buckets[hash].Contains(word))
             {
                 --differentCount;
             }
@@ -117,8 +117,8 @@ namespace Homework
 
         public bool IsContained(string word)
         {
-            var hash = (int)(HashImplementation.HashFunction(word) % Buckets.Count);
-            return Buckets[hash].Contains(word);
+            var hash = (int)(HashImplementation.HashFunction(word) % buckets.Count);
+            return buckets[hash].Contains(word);
         }
 
         /// <summary>
@@ -127,12 +127,12 @@ namespace Homework
         /// </summary>
         private double LoadCoefficient
         {
-            get { return (double)differentCount / (double)Buckets.Count; }
+            get { return (double)differentCount / (double)buckets.Count; }
         }
 
         public void Clear()
         {
-            foreach (var list in Buckets)
+            foreach (var list in buckets)
             {
                 list.Clear();
             }

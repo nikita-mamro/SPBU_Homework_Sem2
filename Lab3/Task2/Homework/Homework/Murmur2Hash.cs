@@ -55,7 +55,7 @@ namespace Homework
             hash *= m;
             hash ^= hash >> 15;
 
-            return hash;
+            return Math.Abs(hash);
         }
     }
 }
