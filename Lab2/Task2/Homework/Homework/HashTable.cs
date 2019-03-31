@@ -4,22 +4,22 @@ using System.Text;
 
 namespace Homework
 {
-    public class HashTable : IHashTable
+    public class HashTable
     {
-        private List<List> Buckets;
+        private List<List> buckets;
 
         public int Count { get; private set; } // total number of elements
         private int differentCount;// number of elements excluding repeating
 
         public HashTable()
         {
-            Buckets = new List<List>();
+            buckets = new List<List>();
 
             const int DefaultSize = 10;
 
             for (var i = 0; i < DefaultSize; ++i)
             {
-                Buckets.Add(new List());
+                buckets.Add(new List());
             }
         }
 
@@ -39,12 +39,12 @@ namespace Homework
         {
             var newBuckets = new List<List>();
 
-            for (var i = 0; i < Buckets.Count * 2; ++i)
+            for (var i = 0; i < buckets.Count * 2; ++i)
             {
                 newBuckets.Add(new List());
             }
 
-            foreach (var list in Buckets)
+            foreach (var list in buckets)
             {
                 if (list.IsEmpty)
                 {
@@ -60,7 +60,7 @@ namespace Homework
                 }
             }
 
-            Buckets = newBuckets;
+            buckets = newBuckets;
         }
 
         public void Add(string word)
@@ -70,59 +70,60 @@ namespace Homework
                 Expand();
             }
 
-            var hash = (int)(HashFunction(word) % Buckets.Count);
+            var hash = (int)(Math.Abs(HashFunction(word)) % buckets.Count);
 
-            if (Buckets[hash].IsEmpty)
+            if (buckets[hash].IsEmpty)
             {
-                Buckets[hash] = new List();
+                buckets[hash] = new List();
                 ++differentCount;
             }
-            else if (!Buckets[hash].Contains(word))
+            else if (!buckets[hash].Contains(word))
             {
                 ++differentCount;
             }
 
-            Buckets[hash].Add(word);
+            buckets[hash].Add(word);
             ++Count;
         }
 
-        public void Remove(string word)
+        public bool Remove(string word)
         {
             if (!IsContained(word))
             {
-                Console.WriteLine("Слово не найдено в наборе!");
-                return;
+                return false;
             }
 
-            var hash = (int)(HashFunction(word) % Buckets.Count);
+            var hash = (int)(HashFunction(word) % buckets.Count);
 
-            if (!Buckets[hash].Remove(word))
+            if (!buckets[hash].Remove(word))
             {
-                return;
+                return true;
             }
 
             --Count;
 
-            if (!Buckets[hash].Contains(word))
+            if (!buckets[hash].Contains(word))
             {
                 --differentCount;
             }
+
+            return true;
         }
 
         public bool IsContained(string word)
         {
-            var hash = (int)(HashFunction(word) % Buckets.Count);
-            return Buckets[hash].Contains(word);
+            var hash = (int)(HashFunction(word) % buckets.Count);
+            return buckets[hash].Contains(word);
         }
 
         private double LoadCoefficient
         {
-            get { return (double)differentCount / (double)Buckets.Count; }
+            get { return (double)differentCount / (double)buckets.Count; }
         }
 
         public void Clear()
         {
-            foreach (var list in Buckets)
+            foreach (var list in buckets)
             {
                 list.Clear();
             }

@@ -26,11 +26,21 @@ namespace Homework
                     Console.WriteLine("Введите добавляемое значение:");
 
                     table.Add(Console.ReadLine());
+
+                    Console.WriteLine("Элемент добавлен.");
                     break;
                 case 2:
                     Console.WriteLine("Введите удаляемое значение:");
 
-                    table.Remove(Console.ReadLine());
+                    if (table.Remove(Console.ReadLine()))
+                    {
+                        Console.WriteLine("Элемент удалён из набора.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Удаляемый элемент не найден в наборе!");
+                    }
+
                     break;
                 case 3:
                     Console.WriteLine("Введите проверяемое значение:");

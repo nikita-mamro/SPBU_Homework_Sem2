@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Homework
 {
-    public class List : IList
+    public class List
     {
         private class Node
         {
@@ -24,9 +24,7 @@ namespace Homework
         public int Size { get; private set; }
 
         public bool Contains(string word)
-        {
-            return GetNodeByWord(word) != null;
-        }
+            => GetNodeByWord(word) != null;
 
         private Node GetNodeByWord(string word)
         {
@@ -76,7 +74,6 @@ namespace Homework
             if (Contains(word))
             {
                 UpdateCounter(GetNodeByWord(word), true);
-                Console.WriteLine($"Обновлено количество вхождений элемента {word} в набор!");
                 return;
             }
 
@@ -86,21 +83,18 @@ namespace Homework
                 head = node;
                 tail = node;
                 ++Size;
-                Console.WriteLine($"Элемент {word} добавлен!");
                 return;
             }
 
             tail.Next = new Node(word, 1);
             tail = tail.Next;
             ++Size;
-            Console.WriteLine($"Элемент {word} добавлен!");
         }
 
         public bool Remove(string word)
         {
             if (!Contains(word))
             {
-                Console.WriteLine($"Элемент {word} не найден!");
                 return false;
             }
 
@@ -109,14 +103,12 @@ namespace Homework
                 if (head.Count > 1)
                 {
                     --head.Count;
-                    Console.WriteLine($"Обновлено количество вхождений элемента {word} в набор!");
                     return true;
                 }
 
                 head = null;
                 tail = null;
                 Size = 0;
-                Console.WriteLine($"Элемент {word} удалён");
                 return true;
             }
 
@@ -125,7 +117,6 @@ namespace Homework
             if (node.Next.Count > 1)
             {
                 --node.Next.Count;
-                Console.WriteLine($"Обновлено количество вхождений элемента {word} в набор!");
                 return true;
             }
 
@@ -134,13 +125,11 @@ namespace Homework
                 --Size;
                 node.Next = null;
                 tail = node;
-                Console.WriteLine($"Элемент {word} удалён");
                 return true;
             }
 
             --Size;
             node.Next = node.Next.Next;
-            Console.WriteLine($"Элемент {word} удалён");
 
             return true;
         }
