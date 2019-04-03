@@ -21,10 +21,7 @@ namespace OperationHandler.Tests
             {
                 for (var operandB = -1000; operandB < 1000; ++operandB)
                 {
-                    if (operandA + operandB != OperationHandler.ProceedOperation(operandA, "+", operandB))
-                    {
-                        Assert.Fail();
-                    }
+                    Assert.AreEqual(operandA + operandB, OperationHandler.ProceedOperation(operandA, "+", operandB));
                 }
             }
         }
@@ -39,10 +36,7 @@ namespace OperationHandler.Tests
             {
                 for (var operandB = -1000; operandB < 1000; ++operandB)
                 {
-                    if (operandA * operandB != OperationHandler.ProceedOperation(operandA, "*", operandB))
-                    {
-                        Assert.Fail();
-                    }
+                    Assert.AreEqual(operandA * operandB, OperationHandler.ProceedOperation(operandA, "*", operandB));
                 }
             }
         }
@@ -57,10 +51,7 @@ namespace OperationHandler.Tests
             {
                 for (var operandB = -1000; operandB < 1000; ++operandB)
                 {
-                    if (operandA - operandB != OperationHandler.ProceedOperation(operandA, "-", operandB))
-                    {
-                        Assert.Fail();
-                    }
+                    Assert.AreEqual(operandA - operandB, OperationHandler.ProceedOperation(operandA, "-", operandB));
                 }
             }
         }
@@ -80,10 +71,7 @@ namespace OperationHandler.Tests
                         continue;
                     }
 
-                    if (operandA / operandB != OperationHandler.ProceedOperation(operandA, "/", operandB))
-                    {
-                        Assert.Fail();
-                    }
+                    Assert.AreEqual(operandA / operandB, OperationHandler.ProceedOperation(operandA, "/", operandB));
                 }
             }
         }

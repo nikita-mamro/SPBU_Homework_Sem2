@@ -20,18 +20,12 @@ namespace Validators.Tests
             {
                 if (i == 42 || i == 43 || i == 45 || i == 47)
                 {
-                    if (!OperatorsValidator.IsOperator(((char)i).ToString()))
-                    {
-                        Assert.Fail();
-                    }
+                    Assert.IsTrue(OperatorsValidator.IsOperator(((char)i).ToString()));
 
                     continue;
                 }
 
-                if (OperatorsValidator.IsOperator(((char)i).ToString()))
-                {
-                    Assert.Fail();
-                }
+                Assert.IsFalse(OperatorsValidator.IsOperator(((char)i).ToString()));
             }
         }
 
@@ -60,11 +54,8 @@ namespace Validators.Tests
                 {
                     testSrting += (char)random.Next(0, 255);
                 }
-                
-                if (OperatorsValidator.IsOperator(testSrting))
-                {
-                    Assert.Fail();
-                }
+
+                Assert.IsFalse(OperatorsValidator.IsOperator(testSrting));
 
                 testSrting = String.Empty;
             }

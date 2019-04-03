@@ -31,10 +31,7 @@ namespace BracketBalanceChecker.Tests
             {
                 while ((line = sr.ReadLine()) != null)
                 {
-                    if (checker.IsBalanced(line) != (bool.Parse(sr.ReadLine())))
-                    {
-                        Assert.Fail();
-                    }
+                    Assert.AreEqual(checker.IsBalanced(line), (bool.Parse(sr.ReadLine())));
                 }
             }
         }
