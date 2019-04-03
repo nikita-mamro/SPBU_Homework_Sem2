@@ -218,10 +218,7 @@ namespace Lists.Tests
 
             for (var i = 0; i < 100; ++i)
             {
-                if (!list.Exists(i))
-                {
-                    Assert.Fail();
-                }
+                Assert.IsTrue(list.Exists(i));
             }
         }
 
