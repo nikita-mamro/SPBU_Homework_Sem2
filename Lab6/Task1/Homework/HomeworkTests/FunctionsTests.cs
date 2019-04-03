@@ -22,10 +22,8 @@ namespace Homework.Tests
 
             for (int i = 0; i < list.Count; ++i)
             {
-                if (res[i] != list[i] * 3)
-                {
-                    Assert.Fail();
-                }
+                
+                Assert.AreEqual(list[i] * 3, res[i]);
             }
         }
 
@@ -37,10 +35,7 @@ namespace Homework.Tests
 
             for (int i = 0; i < res.Count; ++i)
             {
-                if (res[i] != (char)list[i])
-                {
-                    Assert.Fail();
-                }
+                Assert.AreEqual((char)list[i], res[i]);
             }
         }
 
@@ -52,10 +47,7 @@ namespace Homework.Tests
 
             for (int i = 0; i < res.Count; ++i)
             {
-                if (res[i] != (int)list[i])
-                {
-                    Assert.Fail();
-                }
+                Assert.AreEqual((int)list[i], res[i]);
             }
         }
 
@@ -67,10 +59,7 @@ namespace Homework.Tests
 
             for (int i = 0; i < res.Count; ++i)
             {
-                if (res[i] != list[i] + 2)
-                {
-                    Assert.Fail();
-                }
+                Assert.AreEqual(list[i] + 2, res[i]);
             }
         }
 
@@ -112,10 +101,7 @@ namespace Homework.Tests
             
             for (int i = 0; i < res.Count; ++i)
             {
-                if (res[i] != list[i] * 1.234)
-                {
-                    Assert.Fail();
-                }
+                Assert.AreEqual(list[i] * 1.234, res[i]);
             }
         }
 
@@ -127,10 +113,7 @@ namespace Homework.Tests
 
             for (int i = 0; i < res.Count; ++i)
             {
-                if (res[i] != list[i].ToString() + "string")
-                {
-                    Assert.Fail();
-                }
+                Assert.AreEqual(list[i].ToString() + "string", res[i]);
             }
         }
 
@@ -142,10 +125,7 @@ namespace Homework.Tests
 
             for (int i = 0; i < res.Count; ++i)
             {
-                if (res[i] != (char)(list[i][0]))
-                {
-                    Assert.Fail();
-                }
+                Assert.AreEqual((char)(list[i][0]), res[i]);
             }
         }
 
@@ -157,10 +137,7 @@ namespace Homework.Tests
 
             for (int i = 0; i < res.Count; ++i)
             {
-                if (res[i] != list[i] + "string")
-                {
-                    Assert.Fail();
-                }
+                Assert.AreEqual(list[i] + "string", res[i]);
             }
         }
 
@@ -175,10 +152,7 @@ namespace Homework.Tests
 
             foreach (var element in res)
             {
-                if (element <= 3)
-                {
-                    Assert.Fail();
-                }
+                Assert.IsTrue(element > 3);
             }
         }
 
@@ -196,10 +170,7 @@ namespace Homework.Tests
 
             foreach (var element in res)
             {
-                if (element >= -31)
-                {
-                    Assert.Fail();
-                }
+                Assert.IsTrue(element < -31);
             }
         }
 
@@ -211,10 +182,7 @@ namespace Homework.Tests
 
             foreach (var element in res)
             {
-                if (element <= 2.4)
-                {
-                    Assert.Fail();
-                }
+                Assert.IsTrue(element > 2.4);
             }
         }
 
@@ -232,10 +200,7 @@ namespace Homework.Tests
 
             foreach (var element in res)
             {
-                if (element >= -10.23)
-                {
-                    Assert.Fail();
-                }
+                Assert.IsTrue(element < -10.23);
             }
         }
 
@@ -247,10 +212,7 @@ namespace Homework.Tests
 
             foreach (var element in res)
             {
-                if (element != 'c' && element != 'd')
-                {
-                    Assert.Fail();
-                }
+                Assert.IsTrue(element == 'c' || element == 'd');
             }
         }
 
@@ -283,10 +245,7 @@ namespace Homework.Tests
 
             foreach (var element in res)
             {
-                if (element != "three")
-                {
-                    Assert.Fail();
-                }
+                Assert.AreEqual("three", element);
             }
         }
 
@@ -306,7 +265,7 @@ namespace Homework.Tests
         {
             var list = new List<int>() { 1, 2, 3, 4, 5 };
             var res = Functions.Fold(list, 4.5, (acc, elem) => acc * elem);
-            Assert.IsTrue(res == 540);
+            Assert.AreEqual(540, res);
         }
 
         [TestMethod()]
@@ -314,7 +273,7 @@ namespace Homework.Tests
         {
             var list = new List<double>() { 1.23, 2.34, 3.45, 4.56, 5.67 };
             var res = Functions.Fold(list, 10.234, (acc, elem) => acc + elem);
-            Assert.AreEqual(27.484, res);
+            Assert.IsTrue(Math.Abs(res - 27.484) < double.Epsilon);
         }
 
         [TestMethod()]

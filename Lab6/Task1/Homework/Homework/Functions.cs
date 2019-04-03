@@ -18,7 +18,7 @@ namespace Homework
         /// <returns>Преобразованный список</returns>
         public static List<TRes> Map<T, TRes>(List<T> list, Func<T, TRes> function)
         {
-            List<TRes> res = new List<TRes>();
+            var res = new List<TRes>();
 
             foreach (var element in list)
             {
@@ -37,7 +37,7 @@ namespace Homework
         /// <returns>Список элементов, удовлетворяющих условию</returns>
         public static List<T> Filter<T>(List<T> list, Func<T, bool> condition)
         {
-            List<T> res = new List<T>();
+            var res = new List<T>();
 
             foreach (var element in list)
             {
