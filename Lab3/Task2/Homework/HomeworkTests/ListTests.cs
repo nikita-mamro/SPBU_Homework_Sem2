@@ -160,17 +160,10 @@ namespace Homework.Tests
                 expected.Add(i.ToString());
             }
 
-            bool res = true;
-
             for (var i = 0; i < 50; ++i)
             {
-                if (expected[i] != words[i])
-                {
-                    res = false;
-                }
+                Assert.AreEqual(expected[i], words[i]);
             }
-
-            Assert.IsTrue(res);
         }
 
         [TestMethod()]
@@ -192,17 +185,10 @@ namespace Homework.Tests
                 expected.Add(i.ToString());
             }
 
-            bool res = true;
-
             for (var i = 0; i < 100; ++i)
             {
-                if (expected[i] != words[i])
-                {
-                    res = false;
-                }
+                Assert.AreEqual(expected[i], words[i]);
             }
-
-            Assert.IsTrue(res);
         }
 
         /// <summary>
