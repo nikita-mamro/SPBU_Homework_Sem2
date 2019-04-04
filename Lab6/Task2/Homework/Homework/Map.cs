@@ -7,10 +7,11 @@ namespace Homework
     /// <summary>
     /// Класс, реализующий карту, по которой перемещается персонаж
     /// </summary>
-    class Map
+    public class Map
     {
-        private List<List<char>> field;
-        private (int, int) playerCoords;
+        public List<List<char>> Field { get; private set; }
+        public (int, int) InitialPlayerCoordinates { get; private set; }
+        public (int, int) DestinationCoordinates { get; private set; }
 
         public Map()
         {
@@ -23,7 +24,7 @@ namespace Homework
             {
                 using (StreamReader sr = new StreamReader(Path.Combine(Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())), "map.txt")))
                 {
-                    field = new List<List<char>>();
+                    Field = new List<List<char>>();
 
                     string line;
                     var y = 0;
@@ -32,16 +33,24 @@ namespace Homework
                     {
                         var x = 0;
 
-                        field.Add(new List<char>());
+                        Field.Add(new List<char>());
                         foreach (var symbol in line)
                         {
                             if (symbol == '@')
                             {
-                                playerCoords = (x, y);
+                                InitialPlayerCoordinates = (x, y);
+                                ++x;
+                                Field[y].Add(' ');
+                                continue;
+                            }
+
+                            if (symbol == 'X')
+                            {
+                                DestinationCoordinates = (x, y);
                             }
 
                             ++x;
-                            field[y].Add(symbol);
+                            Field[y].Add(symbol);
                         }
 
                         ++y;
@@ -58,9 +67,14 @@ namespace Homework
             }
         }
 
+        public bool IsWall((int,  int) coordinates)
+        {
+            return Field[coordinates.Item1][coordinates.Item2] == '#';
+        }
+
         public void PrintMap()
         {
-            foreach (var line in field)
+            foreach (var line in Field)
             {
                 foreach (var cell in line)
                 {
