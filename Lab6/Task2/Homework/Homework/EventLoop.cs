@@ -12,6 +12,8 @@ namespace Homework
         public event EventHandler<EventArgs> RightHandler = (sender, args) => { };
         public event EventHandler<EventArgs> UpHandler = (sender, args) => { };
         public event EventHandler<EventArgs> DownHandler = (sender, args) => { };
+        public event EventHandler<EventArgs> EscapeHandler = (sender, args) => { };
+
         public void Run()
         {
             while (true)
@@ -30,6 +32,9 @@ namespace Homework
                         break;
                     case ConsoleKey.DownArrow:
                         DownHandler(this, EventArgs.Empty);
+                        break;
+                    case ConsoleKey.Escape:
+                        EscapeHandler(this, EventArgs.Empty);
                         break;
                 }
             }

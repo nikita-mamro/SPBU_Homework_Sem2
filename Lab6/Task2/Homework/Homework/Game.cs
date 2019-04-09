@@ -21,6 +21,7 @@ namespace Homework
 
             public void PrintPlayer()
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.SetCursorPosition(Coordinates.Item1, Coordinates.Item2);
                 Console.Write("@");
             }
@@ -32,11 +33,12 @@ namespace Homework
         {
             Console.CursorVisible = false;
             map = new Map();
-            player = new Player(map.InitialPlayerCoords);
+            player = new Player(map.InitialPlayerCoordinates);
             map.PrintMap();
-            Console.ForegroundColor = ConsoleColor.Yellow;
             player.PrintPlayer();
         }
+
+        #region Обработка нажатия клавиш
 
         public void OnLeft(object sender, EventArgs args)
         {
@@ -46,17 +48,33 @@ namespace Homework
             }
 
             player.Coordinates.Item1--;
+
+            if (map.IsWall(player.Coordinates))
+            {
+                Console.WriteLine("AHAHAHAHAHAHAHA");
+            }
+
+            map.PrintMap();
+
             player.PrintPlayer();
         }
 
         public void OnRight(object sender, EventArgs args)
         {
             player.Coordinates.Item1++;
+
             player.PrintPlayer();
         }
 
         public void OnUp(object sender, EventArgs args)
         {
+            if (player.Coordinates.Item2 == 0)
+            {
+                return;
+            }
+
+            map.PrintMap();
+
             player.Coordinates.Item2--;
             player.PrintPlayer();
         }
@@ -64,7 +82,17 @@ namespace Homework
         public void OnDown(object sender, EventArgs args)
         {
             player.Coordinates.Item2++;
+
+            map.PrintMap();
+
             player.PrintPlayer();
         }
+
+        public void OnEscape(object sender, EventArgs args)
+        {
+            Console.Clear();
+        }
+
+        #endregion
     }
 }

@@ -74,6 +74,8 @@ namespace Homework
 
         public void PrintMap()
         {
+            Console.SetCursorPosition(0, 0);
+            Console.ForegroundColor = ConsoleColor.White;
             foreach (var line in Field)
             {
                 foreach (var cell in line)
