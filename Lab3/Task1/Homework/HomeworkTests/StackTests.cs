@@ -1,32 +1,27 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Homework;
 using System;
+using System.Collections.Generic;
 
 namespace Homework.Tests
 {
     /// <summary>
     /// Тесты стека на массиве
     /// </summary>
-    [TestClass()]
-    public class ArrayStackTests
+    [TestClass]
+    public class StackTests
     {
-        private IStack stack;
-
-        [TestInitialize()]
-        public void Initialize()
-        {
-            stack = new ArrayStack();
-        }
-
-        [TestMethod()]
-        public void PushElementToEmptyStackTest()
+        [DynamicData("TestMethodInput")]
+        [TestMethod]
+        public void PushElementToEmptyStackTest(IStack stack)
         {
             stack.Push(1);
             Assert.AreEqual(1, stack.Count);
         }
 
-        [TestMethod()]
-        public void PushToResizeTest()
+        [DynamicData("TestMethodInput")]
+        [TestMethod]
+        public void PushToResizeTest(IStack stack)
         {
             for (var i = 0; i < 3; ++i)
             {
@@ -36,8 +31,9 @@ namespace Homework.Tests
             Assert.AreEqual(3, stack.Count);
         }
 
-        [TestMethod()]
-        public void PushUpdateCountTest()
+        [DynamicData("TestMethodInput")]
+        [TestMethod]
+        public void PushUpdateCountTest(IStack stack)
         {
             for (var i = 0; i < 322; ++i)
             {
@@ -47,22 +43,25 @@ namespace Homework.Tests
             Assert.AreEqual(322, stack.Count);
         }
 
-        [TestMethod()]
+        [DynamicData("TestMethodInput")]
+        [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void PopFromEmptyStackExceptionTest()
+        public void PopFromEmptyStackExceptionTest(IStack stack)
         {
             stack.Pop();
         }
 
-        [TestMethod()]
+        [DynamicData("TestMethodInput")]
+        [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void PeekFromEmptyStackExceptionTest()
+        public void PeekFromEmptyStackExceptionTest(IStack stack)
         {
             stack.Peek();
         }
 
-        [TestMethod()]
-        public void PopReturnValueTest()
+        [DynamicData("TestMethodInput")]
+        [TestMethod]
+        public void PopReturnValueTest(IStack stack)
         {
             for (var i = 0; i < 10; ++i)
             {
@@ -72,8 +71,9 @@ namespace Homework.Tests
             Assert.AreEqual(9, stack.Pop());
         }
 
-        [TestMethod()]
-        public void PopUpdateCountTest()
+        [DynamicData("TestMethodInput")]
+        [TestMethod]
+        public void PopUpdateCountTest(IStack stack)
         {
             for (var i = 0; i < 322; ++i)
             {
@@ -87,8 +87,9 @@ namespace Homework.Tests
             Assert.AreEqual(countBeforePop - 1, stack.Count);
         }
 
-        [TestMethod()]
-        public void PeekReturnTest()
+        [DynamicData("TestMethodInput")]
+        [TestMethod]
+        public void PeekReturnTest(IStack stack)
         {
             for (var i = 0; i < 10; ++i)
             {
@@ -98,8 +99,9 @@ namespace Homework.Tests
             Assert.AreEqual(9, stack.Peek());
         }
 
-        [TestMethod()]
-        public void PeekMustNotUpdateCountTest()
+        [DynamicData("TestMethodInput")]
+        [TestMethod]
+        public void PeekMustNotUpdateCountTest(IStack stack)
         {
             for (var i = 0; i < 322; ++i)
             {
@@ -113,8 +115,9 @@ namespace Homework.Tests
             Assert.AreEqual(countBeforePeek, stack.Count);
         }
 
-        [TestMethod()]
-        public void ClearStackTest()
+        [DynamicData("TestMethodInput")]
+        [TestMethod]
+        public void ClearStackTest(IStack stack)
         {
             for (var i = 0; i < 322; ++i)
             {
@@ -126,8 +129,9 @@ namespace Homework.Tests
             Assert.AreEqual(0, stack.Count);
         }
 
-        [TestMethod()]
-        public void IsEmptyOnEmptyStackTest()
+        [DynamicData("TestMethodInput")]
+        [TestMethod]
+        public void IsEmptyOnEmptyStackTest(IStack stack)
         {
             for (var i = 0; i < 322; ++i)
             {
@@ -139,12 +143,25 @@ namespace Homework.Tests
             Assert.IsTrue(stack.IsEmpty);
         }
 
-        [TestMethod()]
-        public void IsEmptyOnNotEmptyStackTest()
+        [DynamicData("TestMethodInput")]
+        [TestMethod]
+        public void IsEmptyOnNotEmptyStackTest(IStack stack)
         {
             stack.Push(1);
 
             Assert.IsFalse(stack.IsEmpty);
+        }
+
+        public static IEnumerable<object[]> TestMethodInput
+        {
+            get
+            {
+                return new[]
+                {
+                    new object[] { new ArrayStack() },
+                    new object[] { new ListStack() }
+                };
+            }
         }
     }
 }
