@@ -137,16 +137,6 @@ namespace Homework.Tests
         }
 
         public static IEnumerable<object[]> TestMethodInput
-        {
-            get
-            {
-                return new[]
-                {
-                    new object[] { new HashTable(new AdlerHash()) },
-                    new object[] { new HashTable(new Murmur2Hash()) },
-                    new object[] { new HashTable(new JenkinsHash())}
-                };
-            }
-        }
+            => new[] { new object[] { new HashTable(new AdlerHash()) }, new object[] { new HashTable(new Murmur2Hash()) }, new object[] { new HashTable(new JenkinsHash()) } };
     }
 }
