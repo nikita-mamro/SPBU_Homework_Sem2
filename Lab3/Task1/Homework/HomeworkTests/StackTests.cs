@@ -153,15 +153,6 @@ namespace Homework.Tests
         }
 
         public static IEnumerable<object[]> TestMethodInput
-        {
-            get
-            {
-                return new[]
-                {
-                    new object[] { new ArrayStack() },
-                    new object[] { new ListStack() }
-                };
-            }
-        }
+            => new[] { new object[] { new ArrayStack() }, new object[] { new ListStack() } };
     }
 }
