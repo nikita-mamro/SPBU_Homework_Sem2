@@ -14,16 +14,12 @@ namespace Homework.Tests
 
         [TestInitialize]
         public void Initialize()
-        {
-            calculator = new PostfixCalculator(new ListStack());
-        }
+            => calculator = new PostfixCalculator(new ListStack());
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void DivisionByZeroExceptionTest()
-        {
-            calculator.GetPostfixExpressionValue("1 0 /");
-        }
+            => calculator.GetPostfixExpressionValue("1 0 /");
 
         /// <summary>
         /// Тесты на исключения, выкидываемые при некорректном вводе
@@ -31,65 +27,47 @@ namespace Homework.Tests
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void NoSpacesInputExceptionTest()
-        {
-            calculator.GetPostfixExpressionValue("2 2+");
-        }
+            => calculator.GetPostfixExpressionValue("2 2+");
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void OneNumberOnlyInputExceptionTest()
-        {
-            calculator.GetPostfixExpressionValue("1");
-        }
+            => calculator.GetPostfixExpressionValue("1");
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void OneOperatorOnlyInputExceptionTest()
-        {
-            calculator.GetPostfixExpressionValue("+");
-        }
+            => calculator.GetPostfixExpressionValue("+");
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void NoOperatorsInputExceptionTest()
-        {
-            calculator.GetPostfixExpressionValue("1 2 42 5 4");
-        }
+            => calculator.GetPostfixExpressionValue("1 2 42 5 4");
 
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
         public void NoNumbersInputExceptionTest()
-        {
-            calculator.GetPostfixExpressionValue("+ - * / +");
-        }
+            => calculator.GetPostfixExpressionValue("+ - * / +");
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void OneNumberOneOperatorInputExceptionTest()
-        {
-            calculator.GetPostfixExpressionValue("1+");
-        }
+            => calculator.GetPostfixExpressionValue("1+");
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void TooManyNumbersInputExceptionTest()
-        {
-            calculator.GetPostfixExpressionValue("1 3 2 4 2 3 2 1 24 12 41 + - * /");
-        }
+            => calculator.GetPostfixExpressionValue("1 3 2 4 2 3 2 1 24 12 41 + - * /");
 
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
         public void TooManyOperatorsInputExceptionTest()
-        {
-            calculator.GetPostfixExpressionValue("1 2 / * - +");
-        }
+            => calculator.GetPostfixExpressionValue("1 2 / * - +");
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void UnexpectedSymbolInputExceptionTest()
-        {
-            calculator.GetPostfixExpressionValue("2 2 a a v");
-        }
+            => calculator.GetPostfixExpressionValue("2 2 a a v");
 
         /// <summary>
         /// Тесты правильности непосредственно вычисления значения выражения
@@ -169,7 +147,7 @@ namespace Homework.Tests
         [DataRow(-222222, -10, -222212)]
         [DataRow(-333333, -111111, -222222)]
         public void SubstractionTest(int a, int b, int expected)
-            =>OneSubstractionTest(a, b, expected);
+            => OneSubstractionTest(a, b, expected);
 
         /// <summary>
         /// Тесты умножения
@@ -231,9 +209,7 @@ namespace Homework.Tests
         [DataRow(-6754172, -35871, 188)]
         [DataRow(-357681254, -935723523, 0)]
         public void DivisionTest(int a, int b, int expected)
-        {
-            OneDivisionTest(a, b, expected);
-        }
+            => OneDivisionTest(a, b, expected);
 
         /// <summary>
         /// Тесты длинных выражений
