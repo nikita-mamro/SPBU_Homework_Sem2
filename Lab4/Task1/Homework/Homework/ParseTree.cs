@@ -15,9 +15,7 @@ namespace ParseTree
             /// <summary>
             /// Возвращает значение арифметического выражения, представимого в виде дерева разбора с корнем в данном узле
             /// </summary>
-            /// <returns></returns>
             abstract public int Calculate();
-            abstract public void CreateNode();
         }
 
         /// <summary>
@@ -29,11 +27,6 @@ namespace ParseTree
 
             public override int Calculate()
                 => this.data;
-
-            public override void CreateNode()
-            {
-                throw new NotImplementedException();
-            }
 
             /// <summary>
             /// Конструктор класса Operand
@@ -51,49 +44,58 @@ namespace ParseTree
         /// <summary>
         /// Класс, реализующий узел-оператор дерева разбора
         /// </summary>
-        private class Operator : Node
+        private abstract class Operator : Node
         {
-            private string data;
             public Node Left { get; set; }
             public Node Right { get; set; }
+        }
 
+        /// <summary>
+        /// Класс, реализующий оператор сложения
+        /// </summary>
+        private class OperatorAdd : Operator
+        {
             public override int Calculate()
-            {
-                try
-                {
-                    return OperationHandler.OperationHandler.ProceedOperation(Left.Calculate(), data, Right.Calculate());
-                }
-                catch (DivideByZeroException)
-                {
-                    throw;
-                }
-                catch (ArgumentException)
-                {
-                    throw;
-                }
-            }
-
-            public override void CreateNode()
-            {
-                throw new NotImplementedException();
-            }
-
-            /// <summary>
-            /// Конструктор класса Operator
-            /// </summary>
-            /// <param name="data">Строка из 1 символа-оператор(+ или - или * или /)</param>
-            public Operator(string data)
-            {
-                if (!Validators.OperatorsValidator.IsOperator(data))
-                {
-                    throw new ArgumentException("Выражение задано в некорректном формате :(\nПроверьте правильность введённых данных.");
-                }
-
-                this.data = data;
-            }
+                => Left.Calculate() + Right.Calculate();
 
             public override string ToString()
-                => $"({Left.ToString()} {data} {Right.ToString()})";
+                => $"({Left.ToString()} + {Right.ToString()})";
+        }
+
+        /// <summary>
+        /// Класс, реализующий оператор вычитания
+        /// </summary>
+        private class OperatorSubstract : Operator
+        {
+            public override int Calculate()
+                => Left.Calculate() - Right.Calculate();
+
+            public override string ToString()
+                => $"({Left.ToString()} - {Right.ToString()})";
+        }
+
+        /// <summary>
+        /// Класс, реализующий оператор умножения
+        /// </summary>
+        private class OperatorMultiply : Operator
+        {
+            public override int Calculate()
+                => Left.Calculate() * Right.Calculate();
+
+            public override string ToString()
+                => $"({Left.ToString()} * {Right.ToString()})";
+        }
+
+        /// <summary>
+        /// Класс, реализующий оператор деления
+        /// </summary>
+        private class OperatorDivide : Operator
+        {
+            public override int Calculate()
+                => Left.Calculate() / Right.Calculate();
+
+            public override string ToString()
+                => $"({Left.ToString()} / {Right.ToString()})";
         }
 
         /// <summary>
@@ -112,9 +114,7 @@ namespace ParseTree
         /// <param name="expression">Арифметическое выражение</param>
         private void BuildTree(string expression)
         {
-            BracketBalanceChecker.IBracketBalanceChecker bracketChecker = new BracketBalanceChecker.BracketBalanceChecker();
-
-            if (!bracketChecker.IsBalanced(expression))
+            if (!BracketBalanceChecker.BracketBalanceChecker.IsBalanced(expression))
             {
                 throw new ArgumentException("Введёно некорректное выражение, проверьте баланс скобок.");
             }
@@ -123,26 +123,49 @@ namespace ParseTree
             root = CreateNode(expression.Split(' '), ref index);
         }
 
+        /// <summary>
+        /// Возвращает ноду, являющуюся корнем дерева, построенного по выражению
+        /// </summary>
+        /// <param name="expression">Арифметическое выражение</param>
+        /// <param name="index">Номер символа в выражении, на котором мы находимся в текущий момент</param>
+        /// <returns></returns>
         private Node CreateNode(string[] expression, ref int index)
         {
-            Node node = null;
-
             if (expression[index] == "(")
             {
                 ++index;
-                node = new Operator(expression[index]);
+
+                Operator node;
+
+                switch (expression[index])
+                {
+                    case "+":
+                        node = new OperatorAdd();
+                        break;
+                    case "-":
+                        node = new OperatorSubstract();
+                        break;
+                    case "*":
+                        node = new OperatorMultiply();
+                        break;
+                    case "/":
+                        node = new OperatorDivide();
+                        break;
+                    default:
+                        throw new ArgumentException("Выражение задано в некорректном формате :(\nПроверьте правильность введённых данных.");
+                }
 
                 ++index;
-                (node as Operator).Left = CreateNode(expression, ref index);
+                node.Left = CreateNode(expression, ref index);
 
                 ++index;
-                (node as Operator).Right = CreateNode(expression, ref index);
+                node.Right = CreateNode(expression, ref index);
 
                 return node;
             }
             else if (int.TryParse(expression[index], out int number))
             {
-                node = new Operand(number);
+                var node = new Operand(number);
                 return node;
             }
             else if (expression[index] == ")")
@@ -156,13 +179,9 @@ namespace ParseTree
         }
 
         public int Calculate()
-        {
-            return root.Calculate();
-        }
+            => root.Calculate();
 
         public string GetExpression()
-        {
-            return root.ToString();
-        }
+            => root.ToString();
     }
 }

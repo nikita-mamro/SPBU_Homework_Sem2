@@ -3,11 +3,19 @@ using System.Collections.Generic;
 
 namespace BracketBalanceChecker
 {
-    public class BracketBalanceChecker : IBracketBalanceChecker
+    /// <summary>
+    /// Класс, реализующий проверяльщика баланса скобок
+    /// </summary>
+    public class BracketBalanceChecker
     {
-        public bool IsBalanced(string expression)
+        /// <summary>
+        /// Проверяет выражение на баланс круглых скобок 
+        /// </summary>
+        /// <param name="expression">Выражение</param>
+        /// <returns>True, если баланс соблюдён, иначе False</returns>
+        public static bool IsBalanced(string expression)
         {
-            Stack<char> stack = new Stack<char>();
+            var stack = new Stack<char>();
 
             foreach (var symbol in expression)
             {

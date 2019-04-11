@@ -57,8 +57,6 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BracketBalanceCheckerTests.cs" />
-    <Compile Include="OperationHandlerTests.cs" />
-    <Compile Include="OperatorsValidatorTests.cs" />
     <Compile Include="ParseTreeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

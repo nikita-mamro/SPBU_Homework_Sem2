@@ -59,10 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BracketBalanceChecker.cs" />
-    <Compile Include="IBracketBalanceChecker.cs" />
     <Compile Include="IParseTree.cs" />
-    <Compile Include="OperationHandler.cs" />
-    <Compile Include="OperatorsValidator.cs" />
     <Compile Include="ParseTree.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
