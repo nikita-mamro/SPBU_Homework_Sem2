@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace Homework
 {
+    /// <summary>
+    /// Класс, реализующий хэш-таблицу
+    /// </summary>
     public class HashTable : IHashTable
     {
         /// <summary>
@@ -11,6 +14,7 @@ namespace Homework
         private List<IList> buckets;
 
         public int Count { get; private set; }
+
         /// <summary>
         /// Количество неповторяющихся значений
         /// </summary>
@@ -19,7 +23,7 @@ namespace Homework
         /// <summary>
         /// Отвечает за выбор реализации хэш функции
         /// </summary>
-        private IHashFunction HashImplementation;
+        private IHashFunction hashImplementation;
 
         /// <summary>
         /// Конструктор хэш-таблицы с выбранной реализацией хэш-функции
@@ -27,7 +31,7 @@ namespace Homework
         /// <param name="hashImplementation">Реализация хэш-функции</param>
         public HashTable(IHashFunction hashImplementation)
         {
-            this.HashImplementation = hashImplementation;
+            this.hashImplementation = hashImplementation;
 
             buckets = new List<IList>();
 
@@ -62,7 +66,7 @@ namespace Homework
 
                 foreach (var word in words)
                 {
-                    var hash = (int)(HashImplementation.HashFunction(word) % newBuckets.Count);
+                    var hash = Math.Abs((int)(hashImplementation.HashFunction(word) % newBuckets.Count));
                     newBuckets[hash].Add(word);
                 }
             }
@@ -77,7 +81,7 @@ namespace Homework
                 Expand();
             }
 
-            var hash = (int)(HashImplementation.HashFunction(word) % buckets.Count);
+            var hash = Math.Abs((int)(hashImplementation.HashFunction(word) % buckets.Count));
 
             if (buckets[hash].IsEmpty)
             {
@@ -100,7 +104,7 @@ namespace Homework
                 throw new ArgumentException("Слово не найдено в наборе!");
             }
 
-            var hash = (int)(HashImplementation.HashFunction(word) % buckets.Count);
+            var hash = Math.Abs((int)(hashImplementation.HashFunction(word) % buckets.Count));
 
             if (!buckets[hash].Remove(word))
             {
@@ -117,7 +121,7 @@ namespace Homework
 
         public bool IsContained(string word)
         {
-            var hash = (int)(HashImplementation.HashFunction(word) % buckets.Count);
+            var hash = Math.Abs((int)(hashImplementation.HashFunction(word) % buckets.Count));
             return buckets[hash].Contains(word);
         }
 
@@ -126,9 +130,7 @@ namespace Homework
         /// (отношение количества отличных друг от друга элементов к количеству слотов)
         /// </summary>
         private double LoadCoefficient
-        {
-            get { return (double)differentCount / (double)buckets.Count; }
-        }
+            => (double)differentCount / (double)buckets.Count;
 
         public void Clear()
         {

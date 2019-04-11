@@ -8,7 +8,7 @@ namespace Homework.Tests
     /// <summary>
     /// Тесты хэш-таблицы для каждой из реализаций хэш-функции
     /// </summary>
-    [TestClass()]
+    [TestClass]
     public class HashTableTests
     {
         /// <summary>
@@ -137,6 +137,11 @@ namespace Homework.Tests
         }
 
         public static IEnumerable<object[]> TestMethodInput
-            => new[] { new object[] { new HashTable(new AdlerHash()) }, new object[] { new HashTable(new Murmur2Hash()) }, new object[] { new HashTable(new JenkinsHash()) } };
+            => new[] 
+            {
+                new object[] { new HashTable(new AdlerHash()) },
+                new object[] { new HashTable(new Murmur2Hash()) },
+                new object[] { new HashTable(new JenkinsHash()) }
+            };
     }
 }

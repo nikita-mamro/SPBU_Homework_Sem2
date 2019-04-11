@@ -8,12 +8,12 @@ namespace Homework.Tests
     /// <summary>
     /// Тесты односвязного списка
     /// </summary>
-    [TestClass()]
+    [TestClass]
     public class ListTests
     {
         private IList list;
         
-        [TestInitialize()]
+        [TestInitialize]
         public void Initialize()
         {
             list = new List();
@@ -22,14 +22,14 @@ namespace Homework.Tests
         /// <summary>
         /// Тесты на добавление элементов
         /// </summary>
-        [TestMethod()]
+        [TestMethod]
         public void AddOnelementTest()
         {
             list.Add("hello");
             Assert.AreEqual(1, list.Size);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void SizeUpdatesWhenAnotherElementAddedTest()
         {
             list.Add("hello");
@@ -39,7 +39,7 @@ namespace Homework.Tests
             Assert.AreEqual(oldSize + 1, list.Size);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void AddManyElementsTest()
         {
             for (var i = 0; i < 50; ++i)
@@ -50,7 +50,7 @@ namespace Homework.Tests
             Assert.AreEqual(50, list.Size);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void NoSizeUpdatedWhenAddingExistentTest()
         {
             for (var i = 0; i < 50; ++i)
@@ -65,14 +65,14 @@ namespace Homework.Tests
         /// <summary>
         /// Тест свойства Contains
         /// </summary>
-        [TestMethod()]
+        [TestMethod]
         public void AddedElementBecomesContainedTest()
         {
             list.Add("hello");
             Assert.IsTrue(list.Contains("hello") && !list.Contains("HELLO"));
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void AddedElementToManyElementsBecomesContainedTest()
         {
             for (var i = 0; i < 50; ++i)
@@ -88,7 +88,7 @@ namespace Homework.Tests
         /// <summary>
         /// Тест удаления
         /// </summary>
-        [TestMethod()]
+        [TestMethod]
         public void RemoveFromListOfOneElementSizeChangeTest()
         {
             list.Add("One");
@@ -97,7 +97,7 @@ namespace Homework.Tests
             Assert.AreEqual(0, list.Size);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void RemoveFromListOfManyElementsSizeChangeTest()
         {
             for (var i = 0; i < 50; ++i)
@@ -111,7 +111,7 @@ namespace Homework.Tests
             Assert.AreEqual(oldSize - 1, list.Size);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void RemoveFromListOfManyCopiesOfOneElementTest()
         {
             for (var i = 0; i < 50; ++i)
@@ -125,14 +125,14 @@ namespace Homework.Tests
             Assert.AreEqual(oldSize, list.Size);
         }
 
-        [TestMethod()]
+        [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
         public void RemoveFromEmptyListExceptionTest()
         {
             list.Remove("haha");
         }
 
-        [TestMethod()]
+        [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void RemoveElementWhichDoesNotExistExceptionTest()
         {
@@ -143,7 +143,7 @@ namespace Homework.Tests
         /// <summary>
         /// Тест метода GetWords()
         /// </summary>
-        [TestMethod()]
+        [TestMethod]
         public void GetWordsDifferentElementsTest()
         {
             for (var i = 0; i < 50; ++i)
@@ -166,7 +166,7 @@ namespace Homework.Tests
             }
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void GetWordsRepeatingElementsTest()
         {
             for (var i = 0; i < 50; ++i)
@@ -194,7 +194,7 @@ namespace Homework.Tests
         /// <summary>
         /// Тест очистки
         /// </summary>
-        [TestMethod()]
+        [TestMethod]
         public void ClearTest()
         {
             for (var i = 0; i < 322; ++i)
