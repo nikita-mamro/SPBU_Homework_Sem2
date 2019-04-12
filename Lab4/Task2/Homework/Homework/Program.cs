@@ -35,19 +35,11 @@ namespace Homework
                 uList.Add(2, 1);
                 Console.WriteLine();
             }
-            catch (ArgumentException e)
-            {
-                Console.WriteLine("Вызвано исключение!");
-                Console.WriteLine(e.Message);
-                Console.WriteLine(e.StackTrace);
-            }
-            catch (Exceptions.ElementNotInListException e)
-            {
-                Console.WriteLine("Вызвано исключение!");
-                Console.WriteLine(e.Message);
-                Console.WriteLine(e.StackTrace);
-            }
-            catch (Exceptions.ElementAlreadyInListException e)
+            catch (Exception e)
+                when (
+                e is ArgumentException 
+                || e is Exceptions.ElementNotInListException 
+                || e is Exceptions.ElementAlreadyInListException)
             {
                 Console.WriteLine("Вызвано исключение!");
                 Console.WriteLine(e.Message);

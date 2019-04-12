@@ -140,7 +140,7 @@ namespace Lists
             return node.Data;
         }
 
-        public void SetDataByPosition(int data, int position)
+        public virtual void SetDataByPosition(int data, int position)
         {
             if (!IsPositionValidToRemove(position))
             {

@@ -26,5 +26,15 @@ namespace Lists
 
             base.AddToHead(data);
         }
+
+        public override void SetDataByPosition(int data, int position)
+        {
+            if (Exists(data))
+            {
+                throw new Exceptions.ElementAlreadyInListException("Попытка замена элемента в UniqueList на существующий");
+            }
+
+            base.SetDataByPosition(data, position);
+        }
     }
 }
