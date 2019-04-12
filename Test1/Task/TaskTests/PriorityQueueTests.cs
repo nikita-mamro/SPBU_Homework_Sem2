@@ -152,7 +152,23 @@ namespace Task.Tests
         {
             for (var i = 0; i < 100; ++i)
             {
-                pQueue.Enqueue(i, i);
+                pQueue.Enqueue(i, 100 - i);
+            }
+
+            for (var i = 0; i < 100; ++i)
+            {
+                Assert.IsTrue(pQueue.Dequeue() == i);
+            }
+
+            Assert.IsTrue(pQueue.IsEmpty);
+        }
+
+        [TestMethod]
+        public void DequeueAllFromManySamePriorityElementsTest()
+        {
+            for (var i = 0; i < 100; ++i)
+            {
+                pQueue.Enqueue(i, 100);
             }
 
             for (var i = 0; i < 100; ++i)
