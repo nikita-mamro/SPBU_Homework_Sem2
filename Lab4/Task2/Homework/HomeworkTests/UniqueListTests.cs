@@ -7,12 +7,12 @@ namespace Lists.Tests
     /// <summary>
     /// Тесты класса UniqueList
     /// </summary>
-    [TestClass()]
+    [TestClass]
     public class UniqueListTests
     {
         private IList uList;
 
-        [TestInitialize()]
+        [TestInitialize]
         public void Initialize()
         {
             uList = new UniqueList();
@@ -21,7 +21,7 @@ namespace Lists.Tests
         /// <summary>
         /// Тесты методов добавления на бросание исключений при попытке добавить существующий элемент 
         /// </summary>
-        [TestMethod()]
+        [TestMethod]
         [ExpectedException(typeof(Exceptions.ElementAlreadyInListException))]
         public void AddToHeadToOneExistingElementExceptionTest()
         {
@@ -29,7 +29,7 @@ namespace Lists.Tests
             uList.AddToHead(1);
         }
 
-        [TestMethod()]
+        [TestMethod]
         [ExpectedException(typeof(Exceptions.ElementAlreadyInListException))]
         public void AddExistingElementToHeadOfListOfManyElementsExceptionTest()
         {
@@ -41,7 +41,7 @@ namespace Lists.Tests
             uList.AddToHead(1);
         }
 
-        [TestMethod()]
+        [TestMethod]
         [ExpectedException(typeof(Exceptions.ElementAlreadyInListException))]
         public void AddToOneExistingElementExceptionTest()
         {
@@ -49,7 +49,7 @@ namespace Lists.Tests
             uList.Add(1, 1);
         }
 
-        [TestMethod()]
+        [TestMethod]
         [ExpectedException(typeof(Exceptions.ElementAlreadyInListException))]
         public void AddExistingElementToListOfManyElementsExceptionTest()
         {

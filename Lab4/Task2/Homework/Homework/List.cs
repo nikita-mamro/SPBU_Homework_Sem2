@@ -2,12 +2,20 @@
 
 namespace Lists
 {
+    /// <summary>
+    /// Класс, реализующий односвязный список
+    /// </summary>
     public class List : IList
     {
+        /// <summary>
+        /// Класс, реализующий элемент списка
+        /// </summary>
         private class Node
         {
             public int Data { get; set; }
+
             public Node Next { get; set; }
+
             public Node(int data, Node next)
             {
                 Data = data;
@@ -16,6 +24,7 @@ namespace Lists
         }
 
         private Node head;
+
         public int Count { get; private set; }
 
         private bool IsPositionValidToAdd(int position)
@@ -89,9 +98,7 @@ namespace Lists
         }
 
         public bool Exists(int data)
-        {
-            return GetNodeByData(data) != null;
-        }
+            => GetNodeByData(data) != null;
 
         private void RemoveFromHead()
         {

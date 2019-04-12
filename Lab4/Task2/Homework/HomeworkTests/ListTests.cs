@@ -7,7 +7,7 @@ namespace Lists.Tests
     /// <summary>
     /// Тесты обычного односвязного списка
     /// </summary>
-    [TestClass()]
+    [TestClass]
     public class ListTests
     {
         private IList list;
@@ -21,7 +21,7 @@ namespace Lists.Tests
         /// <summary>
         /// Тесты методов добавления элементов
         /// </summary>
-        [TestMethod()]
+        [TestMethod]
         public void AddToHeadOnceTest()
         {
             bool initialIsEmpty = list.IsEmpty;
@@ -30,7 +30,7 @@ namespace Lists.Tests
             Assert.IsTrue(initialIsEmpty == true && list.IsEmpty == false);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void AddToHeadManyTimesUpdatesCounterTest()
         {
             for (var i = 0; i < 100; ++i)
@@ -41,14 +41,14 @@ namespace Lists.Tests
             Assert.AreEqual(100, list.Count);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void AddToFirstPositionTest()
         {
             list.Add(1, 0);
             Assert.AreEqual(1, list.Count);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void AddToFirstPositionManyTimesTest()
         {
             for (var i = 0; i < 100; ++i)
@@ -59,7 +59,7 @@ namespace Lists.Tests
             Assert.AreEqual(100, list.Count);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void AddToPositionsInOrderTest()
         {
             for (var i = 0; i < 100; ++i)
@@ -70,7 +70,7 @@ namespace Lists.Tests
             Assert.AreEqual(100, list.Count);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void AddToExistingPositionTest()
         {
             for (var i = 0; i < 100; ++i)
@@ -86,21 +86,21 @@ namespace Lists.Tests
             Assert.AreEqual(150, list.Count);
         }
 
-        [TestMethod()]
+        [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void AddToInvalidPositionEmptyListExceptionTest()
         {
             list.Add(1, 1);
         }
 
-        [TestMethod()]
+        [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void AddToInvalidNegativePositionEmptyListExceptionTest()
         {
             list.Add(1, -1);
         }
 
-        [TestMethod()]
+        [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void AddToInvalidNegativePositionExceptionTest()
         {
@@ -112,7 +112,7 @@ namespace Lists.Tests
             list.Add(-1, -1);
         }
 
-        [TestMethod()]
+        [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void AddToInvalidOutOfRangePositivePositionExceptionTest()
         {
@@ -127,14 +127,14 @@ namespace Lists.Tests
         /// <summary>
         /// Тесты метода удаления
         /// </summary>
-        [TestMethod()]
+        [TestMethod]
         [ExpectedException(typeof(Exceptions.ElementNotInListException))]
         public void RemoveFromEmptyTest()
         {
             list.Remove(1);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void RemoveFromOneElementSizeTest()
         {
             list.Add(1, 0);
@@ -142,7 +142,7 @@ namespace Lists.Tests
             Assert.IsTrue(list.IsEmpty);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void RemoveOneFromManyElementsSizeTest()
         {
             for (var i = 0; i < 100; ++i)
@@ -154,7 +154,7 @@ namespace Lists.Tests
             Assert.AreEqual(99, list.Count);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void RemoveManyFromManyElementsSizeTest()
         {
             for (var i = 0; i < 101; ++i)
@@ -170,7 +170,7 @@ namespace Lists.Tests
             Assert.AreEqual(80, list.Count);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void RemoveAllElementsTest()
         {
             for (var i = 0; i < 100; ++i)
@@ -186,7 +186,7 @@ namespace Lists.Tests
             Assert.IsTrue(list.IsEmpty);
         }
 
-        [TestMethod()]
+        [TestMethod]
         [ExpectedException(typeof(Exceptions.ElementNotInListException))]
         public void RemoveUnexistingElementExceptionTest()
         {
@@ -201,14 +201,14 @@ namespace Lists.Tests
         /// <summary>
         /// Тесты проверки значения на существование
         /// </summary>
-        [TestMethod()]
+        [TestMethod]
         public void ExistsAfterAddingOneTest()
         {
             list.AddToHead(1);
             Assert.IsTrue(list.Exists(1));
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void ExistsAfterAddingManyTest()
         {
             for (var i = 0; i < 100; ++i)
@@ -222,7 +222,7 @@ namespace Lists.Tests
             }
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void ExistsAfterRemovingAnotherTest()
         {
             for (var i = 0; i < 100; ++i)
@@ -235,7 +235,7 @@ namespace Lists.Tests
             Assert.IsTrue(list.Exists(1));
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void DoesNotExistAfterRemovingTest()
         {
             for (var i = 0; i < 100; ++i)
@@ -251,14 +251,14 @@ namespace Lists.Tests
         /// <summary>
         /// Тесты метода очистки теста
         /// </summary>
-        [TestMethod()]
+        [TestMethod]
         public void ClearEmptyListTest()
         {
             list.Clear();
             Assert.IsTrue(list.IsEmpty);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void ClearListOfManyElementsTest()
         {
             for (var i = 0; i < 100; ++i)

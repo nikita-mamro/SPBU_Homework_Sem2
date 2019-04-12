@@ -11,6 +11,6 @@ namespace Exceptions
         public ElementAlreadyInListException() { }
         public ElementAlreadyInListException(string message) : base(message) { }
         public ElementAlreadyInListException(string message, Exception inner)
-        : base(message, inner) { }
+            : base(message, inner) { }
     }
 }

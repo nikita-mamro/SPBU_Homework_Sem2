@@ -2,6 +2,9 @@
 
 namespace Lists
 {
+    /// <summary>
+    /// Класс, реализующий односвязный список без повторов
+    /// </summary>
     public class UniqueList : List
     {
         public override void Add(int data, int position)
