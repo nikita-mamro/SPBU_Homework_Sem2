@@ -98,14 +98,69 @@ namespace Task.Tests
         }
 
         [TestMethod]
-        public void DequeueFromManyElementsTest()
+        public void DequeueOneFromManyDifferentPriorityElementsTest()
+        {
+            for (var i = 0; i < 100; ++i)
+            {
+                pQueue.Enqueue(i, 100 - i);
+            }
+
+            Assert.AreEqual(pQueue.Dequeue(), 0);
+        }
+
+        [TestMethod]
+        public void DequeueOneFromManySamePriorityElementsTest()
+        {
+            for (var i = 0; i < 100; ++i)
+            {
+                pQueue.Enqueue(i, 1);
+            }
+
+            Assert.AreEqual(pQueue.Dequeue(), 99);
+        }
+
+        [TestMethod]
+        public void DequeueManyFromMoreDifferentPriorityElementsTest()
+        {
+            for (var i = 0; i < 100; ++i)
+            {
+                pQueue.Enqueue(i, 100 - i);
+            }
+
+            for (var i = 0; i < 20; ++i)
+            {
+                Assert.IsTrue(pQueue.Dequeue() == i && !pQueue.IsEmpty);
+            }
+        }
+
+        [TestMethod]
+        public void DequeueManyFromMoreSamePriorityElementsTest()
+        {
+            for (var i = 0; i < 100; ++i)
+            {
+                pQueue.Enqueue(i, 100);
+            }
+
+            for (var i = 0; i < 20; ++i)
+            {
+                Assert.IsTrue(pQueue.Dequeue() == 99 - i && !pQueue.IsEmpty);
+            }
+        }
+
+        [TestMethod]
+        public void DequeueAllFromManyDifferentPriorityElementsTest()
         {
             for (var i = 0; i < 100; ++i)
             {
                 pQueue.Enqueue(i, i);
             }
 
-            Assert.AreEqual(pQueue.Dequeue(), 99);
+            for (var i = 0; i < 100; ++i)
+            {
+                Assert.IsTrue(pQueue.Dequeue() == 99 - i);
+            }
+
+            Assert.IsTrue(pQueue.IsEmpty);
         }
 
         /// <summary>
