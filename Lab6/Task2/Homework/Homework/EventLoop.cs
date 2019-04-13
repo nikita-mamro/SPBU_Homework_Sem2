@@ -12,7 +12,6 @@ namespace Homework
         public event EventHandler<EventArgs> RightHandler = (sender, args) => { };
         public event EventHandler<EventArgs> UpHandler = (sender, args) => { };
         public event EventHandler<EventArgs> DownHandler = (sender, args) => { };
-        public event EventHandler<EventArgs> EscapeHandler = (sender, args) => { };
 
         public void Run()
         {
@@ -34,8 +33,9 @@ namespace Homework
                         DownHandler(this, EventArgs.Empty);
                         break;
                     case ConsoleKey.Escape:
-                        EscapeHandler(this, EventArgs.Empty);
-                        break;
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Clear();
+                        return;
                 }
             }
         }

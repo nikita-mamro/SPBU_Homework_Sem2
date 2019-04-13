@@ -13,16 +13,16 @@ namespace Homework
         public (int, int) InitialPlayerCoordinates { get; private set; }
         public (int, int) DestinationCoordinates { get; private set; }
 
-        public Map()
+        public Map(string mapPath)
         {
-            GenerateMap();
+            GenerateMap(mapPath);
         }
 
-        private void GenerateMap()
+        private void GenerateMap(string mapPath)
         {
             try
             {
-                using (StreamReader sr = new StreamReader(Path.Combine(Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())), "map.txt")))
+                using (StreamReader sr = new StreamReader(Path.Combine(Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())), mapPath)))
                 {
                     Field = new List<List<char>>();
 
@@ -68,9 +68,7 @@ namespace Homework
         }
 
         public bool IsWall((int,  int) coordinates)
-        {
-            return Field[coordinates.Item1][coordinates.Item2] == '#';
-        }
+            => Field[coordinates.Item2][coordinates.Item1] == '#';
 
         public void PrintMap()
         {
@@ -84,6 +82,13 @@ namespace Homework
                 }
                 Console.WriteLine();
             }
+        }
+
+        public void RenderCell((int, int) coordinates)
+        {
+            Console.SetCursorPosition(coordinates.Item1, coordinates.Item2);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write(Field[coordinates.Item2][coordinates.Item1]);
         }
     }
 }
