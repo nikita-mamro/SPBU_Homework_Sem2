@@ -6,6 +6,9 @@ using System.Collections.Generic;
 
 namespace Homework.Tests
 {
+    /// <summary>
+    /// Тесты класса Map
+    /// </summary>
     [TestClass]
     public class MapTests
     {
@@ -18,6 +21,9 @@ namespace Homework.Tests
             testMap = new Map(mapFileName);
         }
 
+        /// <summary>
+        /// Тесты корректности работы метода генерации карты
+        /// </summary>
         [TestMethod]
         public void WallGenerationTest()
         {
@@ -40,6 +46,9 @@ namespace Homework.Tests
             }
         }
 
+        /// <summary>
+        /// Тесты корректности работы метода IsWall
+        /// </summary>
         [TestMethod()]
         public void IsWallTest()
         {
@@ -62,8 +71,11 @@ namespace Homework.Tests
             }
         }
 
+        /// <summary>
+        /// Проверка корректности получения координат спауна игрока и костей
+        /// </summary>
         [TestMethod]
-        public void GetPlayerAndCoordinatesTest()
+        public void GetPlayerAndDestionationCoordinatesTest()
         {
             (int, int) expectedPlayerCoordinates = (-1, -1);
             (int, int) expectedDestinationCoordinates = (-1, -1);

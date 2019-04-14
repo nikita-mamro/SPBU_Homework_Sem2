@@ -2,6 +2,9 @@
 
 namespace Exceptions
 {
+    /// <summary>
+    /// Исключение, которое вызывается, когда игрок берёт кости (победит в игре)
+    /// </summary>
     [Serializable]
     public class GotBonesException : Exception
     {

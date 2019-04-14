@@ -3,10 +3,19 @@ using System.Collections.Generic;
 
 namespace Homework
 {
+    /// <summary>
+    /// Класс, реализующий игру-ходилку
+    /// </summary>
     public class Game
     {
+        /// <summary>
+        /// Карта, которую считаем из файла и по которой будет перемещаться персонаж
+        /// </summary>
         private Map map;
 
+        /// <summary>
+        /// Сам персонаж
+        /// </summary>
         private Player player;
 
         public Game(string mapPath)
@@ -18,7 +27,7 @@ namespace Homework
             player.PrintPlayer();
         }
 
-        #region Обработка нажатий клавиш
+        #region Обработка нажатий клавиш-стрелок
 
         public void OnLeft(object sender, EventArgs args)
         {

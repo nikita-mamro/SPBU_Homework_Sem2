@@ -9,15 +9,34 @@ namespace Homework
     /// </summary>
     public class Map
     {
+        /// <summary>
+        /// Поле (стенки и свободное пространство)
+        /// </summary>
         public List<List<char>> Field { get; private set; }
+
+        /// <summary>
+        /// Координаты, в которых находится игрок при спауне
+        /// </summary>
         public (int, int) InitialPlayerCoordinates { get; private set; }
+
+        /// <summary>
+        /// Координаты косточек, до которых нужно дойти игроку
+        /// </summary>
         public (int, int) DestinationCoordinates { get; private set; }
 
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        /// <param name="mapPath">Имя файла с картой</param>
         public Map(string mapPath)
         {
             GenerateMap(mapPath);
         }
 
+        /// <summary>
+        /// Генерирует карту из файла
+        /// </summary>
+        /// <param name="mapPath">Имя файла с картой</param>
         private void GenerateMap(string mapPath)
         {
             try
@@ -67,9 +86,17 @@ namespace Homework
             }
         }
 
+        /// <summary>
+        /// Проверяет, есть ли стена на данных координатах
+        /// </summary>
+        /// <param name="coordinates">Проверяемые координаты</param>
+        /// <returns>True, если стена есть, иначе false</returns>
         public bool IsWall((int,  int) coordinates)
             => Field[coordinates.Item2][coordinates.Item1] == '#';
 
+        /// <summary>
+        /// Выводит на экран карту (стены, свободное пространство и косточки)
+        /// </summary>
         public void PrintMap()
         {
             Console.SetCursorPosition(0, 0);
@@ -84,6 +111,10 @@ namespace Homework
             }
         }
 
+        /// <summary>
+        /// Приводит данную точку в первоначальный вид (как была считана из файла)
+        /// </summary>
+        /// <param name="coordinates">Координаты нужной точки</param>
         public void RenderCell((int, int) coordinates)
         {
             Console.SetCursorPosition(coordinates.Item1, coordinates.Item2);

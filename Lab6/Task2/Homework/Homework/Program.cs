@@ -7,7 +7,11 @@ namespace Homework
         static void Main(string[] args)
         {
             Console.WriteLine("Добро пожаловать в симулятор собаки!\n");
-            Console.WriteLine("Перемещайте персонажа @ по лабиринту с помощью клавиш стрелок.\n");
+            Console.Write("Перемещайте персонажа ");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write("@");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" по лабиринту с помощью клавиш стрелок.\n");
             Console.WriteLine("Ваша цель добраться до косточек 'X' и не врезатьсся в стены #\n");
             Console.WriteLine("Для выхода из игры нажмите Escape\n");
             Console.WriteLine("Нажмите пробел для старта");
@@ -16,10 +20,19 @@ namespace Homework
             while (true)
             {
                 var key = Console.ReadKey(true);
+
                 if (key.Key == ConsoleKey.Spacebar)
                 {
                     Console.Clear();
                     break;
+                }
+
+                if (key.Key == ConsoleKey.Escape)
+                {
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Clear();
+                    Console.WriteLine("Вы вышли из игры.");
+                    return;
                 }
             }
 

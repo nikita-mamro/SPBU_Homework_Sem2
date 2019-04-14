@@ -2,6 +2,9 @@
 
 namespace Exceptions
 {
+    /// <summary>
+    /// Исключение, которое вызывается, когда игрок врезается в стену
+    /// </summary>
     [Serializable]
     public class HitWallException : Exception
     {
