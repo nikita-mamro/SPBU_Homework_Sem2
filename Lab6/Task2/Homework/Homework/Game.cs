@@ -7,23 +7,6 @@ namespace Homework
     {
         private Map map;
 
-        private class Player
-        {
-            public (int, int) Coordinates;
-
-            public Player((int, int) initialCoordinates)
-            {
-                Coordinates = initialCoordinates;
-            }
-
-            public void PrintPlayer()
-            {
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.SetCursorPosition(Coordinates.Item1, Coordinates.Item2);
-                Console.Write("@");
-            }
-        }
-
         private Player player;
 
         public Game(string mapPath)
@@ -39,96 +22,86 @@ namespace Homework
 
         public void OnLeft(object sender, EventArgs args)
         {
-            if (player.Coordinates.Item1 == 0)
+            try
             {
-                return;
+                map.RenderCell(player.Coordinates);
+
+                player.GoLeft(map);
+
+                player.PrintPlayer();
             }
-
-            map.RenderCell(player.Coordinates);
-
-            player.Coordinates.Item1--;
-
-            if (map.IsWall(player.Coordinates))
-            {
-                Console.Clear();
-                throw new Exceptions.HitWallException("Вы убились об стену! Как так? :(");
-            }
-            
-            if (player.Coordinates == map.DestinationCoordinates)
+            catch (Exception e)
+                when (
+                e is Exceptions.GotBonesException
+                || e is Exceptions.HitWallException
+                || e is Exceptions.GoingOutOfScreenException)
             {
                 Console.Clear();
-                throw new Exceptions.GotBonesException("Косточки ваши! :3");
+                throw;
             }
-
-            player.PrintPlayer();
         }
 
         public void OnRight(object sender, EventArgs args)
         {
-            map.RenderCell(player.Coordinates);
+            try
+            {
+                map.RenderCell(player.Coordinates);
 
-            player.Coordinates.Item1++;
+                player.GoRight(map);
 
-            if (map.IsWall(player.Coordinates))
+                player.PrintPlayer();
+            }
+            catch (Exception e)
+                when (
+                e is Exceptions.GotBonesException
+                || e is Exceptions.HitWallException
+                || e is Exceptions.GoingOutOfScreenException)
             {
                 Console.Clear();
-                throw new Exceptions.HitWallException("Вы убились об стену! Как так?");
+                throw;
             }
-
-            if (player.Coordinates == map.DestinationCoordinates)
-            {
-                Console.Clear();
-                throw new Exceptions.GotBonesException("Косточки ваши!");
-            }
-
-            player.PrintPlayer();
         }
 
         public void OnUp(object sender, EventArgs args)
         {
-            if (player.Coordinates.Item2 == 0)
+            try
             {
-                return;
+                map.RenderCell(player.Coordinates);
+
+                player.GoUp(map);
+
+                player.PrintPlayer();
             }
-
-            map.RenderCell(player.Coordinates);
-
-            player.Coordinates.Item2--;
-
-            if (map.IsWall(player.Coordinates))
-            {
-                Console.Clear();
-                throw new Exceptions.HitWallException("Вы убились об стену! Как так?");
-            }
-
-            if (player.Coordinates == map.DestinationCoordinates)
+            catch (Exception e)
+                when (
+                e is Exceptions.GotBonesException
+                || e is Exceptions.HitWallException
+                || e is Exceptions.GoingOutOfScreenException)
             {
                 Console.Clear();
-                throw new Exceptions.GotBonesException("Косточки ваши!");
+                throw;
             }
-
-            player.PrintPlayer();
         }
 
         public void OnDown(object sender, EventArgs args)
         {
-            map.RenderCell(player.Coordinates);
+            try
+            {
+                map.RenderCell(player.Coordinates);
 
-            player.Coordinates.Item2++;
+                player.GoDown(map);
 
-            if (map.IsWall(player.Coordinates))
+                player.PrintPlayer();
+            }
+            catch (Exception e)
+                when (
+                e is Exceptions.GotBonesException
+                || e is Exceptions.HitWallException
+                || e is Exceptions.GoingOutOfScreenException)
             {
                 Console.Clear();
-                throw new Exceptions.HitWallException("Вы убились об стену! Как так?");
+                throw;
             }
-
-            if (player.Coordinates == map.DestinationCoordinates)
-            {
-                Console.Clear();
-                throw new Exceptions.GotBonesException("Косточки ваши!");
-            }
-
-            player.PrintPlayer();
         }
 
         #endregion

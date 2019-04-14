@@ -47,6 +47,12 @@ namespace Homework
                 Console.WriteLine("Спасибо за игру!");
                 Console.WriteLine();
             }
+            catch (Exceptions.GoingOutOfScreenException e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine("Оставайтесь в зоне видимости!");
+                Console.WriteLine();
+            }
         }
     }
 }
