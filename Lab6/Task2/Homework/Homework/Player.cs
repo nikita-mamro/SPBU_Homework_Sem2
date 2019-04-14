@@ -36,19 +36,19 @@ namespace Homework
 
         public void GoLeft(Map map)
         {
-            if (this.Coordinates.Item1 == 0)
+            if (Coordinates.Item1 == 0)
             {
                 throw new Exceptions.GoingOutOfScreenException("Вы выходите за пределы экрана!");
             }
 
-            this.Coordinates.Item1--;
+            Coordinates.Item1--;
 
-            if (map.IsWall(this.Coordinates))
+            if (map.IsWall(Coordinates))
             {
                 throw new Exceptions.HitWallException("Вы убились об стену! Как так? :(");
             }
 
-            if (this.Coordinates == map.DestinationCoordinates)
+            if (Coordinates.Equals(map.DestinationCoordinates)) // Not == because of appveyor
             {
                 throw new Exceptions.GotBonesException("Косточки ваши! :3");
             }
@@ -56,14 +56,14 @@ namespace Homework
 
         public void GoRight(Map map)
         {
-            this.Coordinates.Item1++;
+            Coordinates.Item1++;
 
-            if (map.IsWall(this.Coordinates))
+            if (map.IsWall(Coordinates))
             {
                 throw new Exceptions.HitWallException("Вы убились об стену! Как так? :(");
             }
 
-            if (this.Coordinates == map.DestinationCoordinates)
+            if (Coordinates.Equals(map.DestinationCoordinates)) // Not == because of appveyor
             {
                 throw new Exceptions.GotBonesException("Косточки ваши! :3");
             }
@@ -71,19 +71,19 @@ namespace Homework
 
         public void GoUp(Map map)
         {
-            if (this.Coordinates.Item2 == 0)
+            if (Coordinates.Item2 == 0)
             {
                 throw new Exceptions.GoingOutOfScreenException("Вы выходите за пределы экрана!");
             }
 
-            this.Coordinates.Item2--;
+            Coordinates.Item2--;
 
-            if (map.IsWall(this.Coordinates))
+            if (map.IsWall(Coordinates))
             {
                 throw new Exceptions.HitWallException("Вы убились об стену! Как так? :(");
             }
 
-            if (this.Coordinates == map.DestinationCoordinates)
+            if (Coordinates.Equals(map.DestinationCoordinates)) // Not == because of appveyor
             {
                 throw new Exceptions.GotBonesException("Косточки ваши! :3");
             }
@@ -91,14 +91,14 @@ namespace Homework
 
         public void GoDown(Map map)
         {
-            this.Coordinates.Item2++;
+            Coordinates.Item2++;
 
-            if (map.IsWall(this.Coordinates))
+            if (map.IsWall(Coordinates))
             {
                 throw new Exceptions.HitWallException("Вы убились об стену! Как так? :(");
             }
 
-            if (this.Coordinates == map.DestinationCoordinates)
+            if (Coordinates.Equals(map.DestinationCoordinates)) // Not == because of appveyor
             {
                 throw new Exceptions.GotBonesException("Косточки ваши! :3");
             }
