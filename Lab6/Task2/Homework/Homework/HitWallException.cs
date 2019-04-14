@@ -2,7 +2,8 @@
 
 namespace Exceptions
 {
-    class HitWallException : Exception
+    [Serializable]
+    public class HitWallException : Exception
     {
         public HitWallException() { }
         public HitWallException(string message) : base(message) { }

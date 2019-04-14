@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Homework
 {
@@ -29,10 +26,10 @@ namespace Homework
 
         private Player player;
 
-        public Game()
+        public Game(string mapPath)
         {
             Console.CursorVisible = false;
-            map = new Map("map.txt");
+            map = new Map(mapPath);
             player = new Player(map.InitialPlayerCoordinates);
             map.PrintMap();
             player.PrintPlayer();
@@ -54,13 +51,13 @@ namespace Homework
             if (map.IsWall(player.Coordinates))
             {
                 Console.Clear();
-                throw new Exceptions.HitWallException("Вы убились об стену! Как так?");
+                throw new Exceptions.HitWallException("Вы убились об стену! Как так? :(");
             }
             
             if (player.Coordinates == map.DestinationCoordinates)
             {
                 Console.Clear();
-                throw new Exceptions.GotBonesException("Косточки ваши!");
+                throw new Exceptions.GotBonesException("Косточки ваши! :3");
             }
 
             player.PrintPlayer();

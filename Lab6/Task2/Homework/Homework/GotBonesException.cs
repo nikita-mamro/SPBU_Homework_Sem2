@@ -3,7 +3,7 @@
 namespace Exceptions
 {
     [Serializable]
-    class GotBonesException : Exception
+    public class GotBonesException : Exception
     {
         public GotBonesException() { }
         public GotBonesException(string message) : base(message){ }

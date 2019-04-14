@@ -1,46 +1,119 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Homework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Homework.Tests
 {
-    [TestClass()]
+    [TestClass]
     public class GameTests
     {
-        private Map testMap;
+        private string mapFileName = "TestEmptyField.txt";
+        private Game game;
+        private event EventHandler<EventArgs> LeftTestHandler;
+        private event EventHandler<EventArgs> RightTestHandler;
+        private event EventHandler<EventArgs> UpTestHandler;
+        private event EventHandler<EventArgs> DownTestHandler;
 
         [TestInitialize]
         public void Initialize()
         {
-            testMap = new Map("TestEmptyField.txt");
+            game = new Game(mapFileName);
+            LeftTestHandler += game.OnLeft;
+            RightTestHandler += game.OnRight;
+            UpTestHandler += game.OnUp;
+            DownTestHandler += game.OnDown;
         }
 
         [TestMethod]
-        public void OnLeftTest()
+        [ExpectedException(typeof(Exceptions.HitWallException))]
+        public void OnLeftHitWallExceptionTest()
         {
-            Assert.Fail();
+            while (true)
+            {
+                LeftTestHandler(this, EventArgs.Empty);
+            }
         }
 
         [TestMethod]
-        public void OnRightTest()
+        [ExpectedException(typeof(Exceptions.HitWallException))]
+        public void OnRightHitWallExceptionTest()
         {
-            Assert.Fail();
+            while (true)
+            {
+                RightTestHandler(this, EventArgs.Empty);
+            }
         }
 
         [TestMethod]
-        public void OnUpTest()
+        [ExpectedException(typeof(Exceptions.HitWallException))]
+        public void OnUpHitWallExceptionTest()
         {
-            Assert.Fail();
+            while (true)
+            {
+                UpTestHandler(this, EventArgs.Empty);
+            }
         }
 
         [TestMethod]
-        public void OnDownTest()
+        [ExpectedException(typeof(Exceptions.HitWallException))]
+        public void OnDownHitWallExceptionTest()
         {
-            Assert.Fail();
+            while (true)
+            {
+                DownTestHandler(this, EventArgs.Empty);
+            }
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(Exceptions.GotBonesException))]
+        public void GotBonesGoingLeftExceptionTest()
+        {
+            UpTestHandler(this, EventArgs.Empty);
+
+            for (var i = 0; i < 3; ++i)
+            {
+                LeftTestHandler(this, EventArgs.Empty);
+            }
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(Exceptions.GotBonesException))]
+        public void GotBonesGoingRightExceptionTest()
+        {
+            for (var i = 0; i < 4; ++i)
+            {
+                LeftTestHandler(this, EventArgs.Empty);
+            }
+
+            UpTestHandler(this, EventArgs.Empty);
+            RightTestHandler(this, EventArgs.Empty);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(Exceptions.GotBonesException))]
+        public void GotBonesGoingUpExceptionTest()
+        {
+            for (var i = 0; i < 3; ++i)
+            {
+                LeftTestHandler(this, EventArgs.Empty);
+            }
+
+            UpTestHandler(this, EventArgs.Empty);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(Exceptions.GotBonesException))]
+        public void GotBonesGoingDownExceptionTest()
+        {
+            UpTestHandler(this, EventArgs.Empty);
+            UpTestHandler(this, EventArgs.Empty);
+
+            for (var i = 0; i < 3; ++i)
+            {
+                LeftTestHandler(this, EventArgs.Empty);
+            }
+
+            DownTestHandler(this, EventArgs.Empty);
         }
     }
 }

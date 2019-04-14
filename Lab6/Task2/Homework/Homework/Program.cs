@@ -26,7 +26,7 @@ namespace Homework
             try
             {
                 var eventLoop = new EventLoop();
-                var game = new Game();
+                var game = new Game("map.txt");
 
                 eventLoop.LeftHandler += game.OnLeft;
                 eventLoop.RightHandler += game.OnRight;
