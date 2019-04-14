@@ -110,7 +110,8 @@ namespace Homework.Tests
                 }
             }
 
-            Assert.IsTrue(expectedPlayerCoordinates == testMap.InitialPlayerCoordinates && expectedDestinationCoordinates == testMap.DestinationCoordinates);
+            // Not using == for tuples because of appveyor :(
+            Assert.IsTrue(expectedPlayerCoordinates.Equals(testMap.InitialPlayerCoordinates) && expectedDestinationCoordinates.Equals(testMap.DestinationCoordinates));
         }
     }
 }
