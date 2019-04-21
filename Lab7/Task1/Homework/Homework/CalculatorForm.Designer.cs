@@ -53,6 +53,7 @@
             this.textBoxCurrentInput = new System.Windows.Forms.TextBox();
             this.labelExpression = new System.Windows.Forms.Label();
             this.labelCurrentExpression = new System.Windows.Forms.Label();
+            this.lastResultLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -312,36 +313,43 @@
             // textBoxCurrentInput
             // 
             this.textBoxCurrentInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxCurrentInput.Location = new System.Drawing.Point(50, 106);
+            this.textBoxCurrentInput.Location = new System.Drawing.Point(50, 78);
             this.textBoxCurrentInput.Name = "textBoxCurrentInput";
-            this.textBoxCurrentInput.ReadOnly = true;
             this.textBoxCurrentInput.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.textBoxCurrentInput.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBoxCurrentInput.Size = new System.Drawing.Size(500, 75);
             this.textBoxCurrentInput.TabIndex = 31;
+            this.textBoxCurrentInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxCurrentInput_KeyPress);
             // 
             // labelExpression
             // 
-            this.labelExpression.AutoSize = true;
-            this.labelExpression.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelExpression.Location = new System.Drawing.Point(44, 18);
+            this.labelExpression.Location = new System.Drawing.Point(0, 0);
             this.labelExpression.Name = "labelExpression";
-            this.labelExpression.Size = new System.Drawing.Size(0, 32);
-            this.labelExpression.TabIndex = 32;
+            this.labelExpression.Size = new System.Drawing.Size(100, 23);
+            this.labelExpression.TabIndex = 35;
             // 
             // labelCurrentExpression
             // 
-            this.labelCurrentExpression.AutoSize = true;
-            this.labelCurrentExpression.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelCurrentExpression.Location = new System.Drawing.Point(50, 25);
+            this.labelCurrentExpression.Location = new System.Drawing.Point(0, 0);
             this.labelCurrentExpression.Name = "labelCurrentExpression";
-            this.labelCurrentExpression.Size = new System.Drawing.Size(0, 25);
-            this.labelCurrentExpression.TabIndex = 33;
+            this.labelCurrentExpression.Size = new System.Drawing.Size(100, 23);
+            this.labelCurrentExpression.TabIndex = 34;
+            // 
+            // lastResultLabel
+            // 
+            this.lastResultLabel.AutoSize = true;
+            this.lastResultLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lastResultLabel.Location = new System.Drawing.Point(45, 184);
+            this.lastResultLabel.Name = "lastResultLabel";
+            this.lastResultLabel.Size = new System.Drawing.Size(0, 24);
+            this.lastResultLabel.TabIndex = 33;
             // 
             // CalculatorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(604, 683);
+            this.Controls.Add(this.lastResultLabel);
             this.Controls.Add(this.labelCurrentExpression);
             this.Controls.Add(this.labelExpression);
             this.Controls.Add(this.textBoxCurrentInput);
@@ -401,6 +409,7 @@
         private System.Windows.Forms.TextBox textBoxCurrentInput;
         private System.Windows.Forms.Label labelExpression;
         private System.Windows.Forms.Label labelCurrentExpression;
+        private System.Windows.Forms.Label lastResultLabel;
     }
 }
 

@@ -14,9 +14,14 @@ namespace Homework
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CalculatorForm());
+            string s = "21,3×(-0,143--12÷-8+1,02)+(2,4-22)";
+            var res = Convertors.NotationConverter.InfixToReversePolishNotation(s);
+
+
+
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new CalculatorForm());
         }
     }
 }
