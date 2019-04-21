@@ -34,24 +34,25 @@ namespace Convertors
                 if (token == "(")
                 {
                     stack.Push(token);
+                    continue;
                 }
 
                 if (float.TryParse(token, out float tmp))
                 {
-                    stack.Push(token);
+                    res.Add(token);
+                    continue;
                 }
 
                 if (token == "-" || token == "+" || token == "×" || token == "÷")
                 {
-                    while (stack.Count > 0 && ( stack.Peek() == "-" || stack.Peek() == "+" || stack.Peek() == "×" || stack.Peek() == "÷"))
+                    while (stack.Count > 0 && ( stack.Peek() == "-" || stack.Peek() == "+" || stack.Peek() == "×" || stack.Peek() == "÷") 
+                        && OperatorPriority(stack.Peek()) >= OperatorPriority(token))
                     {
-                        if (OperatorPriority(stack.Peek()) >= OperatorPriority(token))
-                        {
-                            res.Add(stack.Pop());
-                        }
+                        res.Add(stack.Pop());
                     }
 
                     stack.Push(token);
+                    continue;
                 }
 
                 if (token == ")")
@@ -62,6 +63,7 @@ namespace Convertors
                     }
 
                     stack.Pop(); //иначе ошибка в выражении
+                    continue;
                 }
             }
 
@@ -85,8 +87,6 @@ namespace Convertors
                     res.Add(expression[currentPosition].ToString());
                     continue;
                 }
-
-                #region TODO minus
                 
                 if (expression[currentPosition] == '-')
                 {
@@ -113,8 +113,6 @@ namespace Convertors
                     res.Add(expression[currentPosition].ToString());
                     continue;
                 }
-
-                #endregion
 
                 if (char.IsDigit(expression[currentPosition]))
                 {
