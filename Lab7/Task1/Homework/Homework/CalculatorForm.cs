@@ -20,89 +20,12 @@ namespace Homework
             textBoxCurrentInput.DataBindings.Add(binding);
         }
 
+        /// <summary>
+        /// Обработчики нажатий на клавиши, отвечающие за отмену ввода
+        /// </summary>
         private void ButtonEraseAll_Click(object sender, EventArgs e)
         {
             textBoxCurrentInput.Clear();
-        }
-
-        private void Button0_Click(object sender, EventArgs e)
-        {
-            if (Validators.InputValidator.CanNumberBeAdded(textBoxCurrentInput.Text))
-            {
-                textBoxCurrentInput.Text += "0";
-            }
-        }
-
-        private void Button1_Click(object sender, EventArgs e)
-        {
-            if (Validators.InputValidator.CanNumberBeAdded(textBoxCurrentInput.Text))
-            {
-                textBoxCurrentInput.Text += "1";
-            }
-        }
-
-        private void Button2_Click(object sender, EventArgs e)
-        {
-            if (Validators.InputValidator.CanNumberBeAdded(textBoxCurrentInput.Text))
-            {
-                textBoxCurrentInput.Text += "2";
-            }
-        }
-
-        private void Button3_Click(object sender, EventArgs e)
-        {
-            if (Validators.InputValidator.CanNumberBeAdded(textBoxCurrentInput.Text))
-            {
-                textBoxCurrentInput.Text += "3";
-            }
-        }
-
-        private void Button4_Click(object sender, EventArgs e)
-        {
-            if (Validators.InputValidator.CanNumberBeAdded(textBoxCurrentInput.Text))
-            {
-                textBoxCurrentInput.Text += "4";
-            }
-        }
-
-        private void Button5_Click(object sender, EventArgs e)
-        {
-            if (Validators.InputValidator.CanNumberBeAdded(textBoxCurrentInput.Text))
-            {
-                textBoxCurrentInput.Text += "5";
-            }
-        }
-
-        private void Button6_Click(object sender, EventArgs e)
-        {
-            if (Validators.InputValidator.CanNumberBeAdded(textBoxCurrentInput.Text))
-            {
-                textBoxCurrentInput.Text += "6";
-            }
-        }
-
-        private void Button7_Click(object sender, EventArgs e)
-        {
-            if (Validators.InputValidator.CanNumberBeAdded(textBoxCurrentInput.Text))
-            {
-                textBoxCurrentInput.Text += "7";
-            }
-        }
-
-        private void Button8_Click(object sender, EventArgs e)
-        {
-            if (Validators.InputValidator.CanNumberBeAdded(textBoxCurrentInput.Text))
-            {
-                textBoxCurrentInput.Text += "8";
-            }
-        }
-
-        private void Button9_Click(object sender, EventArgs e)
-        {
-            if (Validators.InputValidator.CanNumberBeAdded(textBoxCurrentInput.Text))
-            {
-                textBoxCurrentInput.Text += "9";
-            }
         }
 
         private void ButtonEraseSymbol_Click(object sender, EventArgs e)
@@ -115,6 +38,92 @@ namespace Homework
             textBoxCurrentInput.Text = textBoxCurrentInput.Text.Remove(textBoxCurrentInput.Text.Length - 1);
         }
 
+        /// <summary>
+        /// Обработчики нажатий на кнопки-цифры
+        /// </summary>
+        private void Button0_Click(object sender, EventArgs e)
+        {
+            if (Validators.InputValidator.CanDigitBeAdded(textBoxCurrentInput.Text))
+            {
+                textBoxCurrentInput.Text += "0";
+            }
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            if (Validators.InputValidator.CanDigitBeAdded(textBoxCurrentInput.Text))
+            {
+                textBoxCurrentInput.Text += "1";
+            }
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            if (Validators.InputValidator.CanDigitBeAdded(textBoxCurrentInput.Text))
+            {
+                textBoxCurrentInput.Text += "2";
+            }
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            if (Validators.InputValidator.CanDigitBeAdded(textBoxCurrentInput.Text))
+            {
+                textBoxCurrentInput.Text += "3";
+            }
+        }
+
+        private void Button4_Click(object sender, EventArgs e)
+        {
+            if (Validators.InputValidator.CanDigitBeAdded(textBoxCurrentInput.Text))
+            {
+                textBoxCurrentInput.Text += "4";
+            }
+        }
+
+        private void Button5_Click(object sender, EventArgs e)
+        {
+            if (Validators.InputValidator.CanDigitBeAdded(textBoxCurrentInput.Text))
+            {
+                textBoxCurrentInput.Text += "5";
+            }
+        }
+
+        private void Button6_Click(object sender, EventArgs e)
+        {
+            if (Validators.InputValidator.CanDigitBeAdded(textBoxCurrentInput.Text))
+            {
+                textBoxCurrentInput.Text += "6";
+            }
+        }
+
+        private void Button7_Click(object sender, EventArgs e)
+        {
+            if (Validators.InputValidator.CanDigitBeAdded(textBoxCurrentInput.Text))
+            {
+                textBoxCurrentInput.Text += "7";
+            }
+        }
+
+        private void Button8_Click(object sender, EventArgs e)
+        {
+            if (Validators.InputValidator.CanDigitBeAdded(textBoxCurrentInput.Text))
+            {
+                textBoxCurrentInput.Text += "8";
+            }
+        }
+
+        private void Button9_Click(object sender, EventArgs e)
+        {
+            if (Validators.InputValidator.CanDigitBeAdded(textBoxCurrentInput.Text))
+            {
+                textBoxCurrentInput.Text += "9";
+            }
+        }
+
+        /// <summary>
+        /// Обработчик нажатия на кнопку с запятой
+        /// </summary>
         private void ButtonComma_Click(object sender, EventArgs e)
         {
             if (Validators.InputValidator.CanCommaBeAdded(textBoxCurrentInput.Text))
@@ -128,6 +137,9 @@ namespace Homework
             }
         }
 
+        /// <summary>
+        /// Обработчики нажатий на кнопки со скобками
+        /// </summary>
         private void ButtonLeftBracket_Click(object sender, EventArgs e)
         {
             if (Validators.InputValidator.CanLeftBracketBeAdded(textBoxCurrentInput.Text))
@@ -144,6 +156,9 @@ namespace Homework
             }
         }
 
+        /// <summary>
+        /// Обработка нажатий на кнопки с операторами
+        /// </summary>
         private void ButtonPlus_Click(object sender, EventArgs e)
         {
             if (Validators.InputValidator.CanOperatorBeAdded(textBoxCurrentInput.Text, false))
@@ -176,11 +191,20 @@ namespace Homework
             }
         }
 
+        /// <summary>
+        /// Обработчик нажатия на кнопку "="
+        /// </summary>
         private void ButtonEquals_Click(object sender, EventArgs e)
         {
-
+            if (Validators.InputValidator.CanExpressionBeCalculated(textBoxCurrentInput.Text))
+            {
+                textBoxCurrentInput.Text = Calculator.Calculator.Calculate(textBoxCurrentInput.Text).ToString();
+            }
         }
 
+        /// <summary>
+        /// Отвечает за ввод выражения с клавиатуры
+        /// </summary>
         private void TextBoxCurrentInput_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && e.KeyChar != (char)8;

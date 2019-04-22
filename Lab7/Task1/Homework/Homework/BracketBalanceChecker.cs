@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BracketBalanceChecker
+namespace Validators
 {
     /// <summary>
     /// Класс, реализующий проверяльщика баланса скобок

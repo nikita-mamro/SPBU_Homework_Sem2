@@ -6,8 +6,15 @@ using System.Threading.Tasks;
 
 namespace Convertors
 {
+    /// <summary>
+    /// Класс, реализующий преобразование инфиксной записи в обратную польскую нотацию
+    /// </summary>
     static public class NotationConverter
     {
+        /// <summary>
+        /// Проверяет, является ли строка оператором + - × ÷
+        /// </summary>
+        /// <param name="op">Проверяемая строка</param>
         static private int OperatorPriority(string op)
         {
             switch (op)
@@ -23,6 +30,11 @@ namespace Convertors
             }
         }
 
+        /// <summary>
+        /// Переводит выражение в инфиксной форме во множество элементов этого выражения в обратной польской нотации
+        /// </summary>
+        /// <param name="infixExpression">Выражение в инфиксной форме</param>
+        /// <returns>Множество элементов этого выражения в обратной польской нотации</returns>
         static public List<string> InfixToReversePolishNotation(string infixExpression)
         {
             var stack = new Stack<string>();
@@ -75,6 +87,11 @@ namespace Convertors
             return res;
         }
 
+        /// <summary>
+        /// Разделяет данное выражение в инфиксной форме на его элементы (числа, скобки, операторы)
+        /// </summary>
+        /// <param name="expression">Выражение в инфиксной форме</param>
+        /// <returns>Множество элементов выражения</returns>
         static public List<string> SeparateCorrectExpression(string expression)
         {
             List<string> res = new List<string>();
