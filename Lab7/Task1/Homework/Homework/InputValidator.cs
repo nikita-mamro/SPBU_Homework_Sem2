@@ -37,6 +37,11 @@ namespace Validators
                 return false;
             }
 
+            if (length > 1 && expression[length - 1] == ',')
+            {
+                return false;
+            }
+
             if (!isMinus)
             {
                 return expression[length - 1] != '(' && !IsOperator(expression[length - 1]);

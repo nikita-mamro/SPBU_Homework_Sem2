@@ -92,7 +92,7 @@ namespace Convertors
         /// </summary>
         /// <param name="expression">Выражение в инфиксной форме</param>
         /// <returns>Множество элементов выражения</returns>
-        static public List<string> SeparateCorrectExpression(string expression)
+        static private List<string> SeparateCorrectExpression(string expression)
         {
             List<string> res = new List<string>();
 

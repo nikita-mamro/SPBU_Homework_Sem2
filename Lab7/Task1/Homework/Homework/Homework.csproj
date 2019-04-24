@@ -55,6 +55,7 @@
       <DependentUpon>CalculatorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="NotationConverter.cs" />
+    <Compile Include="ProceedingInvalidOperatorException.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="InputValidator.cs" />

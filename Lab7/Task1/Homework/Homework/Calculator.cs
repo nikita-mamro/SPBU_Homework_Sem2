@@ -31,7 +31,7 @@ namespace Calculator
                 case "÷":
                     return a / b;
                 default:
-                    throw new Exception();
+                    throw new Exceptions.ProceedingInvalidOperatorException();
             }
         }
 
