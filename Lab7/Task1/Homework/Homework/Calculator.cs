@@ -18,7 +18,7 @@ namespace Calculator
         /// <param name="b">Второй операнд</param>
         /// <param name="theOperator">Оператор</param>
         /// <returns>Результат операции</returns>
-        static private float proceedOperator(float a, float b, string theOperator)
+        static private double proceedOperator(double a, double b, string theOperator)
         {
             switch (theOperator)
             {
@@ -29,6 +29,10 @@ namespace Calculator
                 case "×":
                     return a * b;
                 case "÷":
+                    if (b == 0)
+                    {
+                        throw new DivideByZeroException();
+                    }
                     return a / b;
                 default:
                     throw new Exceptions.ProceedingInvalidOperatorException();
@@ -40,10 +44,10 @@ namespace Calculator
         /// </summary>
         /// <param name="expression">Выражение в инфиксной форме</param>
         /// <returns>Значение выражения</returns>
-        static public float Calculate(string expression)
+        static public double Calculate(string expression)
         {
             var expressionTokens = Convertors.NotationConverter.InfixToReversePolishNotation(expression);
-            var stack = new Stack<float>();
+            var stack = new Stack<double>();
 
             foreach (var token in expressionTokens)
             {
@@ -55,7 +59,7 @@ namespace Calculator
                     continue;
                 }
 
-                if (float.TryParse(token, out float number))
+                if (double.TryParse(token, out double number))
                 {
                     stack.Push(number);
                     continue;
@@ -64,7 +68,7 @@ namespace Calculator
                 throw new Exception();
             }
 
-            return stack.Pop();
+            return Math.Round(stack.Pop(), 4);
         }
     }
 }

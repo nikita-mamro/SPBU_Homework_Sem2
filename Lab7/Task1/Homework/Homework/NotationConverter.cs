@@ -125,10 +125,13 @@ namespace Convertors
                         }
 
                         res.Add(number);
+                        continue;
                     }
-
-                    res.Add(expression[currentPosition].ToString());
-                    continue;
+                    else
+                    {
+                      res.Add(expression[currentPosition].ToString());
+                      continue;
+                    }
                 }
 
                 if (char.IsDigit(expression[currentPosition]))

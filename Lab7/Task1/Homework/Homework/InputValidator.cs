@@ -65,7 +65,7 @@ namespace Validators
         /// </summary>
         /// <param name="expression">Текущее выражение</param>
         static public bool CanDigitBeAdded(string expression)
-            => expression.Length == 0 || expression[expression.Length - 1] != ')' && expression[expression.Length - 1] != '0';
+            => expression.Length == 0 || expression[expression.Length - 1] != ')';
 
         /// <summary>
         /// Проверяет, можно ли добавить в конец выражения запятую, сохранив корректность
@@ -78,13 +78,18 @@ namespace Validators
                 return true;
             }
 
+            if (expression[expression.Length - 1] == ')')
+            {
+                return false;
+            }
+
             for (var i = expression.Length - 1; i >= 0; i--)
             {
                 if (IsOperator(expression[i]))
                 {
                     return true;
                 }
-                if (expression[i] == '.')
+                if (expression[i] == ',')
                 {
                     return false;
                 }
@@ -140,7 +145,7 @@ namespace Validators
         /// <param name="expression">Текущее выражение</param>
         static public bool CanExpressionBeCalculated(string expression)
         {
-            if (!BracketBalanceChecker.IsBalanced(expression))
+            if (expression.Length == 0 || !BracketBalanceChecker.IsBalanced(expression))
             {
                 return false;
             }

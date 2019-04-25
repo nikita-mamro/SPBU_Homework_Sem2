@@ -196,9 +196,29 @@ namespace Homework
         /// </summary>
         private void ButtonEquals_Click(object sender, EventArgs e)
         {
+            if (textBoxCurrentInput.Text.Length == 0)
+            {
+                return;
+            }
+
             if (Validators.InputValidator.CanExpressionBeCalculated(textBoxCurrentInput.Text))
             {
-                textBoxCurrentInput.Text = Calculator.Calculator.Calculate(textBoxCurrentInput.Text).ToString();
+                try
+                {
+                    textBoxCurrentInput.Text = Calculator.Calculator.Calculate(textBoxCurrentInput.Text).ToString();
+                }
+                catch (DivideByZeroException)
+                {
+                    var message = "Не надо делить на 0.";
+                    var title = "Ошибка вычисления";
+                    MessageBox.Show(message, title);
+                }
+            }
+            else
+            {
+                var message = "Проверьте корректность введённого выражения и снова попробуйте получить результат.";
+                var title = "Ошибка вычисления";
+                MessageBox.Show(message, title);
             }
         }
 
