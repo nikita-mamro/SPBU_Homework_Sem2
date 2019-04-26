@@ -28,7 +28,7 @@ namespace TestTask
         /// </summary>
         private void RunningButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Haha, u must have cheated with TAB, uh?");
+            MessageBox.Show("Thanks for trying to do that.");
             Application.Exit();
         }
 
