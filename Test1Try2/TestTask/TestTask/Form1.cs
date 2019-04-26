@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace TestTask
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
@@ -22,6 +22,7 @@ namespace TestTask
         /// </summary>
         private void RunningButton_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Haha, u must have cheated with TAB, uh?");
             Application.Exit();
         }
 
@@ -30,10 +31,15 @@ namespace TestTask
         /// </summary>
         private void RunningButton_MouseEnter(object sender, EventArgs e)
         {
+            var phrases = new List<string>() { "Haha", "You loose", "LOL", "You can do it!", "LMAO", "Catch it!" };
+
             Random r = new Random();
-            RunningButton.Location = new Point((RunningButton.Location.X + Width / 2) % Width, RunningButton.Location.Y);
-            RunningButton.BackColor = Color.FromArgb(r.Next(0, 256), r.Next(0, 256), r.Next(0, 256));
-            RunningButton.ForeColor = Color.FromArgb(r.Next(0, 256), r.Next(0, 256), r.Next(0, 256));
+
+            this.Text = phrases[r.Next(phrases.Count)];
+
+            TrollingButton.Location = new Point((TrollingButton.Location.X + Width / 2) % Width, TrollingButton.Location.Y);
+            TrollingButton.BackColor = Color.FromArgb(r.Next(0, 256), r.Next(0, 256), r.Next(0, 256));
+            TrollingButton.ForeColor = Color.FromArgb(r.Next(0, 256), r.Next(0, 256), r.Next(0, 256));
         }
     }
 }

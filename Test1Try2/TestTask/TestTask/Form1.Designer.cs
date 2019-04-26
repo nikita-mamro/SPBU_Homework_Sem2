@@ -1,6 +1,6 @@
 ﻿namespace TestTask
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -28,30 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.RunningButton = new System.Windows.Forms.Button();
+            this.TrollingButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // RunningButton
+            // TrollingButton
             // 
-            this.RunningButton.BackColor = System.Drawing.Color.Red;
-            this.RunningButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.RunningButton.ForeColor = System.Drawing.Color.White;
-            this.RunningButton.Location = new System.Drawing.Point(0, 1);
-            this.RunningButton.Name = "RunningButton";
-            this.RunningButton.Size = new System.Drawing.Size(400, 553);
-            this.RunningButton.TabIndex = 0;
-            this.RunningButton.Text = "Press Me";
-            this.RunningButton.UseVisualStyleBackColor = false;
-            this.RunningButton.Click += new System.EventHandler(this.RunningButton_Click);
-            this.RunningButton.MouseEnter += new System.EventHandler(this.RunningButton_MouseEnter);
+            this.TrollingButton.BackColor = System.Drawing.Color.Red;
+            this.TrollingButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TrollingButton.ForeColor = System.Drawing.Color.White;
+            this.TrollingButton.Location = new System.Drawing.Point(0, 1);
+            this.TrollingButton.Name = "TrollingButton";
+            this.TrollingButton.Size = new System.Drawing.Size(400, 553);
+            this.TrollingButton.TabIndex = 0;
+            this.TrollingButton.Text = "Press Me";
+            this.TrollingButton.UseVisualStyleBackColor = false;
+            this.TrollingButton.Click += new System.EventHandler(this.RunningButton_Click);
+            this.TrollingButton.MouseEnter += new System.EventHandler(this.RunningButton_MouseEnter);
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(782, 553);
-            this.Controls.Add(this.RunningButton);
-            this.Name = "Form1";
+            this.Controls.Add(this.TrollingButton);
+            this.Name = "MainForm";
             this.Text = "Form1";
             this.ResumeLayout(false);
 
@@ -59,7 +59,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button RunningButton;
+        private System.Windows.Forms.Button TrollingButton;
     }
 }
 
