@@ -20,6 +20,10 @@ namespace TestTask
         public MainForm()
         {
             InitializeComponent();
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
+            MinimizeBox = false;
+            StartPosition = FormStartPosition.CenterScreen;
             motivationalPhrases = new List<string>() { "Haha", "You loose", "LOL", "You can do it!", "LMAO", "Catch it!" };
         }
 
