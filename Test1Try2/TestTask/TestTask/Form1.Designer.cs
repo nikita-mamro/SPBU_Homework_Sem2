@@ -37,9 +37,9 @@
             this.TrollingButton.BackColor = System.Drawing.Color.Red;
             this.TrollingButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.TrollingButton.ForeColor = System.Drawing.Color.White;
-            this.TrollingButton.Location = new System.Drawing.Point(0, 1);
+            this.TrollingButton.Location = new System.Drawing.Point(0, 0);
             this.TrollingButton.Name = "TrollingButton";
-            this.TrollingButton.Size = new System.Drawing.Size(400, 553);
+            this.TrollingButton.Size = new System.Drawing.Size(400, 555);
             this.TrollingButton.TabIndex = 0;
             this.TrollingButton.Text = "Press Me!";
             this.TrollingButton.UseVisualStyleBackColor = false;
@@ -52,8 +52,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(782, 553);
             this.Controls.Add(this.TrollingButton);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.ResumeLayout(false);
 
