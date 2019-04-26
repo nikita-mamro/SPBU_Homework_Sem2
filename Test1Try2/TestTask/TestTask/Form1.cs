@@ -13,7 +13,7 @@ namespace TestTask
     public partial class MainForm : Form
     {
         /// <summary>
-        /// Список фраз, которые будут появляться в поле названия формы и мотивировать пользователя нажать на кнопку
+        /// Список фраз, которые будут появляться в поле названия формы и мотивировать пользователя нажать на кнопку.
         /// </summary>
         private List<string> motivationalPhrases;
 
@@ -24,7 +24,7 @@ namespace TestTask
         }
 
         /// <summary>
-        /// Обработчик нажатия на кнопку RunningButton
+        /// Обработчик нажатия на кнопку TrollingButton.
         /// </summary>
         private void RunningButton_Click(object sender, EventArgs e)
         {
@@ -33,7 +33,7 @@ namespace TestTask
         }
 
         /// <summary>
-        /// Обработчик события "Пользователь пытается навести курсор на кнопку RunningButton"
+        /// Обработчик попытки наведения курсора мыши на кнопку TrollingButton.
         /// </summary>
         private void RunningButton_MouseEnter(object sender, EventArgs e)
         {
