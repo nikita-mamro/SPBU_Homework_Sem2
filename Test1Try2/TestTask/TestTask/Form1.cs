@@ -28,7 +28,7 @@ namespace TestTask
         /// </summary>
         private void RunningButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Thanks for trying to do that.");
+            MessageBox.Show("Thanks for trying to do that.", "Exit");
             Application.Exit();
         }
 
