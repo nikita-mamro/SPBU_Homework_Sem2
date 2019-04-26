@@ -40,7 +40,7 @@ namespace Calculator.Tests
         [DataRow("0×-999999", 0)]
         [DataRow("999999×0", 0)]
         [DataRow("-999999×0", 0)]
-        [DataRow("4253,112×24145,3222", 102692759.5926)]
+        [DataRow("4253,112×24145,3222", 102692759.5927)]
         [DataRow("5×7", 35)]
         [DataRow("5×-7", -35)]
         [DataRow("-5×7", -35)]
@@ -66,7 +66,7 @@ namespace Calculator.Tests
         [DataRow("-10÷2", -5)]
         [DataRow("-10÷-2", 5)]
         [DataRow("100000000÷5", 20000000)]
-        [DataRow("24125,3462÷1241,1241", 19, 4383)]
+        [DataRow("24125,3462÷1241,1241", 19.4383)]
         [DataRow("(2+3)×(-8--1)÷2", -17.5)]
         public void CalculateTest(string expression, double expected)
         {

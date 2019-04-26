@@ -76,7 +76,27 @@ namespace Validators
                 return false;
             }
 
-            if ()
+            if (expression[expression.Length - 1] == '0')
+            {
+                if (expression.Length == 1)
+                {
+                    return false;
+                }
+
+                for (var i = expression.Length - 1; i >= 0; --i)
+                {
+                    if (expression[i] == ',')
+                    {
+                        return true;
+                    }
+                    if (IsOperator(expression[i]))
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
 
         /// <summary>

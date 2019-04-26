@@ -107,31 +107,32 @@ namespace Convertors
                 
                 if (expression[currentPosition] == '-')
                 {
-                    if (currentPosition == 0 || expression[currentPosition - 1] == '(' || Validators.InputValidator.IsOperator(expression[currentPosition - 1]))
+                    if (currentPosition != 0 && expression[currentPosition - 1] != '(' 
+                        && !Validators.InputValidator.IsOperator(expression[currentPosition - 1]))
                     {
-                        string number = "-";
-                        ++currentPosition;
-
-                        while (char.IsDigit(expression[currentPosition]) || expression[currentPosition] == ',')
-                        {
-                            number += expression[currentPosition].ToString();
-
-                            if (currentPosition == expression.Length - 1)
-                            {
-                                break;
-                            }
-
-                            ++currentPosition;
-                        }
-
-                        res.Add(number);
+                        res.Add(expression[currentPosition].ToString());
                         continue;
                     }
-                    else
+
+                    var number = "-";
+                    ++currentPosition;
+
+                    while (currentPosition < expression.Length && char.IsDigit(expression[currentPosition]))
                     {
-                      res.Add(expression[currentPosition].ToString());
-                      continue;
+                        number += expression[currentPosition];
+                        ++currentPosition;
                     }
+
+                    //--currentPosition;
+                    res.Add(number);
+
+                    if (currentPosition == expression.Length)
+                    {
+                        return res;
+                    }
+
+                    --currentPosition;
+                    continue;
                 }
 
                 if (char.IsDigit(expression[currentPosition]))
