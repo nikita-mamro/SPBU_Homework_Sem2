@@ -65,7 +65,19 @@ namespace Validators
         /// </summary>
         /// <param name="expression">Текущее выражение</param>
         static public bool CanDigitBeAdded(string expression)
-            => expression.Length == 0 || expression[expression.Length - 1] != ')';
+        {
+            if (expression.Length == 0)
+            {
+                return true;
+            }
+
+            if (expression[expression.Length - 1] == ')')
+            {
+                return false;
+            }
+
+            if ()
+        }
 
         /// <summary>
         /// Проверяет, можно ли добавить в конец выражения запятую, сохранив корректность

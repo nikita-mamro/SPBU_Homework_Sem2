@@ -65,7 +65,7 @@ namespace Validators.Tests
         /// <summary>
         /// Тесты метода, проверяющего, можно ли добавить в конец выражения цифру, не нарушив корректности
         /// </summary>
-        [DataRow("", true)]
+        [DataRow("", true)
         [DataRow("-", true)]
         [DataRow("1", true)]
         [DataRow("1+", true)]
@@ -76,6 +76,8 @@ namespace Validators.Tests
         [DataRow("(2", true)]
         [DataRow("(-", true)]
         [DataRow("(0)", false)]
+        [DataRow("0,", true)]
+        [DataRow("1+0", false)]
         [TestMethod]
         public void CanDigitBeAddedTest(string expression, bool expected)
         {
