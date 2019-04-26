@@ -35,6 +35,7 @@
             // TrollingButton
             // 
             this.TrollingButton.BackColor = System.Drawing.Color.Red;
+            this.TrollingButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.TrollingButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.TrollingButton.ForeColor = System.Drawing.Color.White;
             this.TrollingButton.Location = new System.Drawing.Point(0, 0);
