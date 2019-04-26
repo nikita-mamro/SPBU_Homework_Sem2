@@ -40,7 +40,7 @@
             this.TrollingButton.Name = "TrollingButton";
             this.TrollingButton.Size = new System.Drawing.Size(400, 553);
             this.TrollingButton.TabIndex = 0;
-            this.TrollingButton.Text = "Press Me";
+            this.TrollingButton.Text = "Press Me!";
             this.TrollingButton.UseVisualStyleBackColor = false;
             this.TrollingButton.Click += new System.EventHandler(this.RunningButton_Click);
             this.TrollingButton.MouseEnter += new System.EventHandler(this.RunningButton_MouseEnter);

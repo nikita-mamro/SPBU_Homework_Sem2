@@ -12,9 +12,15 @@ namespace TestTask
 {
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// Список фраз, которые будут появляться в поле названия формы и мотивировать пользователя нажать на кнопку
+        /// </summary>
+        private List<string> motivationalPhrases;
+
         public MainForm()
         {
             InitializeComponent();
+            motivationalPhrases = new List<string>() { "Haha", "You loose", "LOL", "You can do it!", "LMAO", "Catch it!" };
         }
 
         /// <summary>
@@ -31,11 +37,9 @@ namespace TestTask
         /// </summary>
         private void RunningButton_MouseEnter(object sender, EventArgs e)
         {
-            var phrases = new List<string>() { "Haha", "You loose", "LOL", "You can do it!", "LMAO", "Catch it!" };
-
             Random r = new Random();
 
-            this.Text = phrases[r.Next(phrases.Count)];
+            Text = motivationalPhrases[r.Next(motivationalPhrases.Count)];
 
             TrollingButton.Location = new Point((TrollingButton.Location.X + Width / 2) % Width, TrollingButton.Location.Y);
             TrollingButton.BackColor = Color.FromArgb(r.Next(0, 256), r.Next(0, 256), r.Next(0, 256));
