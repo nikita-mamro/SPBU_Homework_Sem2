@@ -70,7 +70,7 @@ namespace Calculator.Tests
         [DataRow("(2+3)×(-8--1)÷2", -17.5)]
         public void CalculateTest(string expression, double expected)
         {
-            Assert.AreEqual(expected, Calculator.Calculate(expression));
+            Assert.IsTrue(Math.Abs(Calculator.Calculate(expression) - expected) < double.Epsilon);
         }
 
         [TestMethod]
