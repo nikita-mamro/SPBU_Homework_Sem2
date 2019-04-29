@@ -133,7 +133,7 @@ namespace Homework
                     textBoxCurrentInput.Text += "0";
                 }
 
-                textBoxCurrentInput.Text += ",";
+                textBoxCurrentInput.Text += ".";
             }
         }
 

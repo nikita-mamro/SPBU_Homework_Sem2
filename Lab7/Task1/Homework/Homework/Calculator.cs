@@ -60,7 +60,7 @@ namespace Calculator
                     continue;
                 }
 
-                if (double.TryParse(token.Replace('.', ','), out double number))
+                if (double.TryParse(token, NumberStyles.Any, CultureInfo.InvariantCulture,  out double number))
                 {
                     stack.Push(number);
                     continue;

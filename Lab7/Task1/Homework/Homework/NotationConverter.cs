@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace Convertors
 {
@@ -49,7 +50,7 @@ namespace Convertors
                     continue;
                 }
 
-                if (float.TryParse(token, out float tmp))
+                if (double.TryParse(token, NumberStyles.Any, CultureInfo.InvariantCulture, out double tmp))
                 {
                     res.Add(token);
                     continue;
@@ -117,7 +118,7 @@ namespace Convertors
                     var number = "-";
                     ++currentPosition;
 
-                    while (currentPosition < expression.Length && char.IsDigit(expression[currentPosition]))
+                    while (currentPosition < expression.Length && (char.IsDigit(expression[currentPosition]) || expression[currentPosition] == '.'))
                     {
                         number += expression[currentPosition];
                         ++currentPosition;
@@ -138,7 +139,7 @@ namespace Convertors
                 {
                     string number = null;
 
-                    while (currentPosition < expression.Length - 1 && (char.IsDigit(expression[currentPosition + 1]) || expression[currentPosition + 1] == ','))
+                    while (currentPosition < expression.Length - 1 && (char.IsDigit(expression[currentPosition + 1]) || expression[currentPosition + 1] == '.'))
                     {
                         number += expression[currentPosition];
                         ++currentPosition;
