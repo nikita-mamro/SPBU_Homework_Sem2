@@ -123,7 +123,6 @@ namespace Convertors
                         ++currentPosition;
                     }
 
-                    //--currentPosition;
                     res.Add(number);
 
                     if (currentPosition == expression.Length)

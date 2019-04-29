@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace Calculator
 {
@@ -59,7 +60,7 @@ namespace Calculator
                     continue;
                 }
 
-                if (double.TryParse(token, out double number))
+                if (double.TryParse(token.Replace('.', ','), out double number))
                 {
                     stack.Push(number);
                     continue;
