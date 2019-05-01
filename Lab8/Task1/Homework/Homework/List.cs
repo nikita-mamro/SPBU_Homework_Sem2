@@ -36,16 +36,21 @@ namespace Homework
             IsReadOnly = isReadOnly;
         }
 
-        public T GetDataByPosition(int position)
+        private bool IsIndexValid(int index)
         {
-            if (position < 0 || position > Count - 1)
+            return index < 0 || index > Count - 1;
+        }
+
+        private T GetDataByIndex(int index)
+        {
+            if (!IsIndexValid(index))
             {
                 throw new IndexOutOfRangeException();
             }
 
             var tmp = head;
 
-            for (var i = 0; i < position; ++i)
+            for (var i = 0; i < index; ++i)
             {
                 tmp = tmp.Next;
             }
@@ -53,24 +58,48 @@ namespace Homework
             return tmp.Data;
         }
 
-        public T this[int position]
+        private void SetDataByIndex(int index, T data)
+        {
+            if (!IsIndexValid(index))
+            {
+                throw new IndexOutOfRangeException();
+            }
+
+            var tmp = head;
+
+            for (var i = 0; i < index; ++i)
+            {
+                tmp = tmp.Next;
+            }
+
+            tmp.Data = data;
+        }
+
+        public T this[int index]
         {
             get
-            {
-                
-            }
+                => GetDataByIndex(index);
             set
-            {
-
-            }
+                => SetDataByIndex(index, value);
         }
 
         public int IndexOf(T item)
         {
-            if (!Contains(item))
+            var tmp = head;
+            var index = 0;
+
+            while (tmp != null && Comparer<T>.Default.Compare(tmp.Data, item) != 0)
+            {
+                tmp = tmp.Next;
+                ++index;
+            }
+
+            if (index > Count - 1)
             {
                 throw new ItemNotInListException();
             }
+
+            return index;
         }
 
         public void Insert(int position, T value)
@@ -85,12 +114,28 @@ namespace Homework
 
         public void Add(T value)
         {
+            if (head == null)
+            {
+                head = new Node(value);
+                ++Count;
+                return;
+            }
 
+            var tmp = head;
+            
+            while (tmp.Next != null)
+            {
+                tmp = tmp.Next;
+            }
+
+            tmp.Next = new Node(value);
+            ++Count;
         }
 
         public void Clear()
         {
-
+            head = null;
+            Count = 0;
         }
 
         public bool Contains(T item)
@@ -115,7 +160,30 @@ namespace Homework
 
         public bool Remove(T item)
         {
-            throw new NotImplementedException();
+            if (!Contains(item))
+            {
+                return false;
+            }
+
+            var index = IndexOf(item);
+
+            if (index == 0)
+            {
+                head = head.Next;
+                --Count;
+                return true;
+            }
+
+            var tmp = head;
+
+            for (var i = 0; i < index - 1; ++i)
+            {
+                tmp = tmp.Next;
+            }
+
+            tmp.Next = tmp.Next.Next;
+            --Count;
+            return true;
         }
 
         public IEnumerator<T> GetEnumerator()

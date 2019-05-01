@@ -11,7 +11,25 @@ namespace Homework
     {
         static void Main(string[] args)
         {
+            var list = new List<int>();
 
+            list.Add(1);
+            list.Add(2);
+            list.Add(3);
+
+            foreach (var e in list)
+            {
+                Console.Write(e);
+            }
+
+            Console.WriteLine();
+
+            list.Remove(1);
+
+            foreach (var e in list)
+            {
+                Console.Write(e);
+            }
         }
     }
 }
