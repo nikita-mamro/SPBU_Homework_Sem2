@@ -18,6 +18,11 @@ namespace Homework
                 Data = data;
                 Next = null;
             }
+            public Node(T data, Node next)
+            {
+                Data = data;
+                Next = next;
+            }
         }
 
         private Node head;
@@ -38,7 +43,7 @@ namespace Homework
 
         private bool IsIndexValid(int index)
         {
-            return index < 0 || index > Count - 1;
+            return index >= 0 && index < Count;
         }
 
         private T GetDataByIndex(int index)
@@ -102,34 +107,60 @@ namespace Homework
             return index;
         }
 
-        public void Insert(int position, T value)
+        public void Insert(int index, T value)
         {
-
-        }
-
-        public void RemoveAt(int position)
-        {
-
-        }
-
-        public void Add(T value)
-        {
-            if (head == null)
+            if (index < 0 || index > Count)
             {
-                head = new Node(value);
+                throw new IndexOutOfRangeException();
+            }
+
+            if (index == 0)
+            {
+                head = new Node(value, head);
                 ++Count;
                 return;
             }
 
             var tmp = head;
-            
-            while (tmp.Next != null)
+
+            for (var i = 0; i < index - 1; ++i)
             {
                 tmp = tmp.Next;
             }
 
-            tmp.Next = new Node(value);
+            tmp.Next = new Node(value, tmp.Next);
             ++Count;
+        }
+
+        public void RemoveAt(int index)
+        {
+            if (!IsIndexValid(index))
+            {
+                throw new IndexOutOfRangeException();
+            }
+
+            if (index == 0)
+            {
+                head = head.Next;
+                --Count;
+                return;
+            }
+
+            var tmp = head;
+
+            for (var i = 0; i < index - 1; ++i)
+            {
+                tmp = tmp.Next;
+            }
+
+            tmp.Next = tmp.Next.Next;
+            --Count;
+            return;
+        }
+
+        public void Add(T value)
+        {
+            Insert(Count, value);
         }
 
         public void Clear()
@@ -148,6 +179,8 @@ namespace Homework
                 {
                     return true;
                 }
+
+                tmp = tmp.Next;
             }
 
             return false;
@@ -155,7 +188,30 @@ namespace Homework
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            throw new NotImplementedException();
+            if (array == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            if (arrayIndex < 0)
+            {
+                throw new IndexOutOfRangeException();
+            }
+
+            if (array.Rank > 1)
+            {
+                throw new ArgumentException();
+            }
+
+            if (array.Length - arrayIndex < Count)
+            {
+                throw new ArgumentException("Недостаточно места в массиве.");
+            }
+
+            for (var i = 0; i < Count; ++i)
+            {
+                array[i + arrayIndex] = this[i];
+            }
         }
 
         public bool Remove(T item)
