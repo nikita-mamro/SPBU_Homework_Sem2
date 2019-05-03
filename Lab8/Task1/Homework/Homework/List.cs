@@ -7,17 +7,42 @@ using System.Threading.Tasks;
 
 namespace Homework
 {
+    /// <summary>
+    /// Класс, реализующий список
+    /// </summary>
+    /// <typeparam name="T">Тип значения, хранимого в списке</typeparam>
     public class List<T> : IList<T>
     {
+        /// <summary>
+        /// Класс, реализующий элемент списка
+        /// </summary>
         private class Node
         {
+            /// <summary>
+            /// Значение, которое хранит элемент списка
+            /// </summary>
             public T Data { get; set; }
+
+            /// <summary>
+            /// Следующий за текущим элемент списка
+            /// </summary>
             public Node Next { get; set; }
+
+            /// <summary>
+            /// Конструктор элемента списка
+            /// </summary>
+            /// <param name="data">Значение, которое положим в созданный элемент</param>
             public Node(T data)
             {
                 Data = data;
                 Next = null;
             }
+
+            /// <summary>
+            /// Конструктор элемента списка
+            /// </summary>
+            /// <param name="data">Значение, которое положим в созданный элемент</param>
+            /// <param name="next">Следующий за созданным элемент</param>
             public Node(T data, Node next)
             {
                 Data = data;
@@ -25,27 +50,50 @@ namespace Homework
             }
         }
 
+        /// <summary>
+        /// Голова списка
+        /// </summary>
         private Node head;
 
+        /// <summary>
+        /// Количество элементов в списке
+        /// </summary>
         public int Count { get; set; }
 
+        /// <summary>
+        /// Индикатор того, является ли список доступным только для чтения
+        /// </summary>
         public bool IsReadOnly { get; private set; }
 
+        /// <summary>
+        /// Конструктор класса список по умолчанию (IsReadOnly - false)
+        /// </summary>
         public List()
         {
 
         }
 
+        /// <summary>
+        /// Конструктор класса список с учётом модификатора доступа
+        /// </summary>
+        /// <param name="isReadOnly"></param>
         public List(bool isReadOnly)
         {
             IsReadOnly = isReadOnly;
         }
 
+        /// <summary>
+        /// Проверяет, существует ли элемент с данным индексом в списке
+        /// </summary>
+        /// <param name="index">Проверяемый индекс</param>
         private bool IsIndexValid(int index)
         {
             return index >= 0 && index < Count;
         }
 
+        /// <summary>
+        /// Получает значение, которое хранит элемент по указанному индексу
+        /// </summary>
         private T GetDataByIndex(int index)
         {
             if (!IsIndexValid(index))
@@ -63,6 +111,9 @@ namespace Homework
             return tmp.Data;
         }
 
+        /// <summary>
+        /// Меняет значение, которое хранит элемент по указанному индексу
+        /// </summary>
         private void SetDataByIndex(int index, T data)
         {
             if (!IsIndexValid(index))
@@ -80,6 +131,9 @@ namespace Homework
             tmp.Data = data;
         }
 
+        /// <summary>
+        /// Перегрузка оператора []
+        /// </summary>
         public T this[int index]
         {
             get
@@ -88,6 +142,9 @@ namespace Homework
                 => SetDataByIndex(index, value);
         }
 
+        /// <summary>
+        /// Получает индекс, по которому хранится переданное значение
+        /// </summary>
         public int IndexOf(T item)
         {
             var tmp = head;
@@ -107,6 +164,9 @@ namespace Homework
             return index;
         }
 
+        /// <summary>
+        /// Добавляет элемент с заданным значением в список на заданную позицию
+        /// </summary>
         public void Insert(int index, T value)
         {
             if (index < 0 || index > Count)
@@ -132,6 +192,9 @@ namespace Homework
             ++Count;
         }
 
+        /// <summary>
+        /// Удаляет элемент из списка по заданному индексу
+        /// </summary>
         public void RemoveAt(int index)
         {
             if (!IsIndexValid(index))
@@ -158,17 +221,26 @@ namespace Homework
             return;
         }
 
+        /// <summary>
+        /// Добавляет в конец списка элемент с заданным значением
+        /// </summary>
         public void Add(T value)
         {
             Insert(Count, value);
         }
 
+        /// <summary>
+        /// Чистит список
+        /// </summary>
         public void Clear()
         {
             head = null;
             Count = 0;
         }
 
+        /// <summary>
+        /// Проверяет, содержится ли переданное значение с списке
+        /// </summary>
         public bool Contains(T item)
         {
             var tmp = head;
@@ -186,6 +258,9 @@ namespace Homework
             return false;
         }
 
+        /// <summary>
+        /// Копирует все элементы списка в данный массив, начиная с данного индекса
+        /// </summary>
         public void CopyTo(T[] array, int arrayIndex)
         {
             if (array == null)
@@ -214,6 +289,10 @@ namespace Homework
             }
         }
 
+        /// <summary>
+        /// Удаляет элемент с данным значением из списка
+        /// </summary>
+        /// <returns>False, если такого элемента нет, иначе True</returns>
         public bool Remove(T item)
         {
             if (!Contains(item))
