@@ -1,9 +1,12 @@
 ﻿using System;
 
-namespace Homework
+namespace Exceptions
 {
+    /// <summary>
+    /// Исключение, выбрасываемое при попытке удалить несуществующий элемент
+    /// </summary>
     [Serializable]
-    class ItemNotInListException : Exception
+    public class ItemNotInListException : Exception
     {
         public ItemNotInListException() { }
         public ItemNotInListException(string message) : base(message) { }

@@ -58,7 +58,7 @@ namespace Homework
         /// <summary>
         /// Количество элементов в списке
         /// </summary>
-        public int Count { get; set; }
+        public int Count { get; private set; }
 
         /// <summary>
         /// Индикатор того, является ли список доступным только для чтения
@@ -77,8 +77,13 @@ namespace Homework
         /// Конструктор класса список с учётом модификатора доступа
         /// </summary>
         /// <param name="isReadOnly"></param>
-        public List(bool isReadOnly)
+        public List(T[] elements, bool isReadOnly)
         {
+            foreach (var element in elements)
+            {
+                Add(element);
+            }
+
             IsReadOnly = isReadOnly;
         }
 
@@ -116,6 +121,11 @@ namespace Homework
         /// </summary>
         private void SetDataByIndex(int index, T data)
         {
+            if (IsReadOnly)
+            {
+                throw new Exceptions.EditingReadOnlyListException();
+            }
+
             if (!IsIndexValid(index))
             {
                 throw new IndexOutOfRangeException();
@@ -158,7 +168,7 @@ namespace Homework
 
             if (index > Count - 1)
             {
-                throw new ItemNotInListException();
+                throw new Exceptions.ItemNotInListException();
             }
 
             return index;
@@ -169,6 +179,11 @@ namespace Homework
         /// </summary>
         public void Insert(int index, T value)
         {
+            if (IsReadOnly)
+            {
+                throw new Exceptions.EditingReadOnlyListException();
+            }
+
             if (index < 0 || index > Count)
             {
                 throw new IndexOutOfRangeException();
@@ -197,6 +212,16 @@ namespace Homework
         /// </summary>
         public void RemoveAt(int index)
         {
+            if (Count == 0)
+            {
+                throw new Exceptions.DeletingFromEmptyListException();
+            }
+
+            if (IsReadOnly)
+            {
+                throw new Exceptions.EditingReadOnlyListException("Попытка удаления элемента из ReadOnly списка.");
+            }
+
             if (!IsIndexValid(index))
             {
                 throw new IndexOutOfRangeException();
@@ -234,6 +259,11 @@ namespace Homework
         /// </summary>
         public void Clear()
         {
+            if (IsReadOnly)
+            {
+                throw new Exceptions.EditingReadOnlyListException();
+            }
+
             head = null;
             Count = 0;
         }
@@ -270,12 +300,12 @@ namespace Homework
 
             if (arrayIndex < 0)
             {
-                throw new IndexOutOfRangeException();
+                throw new IndexOutOfRangeException("Указанный индекс в массиве не может быть отрицательным.");
             }
 
             if (array.Rank > 1)
             {
-                throw new ArgumentException();
+                throw new ArgumentException("Попытка копирования в массив размерности > 1.");
             }
 
             if (array.Length - arrayIndex < Count)
@@ -295,6 +325,11 @@ namespace Homework
         /// <returns>False, если такого элемента нет, иначе True</returns>
         public bool Remove(T item)
         {
+            if (IsReadOnly)
+            {
+                throw new Exceptions.EditingReadOnlyListException();
+            }
+
             if (!Contains(item))
             {
                 return false;
