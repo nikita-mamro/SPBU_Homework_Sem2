@@ -315,9 +315,71 @@ namespace Homework.Tests
         }
 
         [TestMethod]
-        public void RemoveTest()
+        public void RemoveFromemptyListTest()
         {
-            Assert.Fail();
+            var removed = list.Remove(1);
+
+            Assert.IsFalse(removed);
+        }
+
+        [TestMethod]
+        public void RemoveOneElementListOfOneElementTest()
+        {
+            list.Add(1);
+            var removedExpectedFalse = list.Remove(2);
+            var removedExpectedTrue = list.Remove(1);
+
+            Assert.IsTrue(!removedExpectedFalse && removedExpectedTrue && 0 == list.Count);
+        }
+
+        [TestMethod]
+        public void RemoveOneElementListOfManyTest()
+        {
+            for (var i = 0; i < 10; ++i)
+            {
+                list.Add(i);
+            }
+
+            var removedExpectedFalse = list.Remove(100);
+            var removedExpectedTrue = list.Remove(5);
+
+            bool result = true;
+
+            foreach (var element in list)
+            {
+                if (element == 5)
+                {
+                    result = false;
+                }
+            }
+
+            Assert.IsTrue(result && removedExpectedTrue && !removedExpectedFalse);
+        }
+
+        [TestMethod]
+        public void RemoveManyElementsFromListOfManyTest()
+        {
+            for  (var i = 0; i < 10; ++i)
+            {
+                list.Add(i);
+            }
+
+            var removedFirstTrue = list.Remove(3);
+            var removedSecondTrue = list.Remove(8);
+
+            var removedExpectedFalse = list.Remove(15);
+
+            var result = true;
+
+            foreach (var element in list)
+            {
+                if (element == 3 || element == 8)
+                {
+                    result = false;
+                }
+            }
+
+            Assert.IsTrue(removedFirstTrue && removedSecondTrue && !removedExpectedFalse && result);
         }
     }
 }
