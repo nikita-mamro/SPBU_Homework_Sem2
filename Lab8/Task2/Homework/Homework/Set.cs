@@ -6,13 +6,13 @@ namespace Homework
 {
     public class Set<T> : ISet<T>
     {
-        private class Node
+        private class Node<T>
         {
-            public T data { get; set; }
+            public T Data { get; set; }
 
-            public Node left { get; set; }
+            public Node<T> Left { get; set; }
 
-            public Node right { get; set; }
+            public Node<T> Right { get; set; }
 
             public Node()
             {
@@ -21,24 +21,24 @@ namespace Homework
 
             public Node(T data)
             {
-                this.data = data;
+                this.Data = data;
             }
 
-            public Node(Node left, Node right)
+            public Node(Node<T> left, Node<T> right)
             {
-                this.left = left;
-                this.right = right;
+                this.Left = left;
+                this.Right = right;
             }
 
-            public Node(T data, Node left, Node right)
+            public Node(T data, Node<T> left, Node<T> right)
             {
-                this.data = data;
-                this.left = left;
-                this.right = right;
+                this.Data = data;
+                this.Left = left;
+                this.Right = right;
             }
         }
 
-        private Node root;
+        private Node<T> root;
 
         public int Count { get; private set; }
 
@@ -63,7 +63,7 @@ namespace Homework
         {
             if (root == null)
             {
-                root = new Node(item);
+                root = new Node<T>(item);
                 return true;
             }
 
@@ -71,27 +71,27 @@ namespace Homework
 
             while (true)
             {
-                if (Comparer<T>.Default.Compare(item, tmp.data) > 0)
+                if (Comparer<T>.Default.Compare(item, tmp.Data) > 0)
                 {
-                    if (tmp.right == null)
+                    if (tmp.Right == null)
                     {
-                        tmp.right = new Node(item);
+                        tmp.Right = new Node<T>(item);
                         return true;
                     }
 
-                    tmp = tmp.right;
+                    tmp = tmp.Right;
                     continue;
                 }
 
-                if (Comparer<T>.Default.Compare(item, tmp.data) < 0)
+                if (Comparer<T>.Default.Compare(item, tmp.Data) < 0)
                 {
-                    if (tmp.left == null)
+                    if (tmp.Left == null)
                     {
-                        tmp.left = new Node(item);
+                        tmp.Left = new Node<T>(item);
                         return true;
                     }
 
-                    tmp = tmp.left;
+                    tmp = tmp.Left;
                     continue;
                 }
 
@@ -109,18 +109,18 @@ namespace Homework
         {
             var tmp = root;
 
-            while (tmp != null && Comparer<T>.Default.Compare(tmp.data, item) != 0)
+            while (tmp != null && Comparer<T>.Default.Compare(tmp.Data, item) != 0)
             {
-                if (Comparer<T>.Default.Compare(tmp.data, item) > 0)
+                if (Comparer<T>.Default.Compare(tmp.Data, item) > 0)
                 {
-                    tmp = tmp.right;
+                    tmp = tmp.Right;
                     continue;
                 }
 
-                tmp = tmp.left;
+                tmp = tmp.Left;
             }
 
-            return tmp != null && Comparer<T>.Default.Compare(tmp.data, item) == 0;
+            return tmp != null && Comparer<T>.Default.Compare(tmp.Data, item) == 0;
         }
 
         public void CopyTo(T[] array, int arrayIndex)
@@ -135,7 +135,28 @@ namespace Homework
 
         public IEnumerator<T> GetEnumerator()
         {
-            /// TODO
+            if (root == null)
+            {
+                yield break;
+            }
+
+            var node = root;
+            var stack = new Stack<Node<T>>();
+
+            while (node != null && stack.Count > 0)
+            {
+                if (node == null)
+                {
+                    node = stack.Pop();
+                    yield return node.Data;
+                    node = node.Right;
+                }
+                else
+                {
+                    stack.Push(node);
+                    node = node.Left;
+                }
+            }
         }
 
         public void IntersectWith(IEnumerable<T> other)
@@ -192,7 +213,7 @@ namespace Homework
         {
             if (root == null)
             {
-                root = new Node(item);
+                root = new Node<T>(item);
                 return;
             }
 
@@ -200,31 +221,31 @@ namespace Homework
 
             while (true)
             {
-                if (Comparer<T>.Default.Compare(item, tmp.data) >= 0)
+                if (Comparer<T>.Default.Compare(item, tmp.Data) >= 0)
                 {
-                    if (tmp.right == null)
+                    if (tmp.Right == null)
                     {
-                        tmp.right = new Node(item);
+                        tmp.Right = new Node<T>(item);
                         return;
                     }
 
-                    tmp = tmp.right;
+                    tmp = tmp.Right;
                     continue;
                 }
 
-                if (tmp.left == null)
+                if (tmp.Left == null)
                 {
-                    tmp.left = new Node(item);
+                    tmp.Left = new Node<T>(item);
                     return;
                 }
 
-                tmp = tmp.left;
+                tmp = tmp.Left;
             }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return GetEnumerator();
         }
     }
 }
