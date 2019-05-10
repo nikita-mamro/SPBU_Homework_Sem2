@@ -5,6 +5,9 @@ using System.Collections.Generic;
 
 namespace TestTask.Tests
 {
+    /// <summary>
+    /// Тесты сравнивалки списков
+    /// </summary>
     [TestClass]
     public class ListComparerTests
     {

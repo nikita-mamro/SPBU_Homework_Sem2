@@ -3,8 +3,14 @@ using System.Collections.Generic;
 
 namespace TestTask
 {
+    /// <summary>
+    /// Разделитель строки на слова
+    /// </summary>
     static public class StringSeparator
     {
+        /// <summary>
+        /// Принимает строку и возвращает список слов в ней
+        /// </summary>
         public static List<string> GetListOfWords(string sentence)
         {
             var word = "";

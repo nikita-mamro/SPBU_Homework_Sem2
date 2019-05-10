@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace TestTask.Tests
 {
+    /// <summary>
+    /// Тест разделителя предложения на слова
+    /// </summary>
     [TestClass]
     public class StringSeparatorTests
     {

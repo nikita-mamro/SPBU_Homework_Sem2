@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace TestTask.Tests
 {
+    /// <summary>
+    /// Недотесты множества SortedSet
+    /// </summary>
     [TestClass]
     public class SortedSetTests
     {
