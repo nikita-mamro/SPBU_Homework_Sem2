@@ -11,6 +11,7 @@ environment:
   - solution_path: Lab2\Task2\Homework\Homework.sln
   - solution_path: Lab2\Task3\Homework\Homework.sln
   - solution_path: Lab3\Task1\Homework\Homework.sln
+  - solution_path: Test2\TestTask\Testtask.sln
 
 before_build:
   - nuget restore %solution_path%
