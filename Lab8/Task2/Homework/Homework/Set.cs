@@ -44,6 +44,14 @@ namespace Homework
 
         }
 
+        public Set(T[] elements)
+        {
+            foreach (var element in elements)
+            {
+                Add(element);
+            }
+        }
+
         public Set(T[] elements, bool isReadOnly)
         {
             foreach (var element in elements)
@@ -58,7 +66,7 @@ namespace Homework
         {
             if (IsReadOnly)
             {
-                throw new Exceptions.EditingReadOnlySetException("Adding element to ReadOnly set");
+                throw new Exceptions.EditingReadOnlySetException("Calling Add() for ReadOnly set");
             }
 
             if (root == null)
@@ -102,6 +110,10 @@ namespace Homework
             }
         }
 
+        /// <summary>
+        /// Методы интерфейса ISet
+        /// </summary>
+
         public bool Add(T item)
         {
             return AddIfNotPresent(item);
@@ -116,7 +128,7 @@ namespace Homework
         {
             if (IsReadOnly)
             {
-                throw new Exceptions.EditingReadOnlySetException("Clearing ReadOnly set");
+                throw new Exceptions.EditingReadOnlySetException("Calling Clear() for ReadOnly set");
             }
 
             root = null;
@@ -173,7 +185,25 @@ namespace Homework
 
         public void ExceptWith(IEnumerable<T> other)
         {
-            throw new NotImplementedException();
+            if (other == null)
+            {
+                throw new ArgumentNullException("other");
+            }
+
+            if (Count == 0)
+            {
+                throw new Exceptions.DeletingFromEmptySetException();
+            }
+
+            if (other == this)
+            {
+                Clear();
+            }
+
+            foreach (T element in other)
+            {
+                Remove(element);
+            }
         }
 
         public IEnumerator<T> GetEnumerator()
@@ -186,25 +216,79 @@ namespace Homework
             var node = root;
             var stack = new Stack<Node>();
 
-            while (node != null && stack.Count > 0)
+            while (node != null || stack.Count != 0)
             {
-                if (node == null)
-                {
-                    node = stack.Pop();
-                    yield return node.Data;
-                    node = node.Right;
-                }
-                else
+                while (node != null)
                 {
                     stack.Push(node);
                     node = node.Left;
                 }
+
+                node = stack.Peek();
+                stack.Pop();
+
+                yield return node.Data;
+
+                node = node.Right;
             }
+        }
+
+        private void IntersectWithAnotherSet(Set<T> other)
+        {
+            foreach (var element in this)
+            {
+                if (!other.Contains(element))
+                {
+                    Remove(element);
+                }
+            }
+        }
+
+        private void IntersectWithEnumerable(IEnumerable<T> other)
+        {
+            var set = new Set<T>();
+
+            foreach (var element in other)
+            {
+                set.Add(element);
+            }
+
+            IntersectWithAnotherSet(set);
         }
 
         public void IntersectWith(IEnumerable<T> other)
         {
-            throw new NotImplementedException();
+            if (other == null)
+            {
+                throw new ArgumentNullException("other");
+            }
+
+            if (Count == 0)
+            {
+                return;
+            }
+
+            var otherAsCollection = other as ICollection<T>;
+
+            if (otherAsCollection != null)
+            {
+                if (otherAsCollection.Count == 0)
+                {
+                    Clear();
+                    return;
+                }
+
+                var otherAsSet = other as Set<T>;
+
+                if (otherAsSet != null)
+                {
+                    IntersectWithAnotherSet(otherAsSet);
+                }
+
+                return;
+            }
+
+            IntersectWithEnumerable(other);
         }
 
         public bool IsProperSubsetOf(IEnumerable<T> other)
@@ -217,14 +301,69 @@ namespace Homework
             throw new NotImplementedException();
         }
 
+        private bool IsSubsetOfAnotherSet(Set<T> other)
+        {
+            foreach (var element in this)
+            {
+                if (!other.Contains(element))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private bool IsSubsetOfEnumerable(IEnumerable<T> other)
+        {
+            var set = new Set<T>();
+
+            foreach (var element in other)
+            {
+                set.Add(element);
+            }
+
+            return IsSubsetOfAnotherSet(set);
+        }
+
         public bool IsSubsetOf(IEnumerable<T> other)
         {
-            throw new NotImplementedException();
+            if (other == null)
+            {
+                throw new ArgumentNullException("other");
+            }
+
+            if (Count == 0)
+            {
+                return true;
+            }
+
+            var otherAsSet = other as Set<T>;
+
+            if (otherAsSet != null)
+            {
+                return IsSubsetOfAnotherSet(otherAsSet);
+            }
+
+            return IsSubsetOfEnumerable(other);
         }
 
         public bool IsSupersetOf(IEnumerable<T> other)
         {
-            throw new NotImplementedException();
+            if (other == null)
+            {
+                throw new ArgumentNullException("other");
+            }
+
+            foreach (var element in other)
+            {
+                if (!Contains(element))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         public bool Overlaps(IEnumerable<T> other)
@@ -236,12 +375,12 @@ namespace Homework
         {
             if (IsReadOnly)
             {
-                throw new Exceptions.EditingReadOnlySetException("Removing element from ReadOnly set");
+                throw new Exceptions.EditingReadOnlySetException("Calling Remove() for ReadOnly set");
             }
 
             if (Count == 0)
             {
-                throw new Exceptions.DeletingFromEmptySetException("Removing element from empty set");
+                throw new Exceptions.DeletingFromEmptySetException("Calling Remove() for empty set");
             }
 
             if (Comparer<T>.Default.Compare(item, root.Data) == 0)
@@ -257,18 +396,14 @@ namespace Homework
                 if (root.Left == null)
                 {
                     root = root.Right;
-                    root.Left = root.Right.Left;
-                    root.Right.Left = null;
 
                     --Count;
                     return true;
                 }
 
                 if (root.Right == null)
-                {   
+                {
                     root = root.Left;
-                    root.Right = root.Left.Right;
-                    root.Left.Right = null;
 
                     --Count;
                     return true;
