@@ -13,7 +13,7 @@ namespace Homework
             var elements = new int[] { 1, 2, 3, 4, 5 };
 
             #region demo
-            var anotherElements = new int[] { 5, 6, 7, 8, 9 };
+            var anotherElements = new int[] { 4, 5, 6, 7, 8, 9 };
             
             var set = new Set<int>(elements);
             //
