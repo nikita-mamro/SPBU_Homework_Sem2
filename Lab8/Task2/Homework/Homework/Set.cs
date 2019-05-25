@@ -227,6 +227,7 @@ namespace Homework
             foreach (var element in this)
             {
                 array[index + arrayIndex] = element;
+                ++index;
             }
         }
 
@@ -238,11 +239,6 @@ namespace Homework
             if (other == null)
             {
                 throw new ArgumentNullException("other");
-            }
-
-            if (Count == 0)
-            {
-                throw new NotSupportedException("Попытка удаления элементов из пустого множества");
             }
 
             if (other == this)
@@ -352,9 +348,8 @@ namespace Homework
                 if (otherAsSet != null)
                 {
                     IntersectWithAnotherSet(otherAsSet);
+                    return;
                 }
-
-                return;
             }
 
             IntersectWithEnumerable(other);
@@ -365,6 +360,11 @@ namespace Homework
         /// </summary>
         public bool IsProperSubsetOf(IEnumerable<T> other)
         {
+            if (other == null)
+            {
+                throw new ArgumentNullException("other");
+            }
+
             var otherCount = 0;
 
             foreach (var element in other)
@@ -380,6 +380,11 @@ namespace Homework
         /// </summary>
         public bool IsProperSupersetOf(IEnumerable<T> other)
         {
+            if (other == null)
+            {
+                throw new ArgumentNullException("other");
+            }
+
             var otherCount = 0;
 
             foreach (var element in other)
