@@ -238,7 +238,7 @@ namespace Homework
         {
             if (other == null)
             {
-                throw new ArgumentNullException("other");
+                throw new ArgumentNullException("Переданная коллекция - null");
             }
 
             if (other == this)
@@ -325,7 +325,7 @@ namespace Homework
         {
             if (other == null)
             {
-                throw new ArgumentNullException("other");
+                throw new ArgumentNullException("Переданная коллекция - null");
             }
 
             if (Count == 0)
@@ -362,7 +362,7 @@ namespace Homework
         {
             if (other == null)
             {
-                throw new ArgumentNullException("other");
+                throw new ArgumentNullException("Переданная коллекция - null");
             }
 
             var otherCount = 0;
@@ -382,7 +382,7 @@ namespace Homework
         {
             if (other == null)
             {
-                throw new ArgumentNullException("other");
+                throw new ArgumentNullException("Переданная коллекция - null");
             }
 
             var otherCount = 0;
@@ -433,7 +433,7 @@ namespace Homework
         {
             if (other == null)
             {
-                throw new ArgumentNullException("other");
+                throw new ArgumentNullException("Переданная коллекция - null");
             }
 
             if (Count == 0)
@@ -458,7 +458,7 @@ namespace Homework
         {
             if (other == null)
             {
-                throw new ArgumentNullException("other");
+                throw new ArgumentNullException("Переданная коллекция - null");
             }
 
             foreach (var element in other)
@@ -477,6 +477,11 @@ namespace Homework
         /// </summary>
         public bool Overlaps(IEnumerable<T> other)
         {
+            if (other == null)
+            {
+                throw new ArgumentNullException("Переданная коллекция - null");
+            }
+
             foreach (var element in other)
             {
                 if (Contains(element))
@@ -623,6 +628,11 @@ namespace Homework
         /// </summary>
         public bool SetEquals(IEnumerable<T> other)
         {
+            if (other == null)
+            {
+                throw new ArgumentNullException("Переданная коллекция - null");
+            }
+
             var otherCount = 0;
 
             foreach (var element in other)

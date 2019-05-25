@@ -468,6 +468,8 @@ namespace Homework.Tests
                 list.Add(i);
             }
 
+            list.Add(10);
+
             Assert.IsTrue(set.IsSubsetOf(list));
         }
 
@@ -493,33 +495,134 @@ namespace Homework.Tests
         }
 
         [TestMethod]
-        public void IsSupersetOfTest()
+        public void IsSupersetOfTrueTest()
         {
-            Assert.Fail();
+            for (var i = -2; i <= -2; ++i)
+            {
+                set.Add(i);
+                list.Add(i);
+            }
+
+            set.Add(1);
+
+            Assert.IsTrue(set.IsSupersetOf(list));
         }
 
         [TestMethod]
-        public void OverlapsTest()
+        public void IsSupersetOfFalseTest()
         {
-            Assert.Fail();
+            for (var i = -2; i <= -2; ++i)
+            {
+                set.Add(i);
+                list.Add(i);
+            }
+
+            list.Add(10);
+
+            Assert.IsTrue(set.IsSubsetOf(list));
         }
 
         [TestMethod]
-        public void SetEqualsTest()
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void IsSupersetOfNullExceptionTest()
         {
-            Assert.Fail();
+            set.IsSupersetOf(null);
+        }
+
+        [TestMethod]
+        public void OverlapsTrueTest()
+        {
+            for (var i = 0; i <= 2; ++i)
+            {
+                set.Add(i - 2);
+                list.Add(i);
+            }
+
+            Assert.IsTrue(set.Overlaps(list));
+        }
+
+        [TestMethod]
+        public void OverlapsFalseTest()
+        {
+            for (var i = 0; i <= 2; ++i)
+            {
+                set.Add(i - 10);
+                list.Add(i + 10);
+            }
+
+            Assert.IsFalse(set.Overlaps(list));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void OverlapsNullExceptionTest()
+        {
+            set.Overlaps(null);
+        }
+
+        [TestMethod]
+        public void SetEqualsTrueTest()
+        {
+            for (var i = -5; i <= 5; ++i)
+            {
+                set.Add(i);
+                list.Add(i);
+            }
+
+            Assert.IsTrue(set.SetEquals(list));
+        }
+
+        [TestMethod]
+        public void SetEqualsFalseTest()
+        {
+            for (var i = -5; i <= 5; ++i)
+            {
+                set.Add(i);
+                list.Add(1 - i);
+            }
+
+            Assert.IsFalse(set.SetEquals(list));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void SetEqualsNullExceptionTest()
+        {
+            set.SetEquals(null);
         }
 
         [TestMethod]
         public void SymmetricExceptWithTest()
         {
-            Assert.Fail();
+            for (var i = -5; i <= 0; ++i)
+            {
+                set.Add(i);
+                list.Add(-i);
+            }
+
+            set.SymmetricExceptWith(list);
+
+            for (var i = -5; i <= 5; ++i)
+            {
+                Assert.IsTrue(set.Contains(i) || i == 0);
+            }
         }
 
         [TestMethod]
         public void UnionWithTest()
         {
-            Assert.Fail();
+            for (var i = -5; i <= 0; ++i)
+            {
+                set.Add(i);
+                list.Add(-i);
+            }
+
+            set.UnionWith(list);
+
+            for (var i = -5; i <= 5; ++i)
+            {
+                Assert.IsTrue(set.Contains(i));
+            }
         }
     }
 }
