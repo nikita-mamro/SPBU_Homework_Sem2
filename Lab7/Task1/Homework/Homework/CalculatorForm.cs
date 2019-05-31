@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Homework
@@ -41,83 +34,11 @@ namespace Homework
         /// <summary>
         /// Обработчики нажатий на кнопки-цифры
         /// </summary>
-        private void Button0_Click(object sender, EventArgs e)
+        private void ButtonDigit_Click(object sender, EventArgs e)
         {
             if (Validators.InputValidator.CanDigitBeAdded(textBoxCurrentInput.Text))
             {
-                textBoxCurrentInput.Text += "0";
-            }
-        }
-
-        private void Button1_Click(object sender, EventArgs e)
-        {
-            if (Validators.InputValidator.CanDigitBeAdded(textBoxCurrentInput.Text))
-            {
-                textBoxCurrentInput.Text += "1";
-            }
-        }
-
-        private void Button2_Click(object sender, EventArgs e)
-        {
-            if (Validators.InputValidator.CanDigitBeAdded(textBoxCurrentInput.Text))
-            {
-                textBoxCurrentInput.Text += "2";
-            }
-        }
-
-        private void Button3_Click(object sender, EventArgs e)
-        {
-            if (Validators.InputValidator.CanDigitBeAdded(textBoxCurrentInput.Text))
-            {
-                textBoxCurrentInput.Text += "3";
-            }
-        }
-
-        private void Button4_Click(object sender, EventArgs e)
-        {
-            if (Validators.InputValidator.CanDigitBeAdded(textBoxCurrentInput.Text))
-            {
-                textBoxCurrentInput.Text += "4";
-            }
-        }
-
-        private void Button5_Click(object sender, EventArgs e)
-        {
-            if (Validators.InputValidator.CanDigitBeAdded(textBoxCurrentInput.Text))
-            {
-                textBoxCurrentInput.Text += "5";
-            }
-        }
-
-        private void Button6_Click(object sender, EventArgs e)
-        {
-            if (Validators.InputValidator.CanDigitBeAdded(textBoxCurrentInput.Text))
-            {
-                textBoxCurrentInput.Text += "6";
-            }
-        }
-
-        private void Button7_Click(object sender, EventArgs e)
-        {
-            if (Validators.InputValidator.CanDigitBeAdded(textBoxCurrentInput.Text))
-            {
-                textBoxCurrentInput.Text += "7";
-            }
-        }
-
-        private void Button8_Click(object sender, EventArgs e)
-        {
-            if (Validators.InputValidator.CanDigitBeAdded(textBoxCurrentInput.Text))
-            {
-                textBoxCurrentInput.Text += "8";
-            }
-        }
-
-        private void Button9_Click(object sender, EventArgs e)
-        {
-            if (Validators.InputValidator.CanDigitBeAdded(textBoxCurrentInput.Text))
-            {
-                textBoxCurrentInput.Text += "9";
+                textBoxCurrentInput.Text += (sender as Button).Text;
             }
         }
 
@@ -138,56 +59,30 @@ namespace Homework
         }
 
         /// <summary>
-        /// Обработчики нажатий на кнопки со скобками
+        /// Обработчик нажатий на кнопки со скобками
         /// </summary>
-        private void ButtonLeftBracket_Click(object sender, EventArgs e)
+        private void ButtonBracket_Click(object sender, EventArgs e)
         {
-            if (Validators.InputValidator.CanLeftBracketBeAdded(textBoxCurrentInput.Text))
-            {
-                textBoxCurrentInput.Text += "(";
-            }
-        }
+            var buttonText = (sender as Button).Text;
+            var isLeft = buttonText == "(";
 
-        private void ButtonRightBracket_Click(object sender, EventArgs e)
-        {
-            if (Validators.InputValidator.CanRightBracketBeAdded(textBoxCurrentInput.Text))
+            if (Validators.InputValidator.CanBracketBeAdded(textBoxCurrentInput.Text, isLeft))
             {
-                textBoxCurrentInput.Text += ")";
+                textBoxCurrentInput.Text += buttonText;
             }
         }
 
         /// <summary>
         /// Обработка нажатий на кнопки с операторами
         /// </summary>
-        private void ButtonPlus_Click(object sender, EventArgs e)
+        private void ButtonOperator_Click(object sender, EventArgs e)
         {
-            if (Validators.InputValidator.CanOperatorBeAdded(textBoxCurrentInput.Text, false))
-            {
-                textBoxCurrentInput.Text += "+";
-            }
-        }
+            var buttonText = (sender as Button).Text;
+            var isMinus = buttonText == "-";
 
-        private void ButtonMinus_Click(object sender, EventArgs e)
-        {
-            if (Validators.InputValidator.CanOperatorBeAdded(textBoxCurrentInput.Text, true))
+            if (Validators.InputValidator.CanOperatorBeAdded(textBoxCurrentInput.Text, isMinus))
             {
-                textBoxCurrentInput.Text += "-";
-            }
-        }
-
-        private void ButtonMultiply_Click(object sender, EventArgs e)
-        {
-            if (Validators.InputValidator.CanOperatorBeAdded(textBoxCurrentInput.Text, false))
-            {
-                textBoxCurrentInput.Text += "×";
-            }
-        }
-
-        private void ButtonDivide_Click(object sender, EventArgs e)
-        {
-            if (Validators.InputValidator.CanOperatorBeAdded(textBoxCurrentInput.Text, false))
-            {
-                textBoxCurrentInput.Text += "÷";
+                textBoxCurrentInput.Text += buttonText;
             }
         }
 

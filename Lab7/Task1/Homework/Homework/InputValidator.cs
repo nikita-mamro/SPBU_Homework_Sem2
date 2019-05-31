@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Validators
+﻿namespace Validators
 {
     /// <summary>
     /// Класс, реализующий методы, которые не дают пользователю вводить заведомо некоррректные выражения
@@ -141,14 +135,14 @@ namespace Validators
         /// Проверяет, можно ли добавить в выражение открывающую скобку
         /// </summary>
         /// <param name="expression">Теукщее выражение</param>
-        static public bool CanLeftBracketBeAdded(string expression)
+        static private bool CanLeftBracketBeAdded(string expression)
             => expression.Length == 0 || IsOperator(expression[expression.Length - 1]) || expression[expression.Length - 1] == '(';
 
         /// <summary>
         /// Проверяет, можно ли добавить в выражение закрывающую скобку
         /// </summary>
         /// <param name="expression">Теукщее выражение</param>
-        static public bool CanRightBracketBeAdded(string expression)
+        static private bool CanRightBracketBeAdded(string expression)
         {
             var leftCount = 0;
             var rightCount = 0;
@@ -169,6 +163,16 @@ namespace Validators
             return expression.Length != 0 && rightCount < leftCount
                 && expression[expression.Length - 1] != '(' && !IsOperator(expression[expression.Length - 1])
                 && expression[expression.Length - 1] != '.';
+        }
+
+        static public bool CanBracketBeAdded(string expression, bool isLeft)
+        {
+            if (isLeft)
+            {
+                return CanLeftBracketBeAdded(expression);
+            }
+
+            return CanRightBracketBeAdded(expression);
         }
 
         /// <summary>

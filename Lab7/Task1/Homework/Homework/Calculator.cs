@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Globalization;
 
 namespace Calculator
@@ -19,7 +16,7 @@ namespace Calculator
         /// <param name="b">Второй операнд</param>
         /// <param name="theOperator">Оператор</param>
         /// <returns>Результат операции</returns>
-        static private double proceedOperator(double a, double b, string theOperator)
+        static private double ProceedOperator(double a, double b, string theOperator)
         {
             switch (theOperator)
             {
@@ -56,7 +53,7 @@ namespace Calculator
                 {
                     var numberB = stack.Pop();
                     var numberA = stack.Pop();
-                    stack.Push(proceedOperator(numberA, numberB, token));
+                    stack.Push(ProceedOperator(numberA, numberB, token));
                     continue;
                 }
 
@@ -66,7 +63,7 @@ namespace Calculator
                     continue;
                 }
 
-                throw new Exception();
+                System.Diagnostics.Debug.Assert(false, "Что-то пошло не так");
             }
 
             return Math.Round(stack.Pop(), 4);

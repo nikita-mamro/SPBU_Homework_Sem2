@@ -1,10 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Validators;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Validators.Tests
 {
@@ -136,7 +130,7 @@ namespace Validators.Tests
         [TestMethod]
         public void CanLeftBracketBeAddedTest(string expression, bool expected)
         {
-            Assert.AreEqual(expected, InputValidator.CanLeftBracketBeAdded(expression));
+            Assert.AreEqual(expected, InputValidator.CanBracketBeAdded(expression, true));
         }
 
         /// <summary>
@@ -157,7 +151,7 @@ namespace Validators.Tests
         [TestMethod]
         public void CanRightBracketBeAddedTest(string expression, bool expected)
         {
-            Assert.AreEqual(expected, InputValidator.CanRightBracketBeAdded(expression));
+            Assert.AreEqual(expected, InputValidator.CanBracketBeAdded(expression, false));
         }
 
         /// <summary>
