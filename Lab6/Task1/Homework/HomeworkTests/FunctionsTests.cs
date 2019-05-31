@@ -71,10 +71,7 @@ namespace Homework.Tests
 
             for (int i = 0; i < res.Count; ++i)
             {
-                if (res[i] != (double)(list[i] / 3))
-                {
-                    Assert.Fail();
-                }
+                Assert.AreEqual(list[i] / 3, res[i]);
             }
         }
 
@@ -86,10 +83,7 @@ namespace Homework.Tests
 
             for (int i = 0; i < res.Count; ++i)
             {
-                if (res[i] != (int)list[i])
-                {
-                    Assert.Fail();
-                }
+                Assert.AreEqual((int)list[i], res[i]);
             }
         }
 
@@ -230,10 +224,7 @@ namespace Homework.Tests
 
             foreach (var element in res)
             {
-                if (element < 'q')
-                {
-                    Assert.Fail();
-                }
+                Assert.IsFalse(element < 'q');
             }
         }
 
