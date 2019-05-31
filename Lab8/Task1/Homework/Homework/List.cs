@@ -120,7 +120,7 @@ namespace Homework
         {
             if (IsReadOnly)
             {
-                throw new Exceptions.EditingReadOnlyListException();
+                throw new NotSupportedException("Editing ReadOnly list");
             }
 
             if (!IsIndexValid(index))
@@ -165,7 +165,7 @@ namespace Homework
 
             if (index > Count - 1)
             {
-                throw new Exceptions.ItemNotInListException();
+                throw new IndexOutOfRangeException("Element is not in list");
             }
 
             return index;
@@ -178,7 +178,7 @@ namespace Homework
         {
             if (IsReadOnly)
             {
-                throw new Exceptions.EditingReadOnlyListException();
+                throw new NotSupportedException("Editing ReadOnly list");
             }
 
             if (index < 0 || index > Count)
@@ -211,12 +211,12 @@ namespace Homework
         {
             if (Count == 0)
             {
-                throw new Exceptions.DeletingFromEmptyListException();
+                throw new NotSupportedException("Deleting from empty list");
             }
 
             if (IsReadOnly)
             {
-                throw new Exceptions.EditingReadOnlyListException("Попытка удаления элемента из ReadOnly списка.");
+                throw new NotSupportedException("Deleting from ReadOnly list");
             }
 
             if (!IsIndexValid(index))
@@ -258,7 +258,7 @@ namespace Homework
         {
             if (IsReadOnly)
             {
-                throw new Exceptions.EditingReadOnlyListException();
+                throw new NotSupportedException("Clearing ReadOnly list");
             }
 
             head = null;
@@ -323,7 +323,7 @@ namespace Homework
         {
             if (IsReadOnly)
             {
-                throw new Exceptions.EditingReadOnlyListException();
+                throw new NotSupportedException("Removing item from ReadOnly list");
             }
 
             if (!Contains(item))

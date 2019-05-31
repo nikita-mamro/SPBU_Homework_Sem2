@@ -46,7 +46,7 @@ namespace Homework.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exceptions.EditingReadOnlyListException))]
+        [ExpectedException(typeof(NotSupportedException))]
         public void InsertReadOnlyExceptionTest()
         {
             readOnlyList.Insert(0, 10);
@@ -111,14 +111,14 @@ namespace Homework.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exceptions.EditingReadOnlyListException))]
+        [ExpectedException(typeof(NotSupportedException))]
         public void RemoveAtReadOnlyException()
         {
             readOnlyList.RemoveAt(0);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exceptions.DeletingFromEmptyListException))]
+        [ExpectedException(typeof(NotSupportedException))]
         public void RemoveAtEmptyListException()
         {
             list.RemoveAt(0);
@@ -158,7 +158,7 @@ namespace Homework.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exceptions.EditingReadOnlyListException))]
+        [ExpectedException(typeof(NotSupportedException))]
         public void AddToReadOnlyException()
         {
             readOnlyList.Add(1);
@@ -183,7 +183,7 @@ namespace Homework.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exceptions.EditingReadOnlyListException))]
+        [ExpectedException(typeof(NotSupportedException))]
         public void ClearReadOnlyListException()
         {
             readOnlyList.Clear();
@@ -304,7 +304,7 @@ namespace Homework.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exceptions.EditingReadOnlyListException))]
+        [ExpectedException(typeof(NotSupportedException))]
         public void RemoveReadOnlyExceptionTest()
         {
             readOnlyList.Remove(1);
