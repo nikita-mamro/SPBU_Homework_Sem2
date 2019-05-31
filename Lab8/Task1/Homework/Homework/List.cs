@@ -58,7 +58,7 @@ namespace Homework
         public int Count { get; private set; }
 
         /// <summary>
-        /// Индикатор того, является ли список доступным только для чтения
+        /// Модификатор доступа к элементам списка
         /// </summary>
         public bool IsReadOnly { get; private set; }
 
@@ -150,7 +150,7 @@ namespace Homework
         }
 
         /// <summary>
-        /// Получает индекс, по которому хранится переданное значение
+        /// <see cref="IList{T}.IndexOf(T)"/>
         /// </summary>
         public int IndexOf(T item)
         {
@@ -172,7 +172,7 @@ namespace Homework
         }
 
         /// <summary>
-        /// Добавляет элемент с заданным значением в список на заданную позицию
+        /// <see cref="IList{T}.Insert(int, T)"/>
         /// </summary>
         public void Insert(int index, T value)
         {
@@ -205,7 +205,7 @@ namespace Homework
         }
 
         /// <summary>
-        /// Удаляет элемент из списка по заданному индексу
+        /// <see cref="IList{T}.RemoveAt(int)"/>
         /// </summary>
         public void RemoveAt(int index)
         {
@@ -244,7 +244,7 @@ namespace Homework
         }
 
         /// <summary>
-        /// Добавляет в конец списка элемент с заданным значением
+        /// <see cref="ICollection{T}.Add(T)"/>
         /// </summary>
         public void Add(T value)
         {
@@ -252,7 +252,7 @@ namespace Homework
         }
 
         /// <summary>
-        /// Чистит список
+        /// <see cref="ICollection{T}.Clear"/>
         /// </summary>
         public void Clear()
         {
@@ -266,7 +266,7 @@ namespace Homework
         }
 
         /// <summary>
-        /// Проверяет, содержится ли переданное значение с списке
+        /// <see cref="ICollection{T}.Contains(T)"/>
         /// </summary>
         public bool Contains(T item)
         {
@@ -286,7 +286,7 @@ namespace Homework
         }
 
         /// <summary>
-        /// Копирует все элементы списка в данный массив, начиная с данного индекса
+        /// <see cref="ICollection{T}.CopyTo(T[], int)"/>
         /// </summary>
         public void CopyTo(T[] array, int arrayIndex)
         {
@@ -317,9 +317,8 @@ namespace Homework
         }
 
         /// <summary>
-        /// Удаляет элемент с данным значением из списка
+        /// <see cref="ICollection{T}.Remove(T)"/>
         /// </summary>
-        /// <returns>False, если такого элемента нет, иначе True</returns>
         public bool Remove(T item)
         {
             if (IsReadOnly)
