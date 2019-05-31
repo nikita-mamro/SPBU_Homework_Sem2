@@ -39,50 +39,39 @@ namespace Homework
         /// <param name="mapPath">Имя файла с картой</param>
         private void GenerateMap(string mapPath)
         {
-            try
+            using (var sr = new StreamReader(Path.Combine(Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())), mapPath)))
             {
-                using (StreamReader sr = new StreamReader(Path.Combine(Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())), mapPath)))
+                Field = new List<List<char>>();
+
+                string line;
+                var y = 0;
+
+                while ((line = sr.ReadLine()) != null)
                 {
-                    Field = new List<List<char>>();
+                    var x = 0;
 
-                    string line;
-                    var y = 0;
-
-                    while ((line = sr.ReadLine()) != null)
+                    Field.Add(new List<char>());
+                    foreach (var symbol in line)
                     {
-                        var x = 0;
-
-                        Field.Add(new List<char>());
-                        foreach (var symbol in line)
+                        if (symbol == '@')
                         {
-                            if (symbol == '@')
-                            {
-                                InitialPlayerCoordinates = (x, y);
-                                ++x;
-                                Field[y].Add(' ');
-                                continue;
-                            }
-
-                            if (symbol == 'X')
-                            {
-                                DestinationCoordinates = (x, y);
-                            }
-
+                            InitialPlayerCoordinates = (x, y);
                             ++x;
-                            Field[y].Add(symbol);
+                            Field[y].Add(' ');
+                            continue;
                         }
 
-                        ++y;
+                        if (symbol == 'X')
+                        {
+                            DestinationCoordinates = (x, y);
+                        }
+
+                        ++x;
+                        Field[y].Add(symbol);
                     }
+
+                    ++y;
                 }
-            }
-            catch (FileNotFoundException e)
-            {
-                throw e;
-            }
-            catch (IOException e)
-            {
-                throw e;
             }
         }
 

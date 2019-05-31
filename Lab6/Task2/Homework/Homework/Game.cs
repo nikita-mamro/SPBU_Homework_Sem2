@@ -27,15 +27,13 @@ namespace Homework
             player.PrintPlayer();
         }
 
-        #region Обработка нажатий клавиш-стрелок
-
-        public void OnLeft(object sender, EventArgs args)
+        public void ProceedMovement(Action action)
         {
             try
             {
                 map.RenderCell(player.Coordinates);
 
-                player.GoLeft(map);
+                action();
 
                 player.PrintPlayer();
             }
@@ -48,71 +46,29 @@ namespace Homework
                 Console.Clear();
                 throw;
             }
+        }
+
+        /// <summary>
+        /// Методы-обработчики нажатий на клавиши
+        /// </summary>
+        public void OnLeft(object sender, EventArgs args)
+        {
+            ProceedMovement(() => player.GoLeft(map));
         }
 
         public void OnRight(object sender, EventArgs args)
         {
-            try
-            {
-                map.RenderCell(player.Coordinates);
-
-                player.GoRight(map);
-
-                player.PrintPlayer();
-            }
-            catch (Exception e)
-                when (
-                e is Exceptions.GotBonesException
-                || e is Exceptions.HitWallException
-                || e is Exceptions.GoingOutOfScreenException)
-            {
-                Console.Clear();
-                throw;
-            }
+            ProceedMovement(() => player.GoRight(map));
         }
 
         public void OnUp(object sender, EventArgs args)
         {
-            try
-            {
-                map.RenderCell(player.Coordinates);
-
-                player.GoUp(map);
-
-                player.PrintPlayer();
-            }
-            catch (Exception e)
-                when (
-                e is Exceptions.GotBonesException
-                || e is Exceptions.HitWallException
-                || e is Exceptions.GoingOutOfScreenException)
-            {
-                Console.Clear();
-                throw;
-            }
+            ProceedMovement(() => player.GoUp(map));
         }
 
         public void OnDown(object sender, EventArgs args)
         {
-            try
-            {
-                map.RenderCell(player.Coordinates);
-
-                player.GoDown(map);
-
-                player.PrintPlayer();
-            }
-            catch (Exception e)
-                when (
-                e is Exceptions.GotBonesException
-                || e is Exceptions.HitWallException
-                || e is Exceptions.GoingOutOfScreenException)
-            {
-                Console.Clear();
-                throw;
-            }
+            ProceedMovement(() => player.GoDown(map));
         }
-
-        #endregion
     }
 }
