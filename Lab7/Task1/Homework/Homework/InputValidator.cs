@@ -165,6 +165,11 @@
                 && expression[expression.Length - 1] != '.';
         }
 
+        /// <summary>
+        /// Проверяет, можно ли добавить левую или правую скобку
+        /// </summary>
+        /// <param name="expression">Текущее выражение</param>
+        /// <param name="isLeft">Булевое значение, указывающее, является ли скобка левой</param>
         static public bool CanBracketBeAdded(string expression, bool isLeft)
         {
             if (isLeft)
