@@ -13,7 +13,6 @@ environment:
   - solution_path: Lab3\Task1\Homework\Homework.sln
   - solution_path: Lab3\Task2\Homework\Homework.sln
 
-
 before_build:
   - nuget restore %solution_path%
 
