@@ -52,23 +52,15 @@ namespace Homework
         /// Методы-обработчики нажатий на клавиши
         /// </summary>
         public void OnLeft(object sender, EventArgs args)
-        {
-            ProceedMovement(() => player.GoLeft(map));
-        }
+            => ProceedMovement(() => player.GoLeft(map));
 
         public void OnRight(object sender, EventArgs args)
-        {
-            ProceedMovement(() => player.GoRight(map));
-        }
+            => ProceedMovement(() => player.GoRight(map));
 
         public void OnUp(object sender, EventArgs args)
-        {
-            ProceedMovement(() => player.GoUp(map));
-        }
+            => ProceedMovement(() => player.GoUp(map));
 
         public void OnDown(object sender, EventArgs args)
-        {
-            ProceedMovement(() => player.GoDown(map));
-        }
+            => ProceedMovement(() => player.GoDown(map));
     }
 }

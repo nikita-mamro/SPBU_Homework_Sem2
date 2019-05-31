@@ -29,9 +29,7 @@ namespace Homework
         /// </summary>
         /// <param name="mapPath">Имя файла с картой</param>
         public Map(string mapPath)
-        {
-            GenerateMap(mapPath);
-        }
+            => GenerateMap(mapPath);
 
         /// <summary>
         /// Генерирует карту из файла
