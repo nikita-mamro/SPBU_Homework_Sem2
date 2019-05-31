@@ -17,7 +17,7 @@ namespace Homework
 
                 string expression;
 
-                using (StreamReader sr = new StreamReader(Path.Combine(Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())), "input.txt")))
+                using (var sr = new StreamReader(Path.Combine(Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())), "input.txt")))
                 {
                     expression = sr.ReadToEnd();
                 }

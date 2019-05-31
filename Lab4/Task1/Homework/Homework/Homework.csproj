@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BracketBalanceChecker.cs" />
+    <Compile Include="INode.cs" />
     <Compile Include="IParseTree.cs" />
     <Compile Include="ParseTree.cs" />
     <Compile Include="Program.cs" />

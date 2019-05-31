@@ -8,24 +8,13 @@ namespace ParseTree
     public class ParseTree : IParseTree
     {
         /// <summary>
-        /// Класс, реализующий узел дерева
-        /// </summary>
-        private abstract class Node
-        {
-            /// <summary>
-            /// Возвращает значение арифметического выражения, представимого в виде дерева разбора с корнем в данном узле
-            /// </summary>
-            abstract public int Calculate();
-        }
-
-        /// <summary>
         /// Класс реализующий узел-операнд дерева разбора
         /// </summary>
-        private class Operand : Node
+        private class Operand : INode
         {
             private int data;
 
-            public override int Calculate()
+            public int Calculate()
                 => this.data;
 
             /// <summary>
@@ -44,10 +33,11 @@ namespace ParseTree
         /// <summary>
         /// Класс, реализующий узел-оператор дерева разбора
         /// </summary>
-        private abstract class Operator : Node
+        private abstract class Operator : INode
         {
-            public Node Left { get; set; }
-            public Node Right { get; set; }
+            public abstract int Calculate();
+            public INode Left { get; set; }
+            public INode Right { get; set; }
         }
 
         /// <summary>
@@ -101,7 +91,7 @@ namespace ParseTree
         /// <summary>
         /// Узел-корень дерева
         /// </summary>
-        private Node root;
+        private INode root;
 
         public ParseTree(string expression)
         {
@@ -129,7 +119,7 @@ namespace ParseTree
         /// <param name="expression">Арифметическое выражение</param>
         /// <param name="index">Номер символа в выражении, на котором мы находимся в текущий момент</param>
         /// <returns></returns>
-        private Node CreateNode(string[] expression, ref int index)
+        private INode CreateNode(string[] expression, ref int index)
         {
             if (expression[index] == "(")
             {

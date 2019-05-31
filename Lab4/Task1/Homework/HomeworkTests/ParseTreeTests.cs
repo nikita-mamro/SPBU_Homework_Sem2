@@ -25,10 +25,7 @@ namespace ParseTree.Tests
                 {
                     IParseTree tree = new ParseTree(line);
 
-                    if (tree.Calculate() != int.Parse(sr.ReadLine()))
-                    {
-                        Assert.Fail();
-                    }
+                    Assert.AreEqual(tree.Calculate(), int.Parse(sr.ReadLine()));
                 }
             }
         }
@@ -47,10 +44,7 @@ namespace ParseTree.Tests
                 {
                     IParseTree tree = new ParseTree(line);
 
-                    if (tree.GetExpression() != sr.ReadLine())
-                    {
-                        Assert.Fail();
-                    }
+                    Assert.AreEqual(sr.ReadLine(), tree.GetExpression());
                 }
             }
         }
