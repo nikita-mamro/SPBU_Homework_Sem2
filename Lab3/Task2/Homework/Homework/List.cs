@@ -17,14 +17,17 @@ namespace Homework
             /// Значение, которое хранит элемент списка
             /// </summary>
             public string Data { get; set; }
+
             /// <summary>
             /// Количество вхождений данного значения в список
             /// </summary>
             public int Count { get; set; }
+
             /// <summary>
             /// Указатель на следующий элемент
             /// </summary>
             public Node Next { get; set; }
+
             /// <summary>
             /// Конструктор для элемента списка
             /// </summary>
