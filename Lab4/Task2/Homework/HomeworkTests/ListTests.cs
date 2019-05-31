@@ -27,7 +27,8 @@ namespace Lists.Tests
             bool initialIsEmpty = list.IsEmpty;
 
             list.AddToHead(10000000);
-            Assert.IsTrue(initialIsEmpty == true && list.IsEmpty == false);
+            Assert.IsTrue(initialIsEmpty);
+            Assert.IsFalse(list.IsEmpty);
         }
 
         [TestMethod]
