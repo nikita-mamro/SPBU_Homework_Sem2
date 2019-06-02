@@ -1,8 +1,12 @@
 image: Visual Studio 2017
 
 artifacts:
-  - matrix:
-    - solution_path: '**\*.sln'
+    - path: '**\*.sln'
+
+environment:
+  martix:
+    -solution_path: path
+
 
 before_build:
   - nuget restore %solution_path%
