@@ -1,15 +1,4 @@
 image: Visual Studio 2017
 
-artifacts:
-    - path: '**\*.sln'
-
-environment:
-  martix:
-    -solution_path: path
-
-
-before_build:
-  - nuget restore %solution_path%
-
 build_script:
-  - msbuild %solution_path%
+  - For /R %%I in (*.sln) do dotnet test %%I
