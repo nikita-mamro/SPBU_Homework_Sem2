@@ -1,4 +1,7 @@
 image: Visual Studio 2017
 
+before_build:
+  - FOR /R %%I IN (*.sln) DO nuget restore %%I
+
 build_script:
-  - For /R %%I in (*.sln) do msbuild %%I
+  - FOR /R %%I IN (*.sln) DO msbuild %%I
