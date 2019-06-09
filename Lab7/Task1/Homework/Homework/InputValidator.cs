@@ -115,7 +115,7 @@
                 {
                     return true;
                 }
-                if (expression[i] == ',')
+                if (expression[i] == '.')
                 {
                     return false;
                 }

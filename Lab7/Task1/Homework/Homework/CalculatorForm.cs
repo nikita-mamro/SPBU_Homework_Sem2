@@ -9,7 +9,7 @@ namespace Homework
         {
             InitializeComponent();
 
-            Binding binding = new Binding("text", lastResultLabel, "text", true, DataSourceUpdateMode.OnPropertyChanged);
+            var binding = new Binding("text", lastResultLabel, "text", true, DataSourceUpdateMode.OnPropertyChanged);
             textBoxCurrentInput.DataBindings.Add(binding);
         }
 

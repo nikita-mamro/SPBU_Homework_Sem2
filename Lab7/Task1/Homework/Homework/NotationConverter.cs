@@ -91,7 +91,7 @@ namespace Convertors
         /// <returns>Множество элементов выражения</returns>
         static private List<string> SeparateCorrectExpression(string expression)
         {
-            List<string> res = new List<string>();
+            var res = new List<string>();
 
             for (var currentPosition = 0; currentPosition < expression.Length; ++currentPosition)
             {
