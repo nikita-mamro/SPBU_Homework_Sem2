@@ -15,6 +15,7 @@ environment:
   - solution_path: Lab4\Task1\Homework\Homework.sln
   - solution_path: Lab4\Task2\Homework\Homework.sln
   - solution_path: Lab6\Task1\Homework\Homework.sln
+  - solution_path: Lab6\Task2\Homework\Homework.sln
   - solution_path: Test2\TestTask\Testtask.sln
 
 before_build:
