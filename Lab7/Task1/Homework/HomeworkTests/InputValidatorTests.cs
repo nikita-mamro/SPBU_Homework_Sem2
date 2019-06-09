@@ -83,8 +83,8 @@ namespace Validators.Tests
         /// Тесты метода, проверяющего, можно ли добавить в конец выражения запятую, не нарушив корректности
         /// </summary>
         [DataRow("", true)]
-        [DataRow(",", false)]
-        [DataRow("23,24352", false)]
+        [DataRow(".", false)]
+        [DataRow("23.24352", false)]
         [DataRow("1", true)]
         [DataRow("0", true)]
         [DataRow("(", true)]
