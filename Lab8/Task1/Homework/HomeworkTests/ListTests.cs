@@ -100,11 +100,10 @@ namespace Homework.Tests
             }
 
             var index = 1;
-            int expected;
 
             foreach (var element in list)
             {
-                expected = index * 3;
+                var expected = index * 3;
                 ++index;
                 Assert.AreEqual(expected, element);
             }
@@ -153,7 +152,8 @@ namespace Homework.Tests
 
             foreach (var element in list)
             {
-                Assert.IsTrue(element != 1 && element != 3);
+                Assert.IsTrue(element != 1);
+                Assert.IsTrue(element != 3);
             }
         }
 
@@ -199,7 +199,7 @@ namespace Homework.Tests
 
             list.Clear();
 
-            Assert.IsTrue(list.Count == 0);
+            Assert.AreEqual(0, list.Count);
         }
 
         [TestMethod]
@@ -265,6 +265,14 @@ namespace Homework.Tests
             }
 
             readOnlyList.CopyTo(array, readOnlyList.Count);
+
+            var value = 0;
+
+            for (var i = readOnlyList.Count; i < array.Length; ++i)
+            {
+                ++value;
+                Assert.AreEqual(value, array[i]);
+            }
         }
 
         [TestMethod]
@@ -325,7 +333,9 @@ namespace Homework.Tests
             var removedExpectedFalse = list.Remove(2);
             var removedExpectedTrue = list.Remove(1);
 
-            Assert.IsTrue(!removedExpectedFalse && removedExpectedTrue && 0 == list.Count);
+            Assert.IsFalse(removedExpectedFalse);
+            Assert.IsTrue(removedExpectedTrue);
+            Assert.AreEqual(0, list.Count);
         }
 
         [TestMethod]
@@ -349,7 +359,9 @@ namespace Homework.Tests
                 }
             }
 
-            Assert.IsTrue(result && removedExpectedTrue && !removedExpectedFalse);
+            Assert.IsTrue(result);
+            Assert.IsTrue(removedExpectedTrue);
+            Assert.IsFalse(removedExpectedFalse);
         }
 
         [TestMethod]
@@ -375,7 +387,10 @@ namespace Homework.Tests
                 }
             }
 
-            Assert.IsTrue(removedFirstTrue && removedSecondTrue && !removedExpectedFalse && result);
+            Assert.IsTrue(removedFirstTrue);
+            Assert.IsTrue(removedSecondTrue);
+            Assert.IsFalse(removedExpectedFalse);
+            Assert.IsTrue(result);
         }
     }
 }
