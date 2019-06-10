@@ -162,7 +162,8 @@ namespace Homework.Tests
             var oldCount = set.Count;
             var isRemoved = set.Remove(0);
 
-
+            Assert.IsTrue(isRemoved);
+            Assert.AreEqual(oldCount - 1, set.Count);
         }
 
         [TestMethod]

@@ -148,9 +148,7 @@ namespace Homework
         /// <see cref="ISet{T}.Add(T)"/>
         /// </summary>
         public bool Add(T item)
-        {
-            return AddIfNotPresent(item);
-        }
+            => AddIfNotPresent(item);
 
         /// <summary>
         /// <see cref="ICollection{T}.Add(T)"
